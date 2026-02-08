@@ -74,7 +74,6 @@ jobs:
 
       - name: Download previous build from gh-pages
         id: download
-        if: steps.changes.outputs.full_rebuild != 'true'
         continue-on-error: true
         run: |
           echo "📥 Downloading previous build from gh-pages branch..."
@@ -179,6 +178,12 @@ jobs:
           PIDS=()
           LABELS=()
           FAILED=0
+          SKIPPED=0
+
+          # Check if a slide has status: archived in frontmatter
+          is_archived() {
+            head -20 "$1" | grep -q '^status: archived$'
+          }
 
           build_slide() {
             local SLIDE_FILE="$1"
@@ -229,12 +234,28 @@ jobs:
             done
           }
 
-          # Queue all slide builds
+          # Queue all slide builds (skip archived slides that already exist from gh-pages)
           for SLIDE_FILE in workshop/*.md tech-talks/*.md exec-talks/*.md; do
             if [ -f "$SLIDE_FILE" ]; then
-              wait_for_slot
               CATEGORY=$(dirname "$SLIDE_FILE")
               BASENAME=$(basename "$SLIDE_FILE" .md)
+
+              if is_archived "$SLIDE_FILE"; then
+                if [ -d "dist/${CATEGORY}/${BASENAME}" ]; then
+                  echo "⏭️  Skipping archived: ${CATEGORY}/${BASENAME} (reusing previous build)"
+                else
+                  echo "⚠️  Archived slide ${CATEGORY}/${BASENAME} has no previous build — rebuilding"
+                  wait_for_slot
+                  build_slide "$SLIDE_FILE" &
+                  PIDS+=($!)
+                  LABELS+=("${CATEGORY}/${BASENAME}")
+                  continue
+                fi
+                SKIPPED=$((SKIPPED + 1))
+                continue
+              fi
+
+              wait_for_slot
               build_slide "$SLIDE_FILE" &
               PIDS+=($!)
               LABELS+=("${CATEGORY}/${BASENAME}")
@@ -247,6 +268,8 @@ jobs:
           done
 
           [ $FAILED -eq 1 ] && { echo "❌ Some builds failed"; exit 1; }
+
+          echo "📊 Built $((${#LABELS[@]} + SKIPPED)) slides: ${#LABELS[@]} built, ${SKIPPED} archived (reused)"
 
           # Copy custom index.html and 404.html to dist root
           echo "📄 Copying index.html and 404.html to dist root..."
