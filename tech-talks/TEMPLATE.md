@@ -35,17 +35,29 @@ This template is structured to generate Slidev slides automatically. Understandi
 4. **Problem Slide** ← "The Problem" section
 5. **Solution Overview** ← "The Solution" section
 6. **Key Artifacts** ← "Key Artifacts" section (navigation/inventory)
-7. **Mental Model Shift** ← "Move-Toward/Away/Against" section
+7. **🧠 The Shift (Preview)** ← Core Insight one-liner only. Plants the thesis before evidence.
 8. **When to Use Decision Tree** ← "When to Use This Pattern" section
 9. **[Major Section 1] Divider** ← First 🎬 marked section (for TOC jumping)
 10. **[Major Section 1 Content]** ← 2-4 slides from deep-dive content
 11. **[Major Section 2] Divider** ← Second 🎬 marked section
 12. **[Major Section 2 Content]** ← 2-4 slides from deep-dive content
 13. **Use Cases** ← "Real-World Use Cases" section (1-2 slides)
-14. **Actionable Outcomes** ← "What You Can Do Today" checklist
-15. **Related Patterns** ← "Related Patterns" section
-16. **Official Documentation** ← "📚 Official Documentation" section (REQUIRED)
-17. **End Slide** ← Auto-generated
+14. **🧠 Mental Model Shift (Full)** ← Full Move-Toward/Away/Against grid. Reinforces the thesis with evidence.
+15. **Actionable Outcomes** ← "What You Can Do Today" checklist
+16. **Related Patterns** ← "Related Patterns" section
+17. **📖 References** ← "📖 References" section (REQUIRED)
+18. **End Slide** ← Auto-generated
+
+### Mental Model: Thesis → Evidence → Reinforcement
+
+The mental model appears **twice** in every presentation:
+
+| Position | Slide | Content | Purpose |
+|----------|-------|---------|---------|
+| Early (#7) | **🧠 The Shift** | Core Insight one-liner + simple from/to visual | Plant the lens the audience watches through |
+| Late (#14) | **🧠 Mental Model Shift** | Full ✅ Move Toward / ⚠️ Away From / 🛑 Against grid | Reinforce with authority after seeing the evidence |
+
+This mirrors classic rhetoric: state your thesis early, prove it in the body, then restate it with weight.
 
 ### Major Sections (TOC Entries)
 
@@ -189,6 +201,8 @@ tech-talks/
 ## 🎯 Mental Model Shift
 
 > **The Core Insight:** From [old way of thinking] to [new way of thinking]
+
+*This Core Insight line is used twice in slides: once as an early preview ("The Shift" slide) to plant the thesis, and again here as the anchor for the full reinforcement slide near the end. Write it to work standalone as a compelling one-liner.*
 
 ### Move Toward (Embrace These Patterns)
 
@@ -400,26 +414,29 @@ See [DECISION-GUIDE.md](../DECISION-GUIDE.md) for complete navigation help.
 
 ---
 
-## 📚 Official Documentation
+## � References
 
-**REQUIRED:** Every tech-talk must link to official product documentation. This helps readers go deeper and stay current as features evolve.
+Numbered references cited inline throughout the content using `[^n]` footnote syntax. These appear as footnotes on slides and as a dedicated References slide.
 
-**Primary Documentation:**
-- 📖 **[Main Feature Documentation](URL)** — Core concepts, getting started guide, and overview
-- 📖 **[API/CLI Reference](URL)** — Command syntax, parameters, configuration options, and examples
-- 📖 **[Best Practices Guide](URL)** — Recommended patterns, common pitfalls, and optimization tips
+### Official Documentation
 
-**Additional Resources:**
-- 🎓 [Tutorial or Quickstart](URL) — Step-by-step walkthrough (if available)
-- 🔧 [Troubleshooting Guide](URL) — Common issues and solutions (if available)
-- 💬 [Community Forum or Discussions](URL) — Where to get help and share experiences (if available)
-- 📹 [Official Videos or Demos](URL) — Visual tutorials (if available)
+[^1]: **[Main Feature Documentation](URL)** — Core concepts and getting started
+[^2]: **[API/CLI Reference](URL)** — Command syntax, parameters, configuration options
 
-**GitHub Resources:**
-- 🐙 [Example Repository](URL) — Reference implementation or starter template (if available)
-- 📋 [Release Notes](URL) — Latest updates and changes (if available)
+### Blog Posts & Announcements
 
-> **Note for Authors:** Minimum 2 links required (Main Documentation + API/CLI Reference). Add more as relevant. Verify all links are current before publishing.
+[^3]: **[Feature Announcement](URL)** — Launch context and motivation
+[^4]: **[Deep Dive Post](URL)** — Architecture and design decisions
+
+### Tutorials & Guides
+
+[^5]: **[Quickstart Tutorial](URL)** — Step-by-step walkthrough
+
+### Community & Discussions
+
+[^6]: **[Discussion Thread](URL)** — Real-world usage patterns and tips
+
+> **For Authors:** Aim for 8-15 references. Every major claim, code example, and architecture statement should cite its source with `[^n]`. References [^1] and [^2] (official docs) are required at minimum. References are discovered during initial research (web search + provided URLs) and compiled in `research.md`.
 
 ---
 
@@ -462,7 +479,8 @@ Before marking this talk as complete:
 - [ ] **Use cases have outcomes**: Each shows measurable before/after
 - [ ] **Actionable items are time-bounded**: Clear 15min/1hr/2-4hr divisions
 - [ ] **Decision tree prevents misuse**: Clear "when NOT to use" guidance
-- [ ] **Official documentation linked**: Minimum 2 links in "📚 Official Documentation" section
+- [ ] **Official documentation linked**: Minimum 2 official doc references in "📖 References" section
+- [ ] **References throughout**: 8-15 numbered `[^n]` references with inline citations
 - [ ] **Links are current**: All documentation and related talk links work
 - [ ] **Code examples run**: All code has been tested and works
 - [ ] **Slides will generate cleanly**: Content follows structure for slide-generator.agent

@@ -1,0 +1,122 @@
+name: Validate Slide Builds (PR)
+
+on:
+  pull_request:
+    paths:
+      - "slides/**"
+
+concurrency:
+  group: pr-slides-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Build Changed Slides
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changed slides
+        id: changes
+        run: |
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+
+          echo "🔍 Comparing $BASE_SHA...$HEAD_SHA"
+
+          CHANGED_FILES=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA" -- slides/)
+
+          # Check if shared files changed (require full rebuild)
+          SHARED_PATTERNS="slides/package\.json|slides/package-lock\.json|slides/style\.css|slides/global-top\.vue|slides/global-bottom\.vue|slides/layouts/|slides/components/|slides/setup/"
+          if echo "$CHANGED_FILES" | grep -qE "$SHARED_PATTERNS"; then
+            echo "🔄 Shared files changed — building ALL slides"
+            echo "full_rebuild=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Extract changed slide .md files
+          CHANGED_SLIDES=$(echo "$CHANGED_FILES" | grep -E "^slides/(workshop|tech-talks|exec-talks)/.*\.md$" | sed 's#^slides/##' || echo "")
+
+          if [ -z "$CHANGED_SLIDES" ]; then
+            echo "📭 No slide .md files changed (may be non-slide assets)"
+            echo "full_rebuild=false" >> $GITHUB_OUTPUT
+            echo "changed_slides=" >> $GITHUB_OUTPUT
+            echo "count=0" >> $GITHUB_OUTPUT
+          else
+            COUNT=$(echo "$CHANGED_SLIDES" | wc -l)
+            echo "📝 ${COUNT} changed slide(s):"
+            echo "$CHANGED_SLIDES"
+            echo "full_rebuild=false" >> $GITHUB_OUTPUT
+            echo "count=${COUNT}" >> $GITHUB_OUTPUT
+            echo "changed_slides<<EOF" >> $GITHUB_OUTPUT
+            echo "$CHANGED_SLIDES" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Setup Node.js
+        if: steps.changes.outputs.changed_slides != '' || steps.changes.outputs.full_rebuild == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        if: steps.changes.outputs.changed_slides != '' || steps.changes.outputs.full_rebuild == 'true'
+        working-directory: ./slides
+        run: npm ci
+
+      - name: Install Playwright browsers
+        if: steps.changes.outputs.changed_slides != '' || steps.changes.outputs.full_rebuild == 'true'
+        working-directory: ./slides
+        run: npx playwright install chromium --with-deps
+
+      - name: Build changed slides
+        if: steps.changes.outputs.full_rebuild != 'true' && steps.changes.outputs.changed_slides != ''
+        working-directory: ./slides
+        run: |
+          echo "🚀 Building ${{ steps.changes.outputs.count }} changed slide(s)..."
+          mkdir -p dist/workshop dist/tech-talks dist/exec-talks
+
+          FAILED=0
+          BUILT=0
+
+          while IFS= read -r SLIDE_FILE; do
+            if [ -n "$SLIDE_FILE" ] && [ -f "$SLIDE_FILE" ]; then
+              CATEGORY=$(dirname "$SLIDE_FILE")
+              BASENAME=$(basename "$SLIDE_FILE" .md)
+
+              printf "🔨 %s/%s... " "$CATEGORY" "$BASENAME"
+
+              if npx slidev build "$SLIDE_FILE" \
+                --base "/CopilotTraining/${CATEGORY}/${BASENAME}/" \
+                --out "$(pwd)/dist/${CATEGORY}/${BASENAME}" 2>&1; then
+                echo "✅"
+                BUILT=$((BUILT + 1))
+              else
+                echo "❌ FAILED"
+                FAILED=$((FAILED + 1))
+              fi
+            fi
+          done <<< "${{ steps.changes.outputs.changed_slides }}"
+
+          echo ""
+          echo "📊 Results: ${BUILT} built, ${FAILED} failed"
+
+          if [ $FAILED -gt 0 ]; then
+            echo "❌ ${FAILED} slide(s) failed to build"
+            exit 1
+          fi
+
+      - name: Build all slides (shared files changed)
+        if: steps.changes.outputs.full_rebuild == 'true'
+        working-directory: ./slides
+        run: |
+          echo "🚀 Shared files changed — building all slides..."
+          bash scripts/build-all.sh
+
+      - name: Skip notification
+        if: steps.changes.outputs.changed_slides == '' && steps.changes.outputs.full_rebuild != 'true'
+        run: echo "✅ No slide content changed — nothing to validate"

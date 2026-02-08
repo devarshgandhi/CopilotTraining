@@ -1,114 +1,108 @@
 # GitHub Copilot Training & Thought Leadership
 
-> Comprehensive resources for mastering AI-assisted development—from hands-on training to executive strategy
+> Hands-on training, technical deep-dives, and executive strategy for AI-assisted development
 
 ---
 
 ## 🎯 What's Inside
 
-This repository contains three distinct types of content for different audiences and use cases:
+Three content tracks for different audiences, each with accompanying [Slidev presentations](slides/):
 
-### 🏗️ [Workshop Training](workshop/)
+### 🏗️ [Workshop Training](workshop/) — 7 Modules
 
-**Audience**: Developers and teams building practical AI-assisted development skills
+Hands-on, story-driven training with progressive skill-building for developers and teams.
 
-**Format**: Hands-on, story-driven training with progressive skill-building
+| Module | Topic |
+|--------|-------|
+| [00 — Orientation](workshop/00-orientation/) | Training philosophy and the Shift |
+| [01 — Instructions](workshop/01-instructions/) | Repository instructions and architecture docs |
+| [02 — Agent Plan Mode](workshop/02-agent-plan-mode/) | Structured AI collaboration |
+| [03 — Custom Prompts](workshop/03-custom-prompts/) | Reusable prompt workflows |
+| [04 — Agent Skills](workshop/04-agent-skills/) | Skills for targeted capabilities |
+| [05 — MCP Servers](workshop/05-mcp-servers/) | External system integration |
+| [06 — Custom Agents](workshop/06-custom-agents/) | Autonomous agent workflows |
 
-**What you'll find**:
-- 10-12 hour self-paced workshop building a production application
-- Persona-driven narratives following six team members
-- Progressive modules covering repository instructions, agent plan mode, custom prompts, custom agents, MCP servers, and more
-- Quantifiable before/after metrics showing real improvement
-- Complete working codebase ([FanHub](https://github.com/MSBart2/FanHub) template)
-
-**Start here**: [Workshop README](workshop/README.md)
-
-**Key modules**:
-- Repository instructions and architecture documentation
-- Agent plan mode for structured AI collaboration
-- Custom prompts and reusable workflows
-- Custom agents for autonomous task completion
-- MCP servers for external system integration
-- Enterprise patterns for organizational scale
+Uses persona-driven narratives and a production application template ([FanHub](https://github.com/MSBart2/FanHub)).
 
 ---
 
-### 💼 [Executive Talks](exec-talks/)
+### 💼 [Executive Talks](exec-talks/) — 3 Talks
 
-**Audience**: Technical leaders making strategic decisions about AI adoption
+Thought leadership for technical leaders making strategic decisions about AI adoption.
 
-**Format**: Thought leadership presentations (30-45 minutes)
-
-**What you'll find**:
-- Strategic framing with business context
-- Industry parallels and analogies (aviation, economics, labor)
-- Organizational implications and transformation patterns
-- Risk mitigation and governance frameworks
-- C-level/VP-level decision criteria
-
-**Topics include**:
-- **[Agentic Labor](exec-talks/agentic-labor/)** — What missions can agents actually fly beyond code generation
-- **[Agentic Delivery](exec-talks/agentic-delivery/)** — How to think about agents with instruments and guardrails
-- **[Agentic Economics](exec-talks/agentic-economics/)** — Economic models for AI-assisted development ROI
+| Talk | Focus |
+|------|-------|
+| [Agentic Delivery](exec-talks/agentic-delivery/) | Agents with instruments and guardrails |
+| [Agentic Labor](exec-talks/agentic-labor/) | What missions agents can fly beyond code generation |
+| [Agentic Economics](exec-talks/agentic-economics/) | Economic models for AI-assisted development ROI |
 
 ---
 
-### 🔧 [Technical Deep-Dives](tech-talks/)
+### 🔧 [Technical Deep-Dives](tech-talks/) — 16 Talks
 
-**Audience**: Practitioners exploring specific capabilities or patterns
+Technical presentations for practitioners exploring specific capabilities and patterns.
 
-**Format**: Technical presentations (30-60 minutes)
+| Talk | Focus |
+|------|-------|
+| [Agent Teams](tech-talks/agent-teams/) | Multi-agent orchestration and delegation |
+| [Agentic Journey](tech-talks/agentic-journey/) | End-to-end issue-to-PR automation |
+| [Agentic SDLC](tech-talks/agentic-sdlc/) | Infrastructure for AI velocity |
+| [Context Engineering](tech-talks/context-engineering-foundations/) | Building effective AI context systems |
+| [Copilot Chat](tech-talks/copilot-chat/) | Chat patterns and techniques |
+| [Copilot Chat Internals](tech-talks/copilot-chat-internals/) | Under the hood of Copilot Chat |
+| [Copilot CLI](tech-talks/copilot-cli/) | Terminal-based AI assistance |
+| [Copilot Hooks](tech-talks/copilot-hooks/) | Event-driven Copilot integration |
+| [Copilot Memory](tech-talks/copilot-memory/) | Persistent context and memory |
+| [Copilot SDK](tech-talks/copilot-sdk/) | Embedding Copilot in custom tools |
+| [Copilot Web](tech-talks/copilot-web/) | Browser-based AI assistance |
+| [Enterprise Patterns](tech-talks/enterprise-patterns/) | Organizational-scale adoption |
+| [MCP Apps](tech-talks/mcp-apps/) | Model Context Protocol applications |
+| [Multi-Step Tasks](tech-talks/multi-step-tasks/) | Complex task decomposition |
+| [Parallel Execution](tech-talks/parallel-execution/) | Concurrent agent workflows |
+| [Terminal Sandboxing](tech-talks/terminal-sandboxing/) | Safe command execution |
 
-**What you'll find**:
-- Clear problem statements and motivation
-- Technical depth with practical examples
-- Architectural diagrams and system flows
-- Implementation guidance and tradeoffs
-- Concrete takeaways for immediate application
+See [DECISION-GUIDE.md](tech-talks/DECISION-GUIDE.md) for choosing the right talk for your audience.
 
-**Topics include**:
-- **[Agentic SDLC](tech-talks/agentic-sdlc/)** — Infrastructure for AI velocity (repos, PRs, CI)
-- **[Agentic Repos](tech-talks/agentic-repos/)** — *Moved to Agentic SDLC Part 1*
-- **[Context Engineering Foundations](tech-talks/context-engineering-foundations/)** — Building effective AI context systems
-- **[Copilot SDK](tech-talks/copilot-sdk/)** — Embedding Copilot in custom tools
+---
+
+## 📽️ Slide Decks
+
+All content has accompanying [Slidev presentations](slides/) deployed to [GitHub Pages](https://MSBart2.github.io/CopilotTraining/).
+
+| Category | Decks | Live URL Pattern |
+|----------|-------|-----------------|
+| Workshop | 7 | `/CopilotTraining/workshop/{module}/` |
+| Tech Talks | 16+ | `/CopilotTraining/tech-talks/{topic}/` |
+| Exec Talks | 3 | `/CopilotTraining/exec-talks/{topic}/` |
+
+Slides are built and deployed automatically on push to `main`. PRs that touch slides are validated with a build check before merge.
 
 ---
 
 ## 🚀 Getting Started
 
-Choose your path based on your goals:
-
 | If you want to... | Start here |
 |-------------------|------------|
-| **Build hands-on AI development skills** | [Workshop Training](workshop/) |
-| **Understand strategic implications for leadership** | [Executive Talks](exec-talks/) |
-| **Deep-dive on specific technical capabilities** | [Technical Deep-Dives](tech-talks/) |
+| Build hands-on AI skills | [Workshop Module 00](workshop/00-orientation/) |
+| Understand strategic implications | [Agentic Delivery](exec-talks/agentic-delivery/) |
+| Deep-dive a specific capability | [Tech Talk Decision Guide](tech-talks/DECISION-GUIDE.md) |
 
 ---
 
 ## 🏗️ Training Philosophy
 
-All content in this repository shares core principles:
-
 ### The Shift: Syntax Wizards → Markdown Whisperers
 
-**Old metrics**:
-- Syntax memorization
-- Clever code only you understand
-- Fast typing
-- Being the "only expert"
+| Old Metrics | New Metrics |
+|------------|-------------|
+| Syntax memorization | Clear articulation of intent |
+| Clever code only you understand | Code anyone can maintain |
+| Fast typing | Fast thinking and design |
+| Being the "only expert" | Scaling knowledge across the team |
 
-**New metrics**:
-- Clear articulation of intent
-- Code anyone can maintain
-- Fast thinking and design
-- Scaling knowledge across the team
+In the age of AI assistance, the bottleneck isn't "can you write the code?" — it's "do you know what to build?"
 
-**Why it matters**: In the age of AI assistance, the bottleneck isn't "can you write the code?"—it's "do you know what to build?" Clarity of thought beats knowledge of syntax.
-
-### The Four Principles
-
-Every module connects back to these core ideas:
+### Four Principles
 
 | Principle | Core Message |
 |-----------|-------------|
@@ -119,72 +113,38 @@ Every module connects back to these core ideas:
 
 ---
 
-## 📚 Additional Resources
+## 🔧 Content Development
 
-### Training Materials
-- [Workshop README](workshop/README.md) — Full hands-on training guide
-- [PERSONAS.md](workshop/00-orientation/PERSONAS.md) — Meet the team members
-- [OUTLINE.md](OUTLINE.md) — Detailed module breakdown
-- [RESOURCES.md](RESOURCES.md) — Curated links to blogs, videos, and learning paths
+New tech talks are generated through an automated 4-phase workflow:
 
-### Official Documentation
+1. **Research** — Copilot CLI gathers source material and examples from URLs
+2. **Plan** — Content outline committed for review
+3. **Build** — README.md generated from approved plan (`/approve-plan`)
+4. **Slides** — Slidev deck generated from README
+
+See [workflow documentation](.github/workflows/README.md) for details.
+
+### Authoring Resources
+
+- [Tech Talk Template](tech-talks/TEMPLATE.md) — Structure and guidelines for tech talks
+- [Workshop Personas](workshop/00-orientation/PERSONAS.md) — Meet the training team members
+- [Slide Deployment](slides/DEPLOYMENT.md) — How slides are built and deployed
+
+---
+
+## 📚 Official Documentation
+
 - [GitHub Copilot Documentation](https://docs.github.com/en/copilot)
 - [Custom Instructions for Repositories](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions)
 - [Custom Prompt Files](https://code.visualstudio.com/docs/copilot/customization/prompt-files)
 - [Creating Custom Agents](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-custom-agents)
-- [Agent Skills](https://github.blog/changelog/2025-12-18-github-copilot-now-supports-agent-skills/)
 - [Copilot CLI](https://docs.github.com/en/copilot/github-copilot-in-the-cli)
-
----
-
-## 🤝 For Different Audiences
-
-### Individual Developers
-Start with the [Workshop Training](workshop/) to build practical skills through hands-on exercises.
-
-### Team Leads & Architects
-Explore [Technical Deep-Dives](tech-talks/) for implementation patterns, then use the [Workshop](workshop/) for team upskilling.
-
-### Executive Leadership
-Begin with [Executive Talks](exec-talks/) for strategic context, then review [Enterprise Patterns](workshop/11-enterprise-patterns/) for organizational rollout.
-
-### Instructors & Facilitators
-The [Workshop Training](workshop/) includes facilitator guidance and customizable exercises for team workshops.
-
----
-
-## 🎓 Learning Paths
-
-**Path 1: Individual Skill Building**
-1. [Workshop Module 0](workshop/00-orientation/) — Understand the challenge
-2. [Workshop Modules 1-5](workshop/) — Build foundational skills
-3. [Workshop Module 6](workshop/06-custom-agents/) — Experience the payoff
-4. [Workshop Modules 7-10](workshop/) — Scale and orchestrate
-
-**Path 2: Team Enablement**
-1. [Agentic SDLC](tech-talks/agentic-sdlc/) — Understand Gen-4 infrastructure
-2. [Workshop Modules 1-3](workshop/) — Establish team standards
-3. [Enterprise Patterns](workshop/10-enterprise-patterns/) — Scale across organization
-
-**Path 3: Executive Understanding**
-1. [Agentic Delivery](exec-talks/agentic-delivery/) — Mental model for agents
-2. [Agentic Labor](exec-talks/agentic-labor/) — Understand the labor multiplier
-3. [Agentic Economics](exec-talks/agentic-economics/) — ROI and investment framework
-4. [Enterprise Patterns](workshop/11-enterprise-patterns/) — Organizational implementation
 
 ---
 
 ## 📜 License
 
-This content is open source under the MIT License. Feel free to use, adapt, and share.
-
----
-
-## 🎬 Ready to Start?
-
-- **Developers**: Jump into [Workshop Module 0](workshop/00-orientation/README.md)
-- **Leaders**: Explore [Executive Talks](exec-talks/)
-- **Practitioners**: Browse [Technical Deep-Dives](tech-talks/)
+This content is open source under the MIT License.
 
 ---
 

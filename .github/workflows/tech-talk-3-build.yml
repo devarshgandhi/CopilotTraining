@@ -1,0 +1,215 @@
+name: "Tech Talk Phase 3: Build"
+
+# Phase 3 checks out the branch, reads research + plan + examples + images,
+# generates the final README.md, creates a PR, and posts completion status.
+#
+# Triggered by: /approve-plan comment on a tech-talk issue
+# Discovers branch via: origin/tech-talk/{topic}-{issue_number}
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  build:
+    name: Generate Tech Talk Content
+    runs-on: ubuntu-latest
+    if: |
+      github.event.issue.pull_request == null &&
+      contains(github.event.comment.body, '/approve-plan') &&
+      contains(github.event.issue.labels.*.name, 'tech-talk')
+    permissions:
+      issues: write
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install GitHub Copilot CLI
+        run: npm install -g @github/copilot
+
+      - name: Extract issue fields
+        id: extract
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.issue.body || '';
+
+            const extractField = (label) => {
+              const regex = new RegExp(`### ${label}\\s*\\n\\s*([^#]+)`, 'i');
+              const match = body.match(regex);
+              return match ? match[1].trim() : '';
+            };
+
+            core.setOutput('topic', extractField('Tech Talk Topic'));
+            core.setOutput('primary_question', extractField('Primary Question') || 'Not specified');
+            core.setOutput('audience', extractField('Target Audience') || 'Mixed Audience');
+            core.setOutput('duration', extractField('Expected Duration') || '45 minutes');
+            core.setOutput('guidance', extractField('Guidance \\(optional\\)') || 'No specific guidance provided');
+
+      - name: Checkout feature branch
+        run: |
+          TOPIC="${{ steps.extract.outputs.topic }}"
+          BRANCH_NAME="tech-talk/${TOPIC}-${{ github.event.issue.number }}"
+
+          if git ls-remote --exit-code origin "$BRANCH_NAME" > /dev/null 2>&1; then
+            git checkout "$BRANCH_NAME"
+            echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+            echo "✅ Checked out branch: $BRANCH_NAME"
+          else
+            echo "❌ Branch $BRANCH_NAME not found. Run Phases 1 & 2 first."
+            exit 1
+          fi
+
+      - name: Verify artifacts exist
+        run: |
+          TOPIC="${{ steps.extract.outputs.topic }}"
+          for file in research.md plan.md; do
+            if [ ! -f "tech-talks/${TOPIC}/${file}" ]; then
+              echo "❌ ${file} not found. Run earlier phases first."
+              exit 1
+            fi
+          done
+          echo "✅ All required artifacts found"
+
+      - name: Acknowledge approval
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `## 🔨 Phase 3: Build Started\n\n✅ Plan approved by @${{ github.event.comment.user.login }}\n\nGenerating tech talk from artifacts on branch \`${{ env.BRANCH_NAME }}\`...`
+            });
+
+      - name: Run Copilot CLI for content generation
+        env:
+          GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+        run: |
+          TOPIC="${{ steps.extract.outputs.topic }}"
+
+          # Build prompt from template
+          sed -e "s|{{ISSUE_NUMBER}}|${{ github.event.issue.number }}|g" \
+              -e "s|{{TOPIC}}|${TOPIC}|g" \
+              -e "s|{{PRIMARY_QUESTION}}|${{ steps.extract.outputs.primary_question }}|g" \
+              -e "s|{{AUDIENCE}}|${{ steps.extract.outputs.audience }}|g" \
+              -e "s|{{DURATION}}|${{ steps.extract.outputs.duration }}|g" \
+              -e "s|{{GUIDANCE}}|${{ steps.extract.outputs.guidance }}|g" \
+              .github/prompts/tech-talk/build-instructions.md > build_prompt.txt
+
+          # Append all artifacts so Copilot CLI has full context
+          echo "" >> build_prompt.txt
+          echo "---" >> build_prompt.txt
+          echo "## Research Document" >> build_prompt.txt
+          cat "tech-talks/${TOPIC}/research.md" >> build_prompt.txt
+          echo "" >> build_prompt.txt
+          echo "## Content Plan" >> build_prompt.txt
+          cat "tech-talks/${TOPIC}/plan.md" >> build_prompt.txt
+          echo "" >> build_prompt.txt
+
+          # Include available images list
+          echo "## Available Images" >> build_prompt.txt
+          ls "tech-talks/${TOPIC}/images/" 2>/dev/null | grep -v '.gitkeep' >> build_prompt.txt || echo "(none)" >> build_prompt.txt
+          echo "" >> build_prompt.txt
+
+          # Include example file contents
+          echo "## Available Examples" >> build_prompt.txt
+          for f in tech-talks/${TOPIC}/examples/*; do
+            if [ -f "$f" ] && [ "$(basename $f)" != ".gitkeep" ]; then
+              echo "### File: $(basename $f)" >> build_prompt.txt
+              echo '```' >> build_prompt.txt
+              cat "$f" >> build_prompt.txt
+              echo '```' >> build_prompt.txt
+              echo "" >> build_prompt.txt
+            fi
+          done
+
+          # Run Copilot CLI — output is the final README
+          copilot -p @build_prompt.txt > "tech-talks/${TOPIC}/README.md"
+
+          echo "✅ Content generation complete"
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          TOPIC="${{ steps.extract.outputs.topic }}"
+          git add "tech-talks/${TOPIC}/"
+          git commit -m "Phase 3: Tech talk README for ${TOPIC} (Issue #${{ github.event.issue.number }})"
+          git push origin "$BRANCH_NAME"
+
+      - name: Create pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TOPIC="${{ steps.extract.outputs.topic }}"
+
+          gh pr create \
+            --title "Tech Talk: ${TOPIC}" \
+            --body "## Tech Talk: ${TOPIC}
+
+          Generated from issue #${{ github.event.issue.number }}.
+
+          ### Contents
+          | File | Description |
+          |------|-------------|
+          | \`tech-talks/${TOPIC}/README.md\` | Complete tech talk |
+          | \`tech-talks/${TOPIC}/research.md\` | Research findings |
+          | \`tech-talks/${TOPIC}/plan.md\` | Content plan |
+          | \`tech-talks/${TOPIC}/images/\` | Visual assets |
+          | \`tech-talks/${TOPIC}/examples/\` | Code examples |
+
+          ### Next Steps
+          - Review the content
+          - When ready for slides, add label \`tech-talk:slides\` to issue #${{ github.event.issue.number }}
+
+          ---
+          *Generated by Tech Talk Workflow Phase 3*
+
+          Closes #${{ github.event.issue.number }}" \
+            --base main \
+            --head "$BRANCH_NAME"
+
+      - name: Update issue labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                name: 'tech-talk:planned'
+              });
+            } catch (e) { /* ignore */ }
+
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ['tech-talk:ready']
+            });
+
+      - name: Post completion status
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const topic = '${{ steps.extract.outputs.topic }}';
+            const branch = '${{ env.BRANCH_NAME }}';
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `## ✅ Phase 3: Build Complete\n\nTech talk generated and PR created.\n\n📄 [\`tech-talks/${topic}/README.md\`](https://github.com/${context.repo.owner}/${context.repo.repo}/blob/${branch}/tech-talks/${topic}/README.md)\n\n---\n\n**Next:** Review the PR. When ready for slides, add label \`tech-talk:slides\` to this issue.`
+            });

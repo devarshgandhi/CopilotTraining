@@ -1,0 +1,169 @@
+name: "Tech Talk Phase 2: Plan"
+
+# Phase 2 checks out the branch created in Phase 1, reads the research artifacts,
+# and commits a content plan (plan.md) to the same branch.
+#
+# Discovers branch via: origin/tech-talk/{topic}-{issue_number}
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  plan:
+    name: Generate Content Plan
+    runs-on: ubuntu-latest
+    if: github.event.label.name == 'tech-talk:planned'
+    permissions:
+      issues: write
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install GitHub Copilot CLI
+        run: npm install -g @github/copilot
+
+      - name: Extract issue fields
+        id: extract
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.issue.body || '';
+
+            const extractField = (label) => {
+              const regex = new RegExp(`### ${label}\\s*\\n\\s*([^#]+)`, 'i');
+              const match = body.match(regex);
+              return match ? match[1].trim() : '';
+            };
+
+            core.setOutput('topic', extractField('Tech Talk Topic'));
+            core.setOutput('primary_question', extractField('Primary Question') || 'Not specified');
+            core.setOutput('audience', extractField('Target Audience') || 'Mixed Audience');
+            core.setOutput('duration', extractField('Expected Duration') || '45 minutes');
+            core.setOutput('guidance', extractField('Guidance \\(optional\\)') || 'No specific guidance provided');
+
+      - name: Checkout feature branch
+        run: |
+          TOPIC="${{ steps.extract.outputs.topic }}"
+          BRANCH_NAME="tech-talk/${TOPIC}-${{ github.event.issue.number }}"
+
+          if git ls-remote --exit-code origin "$BRANCH_NAME" > /dev/null 2>&1; then
+            git checkout "$BRANCH_NAME"
+            echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+            echo "✅ Checked out branch: $BRANCH_NAME"
+          else
+            echo "❌ Branch $BRANCH_NAME not found. Run Phase 1 first."
+            exit 1
+          fi
+
+      - name: Verify research artifacts exist
+        run: |
+          TOPIC="${{ steps.extract.outputs.topic }}"
+          if [ ! -f "tech-talks/${TOPIC}/research.md" ]; then
+            echo "❌ research.md not found. Run Phase 1 first."
+            exit 1
+          fi
+          echo "✅ Research artifacts found:"
+          ls -la "tech-talks/${TOPIC}/"
+          echo "Images:"
+          ls -la "tech-talks/${TOPIC}/images/" 2>/dev/null || echo "  (none)"
+          echo "Examples:"
+          ls -la "tech-talks/${TOPIC}/examples/" 2>/dev/null || echo "  (none)"
+
+      - name: Comment - Starting Planning
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `## 📋 Phase 2: Content Planning Started\n\nReading research artifacts from branch \`${{ env.BRANCH_NAME }}\` and creating content plan...`
+            });
+
+      - name: Run Copilot CLI for planning
+        env:
+          GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+        run: |
+          TOPIC="${{ steps.extract.outputs.topic }}"
+
+          # Build prompt from template
+          sed -e "s|{{ISSUE_NUMBER}}|${{ github.event.issue.number }}|g" \
+              -e "s|{{TOPIC}}|${TOPIC}|g" \
+              -e "s|{{PRIMARY_QUESTION}}|${{ steps.extract.outputs.primary_question }}|g" \
+              -e "s|{{AUDIENCE}}|${{ steps.extract.outputs.audience }}|g" \
+              -e "s|{{DURATION}}|${{ steps.extract.outputs.duration }}|g" \
+              -e "s|{{GUIDANCE}}|${{ steps.extract.outputs.guidance }}|g" \
+              .github/prompts/tech-talk/planning-instructions.md > planning_prompt.txt
+
+          # Append the actual research content so Copilot CLI has full context
+          echo "" >> planning_prompt.txt
+          echo "---" >> planning_prompt.txt
+          echo "## Research Document Contents" >> planning_prompt.txt
+          cat "tech-talks/${TOPIC}/research.md" >> planning_prompt.txt
+
+          # List available images and examples for artifact mapping
+          echo "" >> planning_prompt.txt
+          echo "## Available Images" >> planning_prompt.txt
+          ls "tech-talks/${TOPIC}/images/" 2>/dev/null | grep -v '.gitkeep' >> planning_prompt.txt || echo "(none)" >> planning_prompt.txt
+          echo "" >> planning_prompt.txt
+          echo "## Available Examples" >> planning_prompt.txt
+          ls "tech-talks/${TOPIC}/examples/" 2>/dev/null | grep -v '.gitkeep' >> planning_prompt.txt || echo "(none)" >> planning_prompt.txt
+
+          # Run Copilot CLI
+          copilot -p @planning_prompt.txt > "tech-talks/${TOPIC}/plan.md"
+
+          echo "✅ Content plan complete"
+
+      - name: Commit and push plan
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          TOPIC="${{ steps.extract.outputs.topic }}"
+          git add "tech-talks/${TOPIC}/plan.md"
+          git commit -m "Phase 2: Content plan for ${TOPIC} (Issue #${{ github.event.issue.number }})"
+          git push origin "$BRANCH_NAME"
+
+      - name: Post plan summary as comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const topic = '${{ steps.extract.outputs.topic }}';
+            const branch = '${{ env.BRANCH_NAME }}';
+
+            // Read the plan and post a truncated preview
+            const plan = fs.readFileSync(`tech-talks/${topic}/plan.md`, 'utf8');
+            const preview = plan.length > 4000
+              ? plan.substring(0, 4000) + '\n\n... *(truncated — see full plan on branch)*'
+              : plan;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `## ✅ Phase 2: Content Plan Ready
+
+            **Full plan:** [\`tech-talks/${topic}/plan.md\`](https://github.com/${context.repo.owner}/${context.repo.repo}/blob/${branch}/tech-talks/${topic}/plan.md)
+
+            <details>
+            <summary>📋 Plan Preview (click to expand)</summary>
+
+            ${preview}
+
+            </details>
+
+            ---
+
+            **Next:** Review the plan. When satisfied, comment \`/approve-plan\` to start Phase 3 (Build).`
+            });

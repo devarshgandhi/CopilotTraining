@@ -1,0 +1,258 @@
+name: "Tech Talk Phase 1: Research"
+
+# Phase 1 creates a branch and commits research artifacts:
+#   tech-talks/{topic}/research.md    — Copilot CLI research output
+#   tech-talks/{topic}/images/        — Downloaded images from source URLs
+#   tech-talks/{topic}/examples/      — Code samples extracted from sources
+#
+# All subsequent phases discover this branch via: origin/tech-talk/{topic}-*
+
+on:
+  issues:
+    types: [opened, labeled]
+
+jobs:
+  research:
+    name: Research Source URLs
+    runs-on: ubuntu-latest
+    if: |
+      contains(github.event.issue.labels.*.name, 'tech-talk') &&
+      contains(github.event.issue.labels.*.name, 'tech-talk:intake')
+    permissions:
+      issues: write
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install GitHub Copilot CLI
+        run: npm install -g @github/copilot
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: pip install requests
+
+      - name: Extract issue fields
+        id: extract
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.issue.body || '';
+
+            const extractField = (label) => {
+              const regex = new RegExp(`### ${label}\\s*\\n\\s*([^#]+)`, 'i');
+              const match = body.match(regex);
+              return match ? match[1].trim() : '';
+            };
+
+            const topic = extractField('Tech Talk Topic');
+            const sourceUrls = extractField('Source URLs');
+            const primaryQuestion = extractField('Primary Question');
+            const audience = extractField('Target Audience');
+            const duration = extractField('Expected Duration');
+            const guidance = extractField('Guidance \\(optional\\)');
+
+            core.setOutput('topic', topic);
+            core.setOutput('source_urls', sourceUrls);
+            core.setOutput('primary_question', primaryQuestion || 'Not specified');
+            core.setOutput('audience', audience || 'Mixed Audience');
+            core.setOutput('duration', duration || '45 minutes');
+            core.setOutput('guidance', guidance || 'No specific guidance provided');
+
+      - name: Create feature branch
+        run: |
+          TOPIC="${{ steps.extract.outputs.topic }}"
+          BRANCH_NAME="tech-talk/${TOPIC}-${{ github.event.issue.number }}"
+          git checkout -b "$BRANCH_NAME"
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+      - name: Create artifact directories
+        run: |
+          TOPIC="${{ steps.extract.outputs.topic }}"
+          mkdir -p "tech-talks/${TOPIC}/images"
+          mkdir -p "tech-talks/${TOPIC}/examples"
+
+      - name: Comment - Starting Research
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const topic = '${{ steps.extract.outputs.topic }}';
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `## \uD83D\uDD0D Phase 1: Research Started\n\nCopilot CLI is researching source URLs, searching the web for additional references, and gathering artifacts...\n\n**Topic:** ${topic}\n**Branch:** \`${{ env.BRANCH_NAME }}\`\n**Question:** ${{ steps.extract.outputs.primary_question }}\n**Audience:** ${{ steps.extract.outputs.audience }} | **Duration:** ${{ steps.extract.outputs.duration }}`
+            });
+
+      - name: Run Copilot CLI for research
+        env:
+          GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+        run: |
+          TOPIC="${{ steps.extract.outputs.topic }}"
+
+          # Build prompt from template
+          sed -e "s|{{ISSUE_NUMBER}}|${{ github.event.issue.number }}|g" \
+              -e "s|{{TOPIC}}|${TOPIC}|g" \
+              -e "s|{{PRIMARY_QUESTION}}|${{ steps.extract.outputs.primary_question }}|g" \
+              -e "s|{{AUDIENCE}}|${{ steps.extract.outputs.audience }}|g" \
+              -e "s|{{DURATION}}|${{ steps.extract.outputs.duration }}|g" \
+              -e "s|{{GUIDANCE}}|${{ steps.extract.outputs.guidance }}|g" \
+              -e "s|{{SOURCE_URLS}}|${{ steps.extract.outputs.source_urls }}|g" \
+              .github/prompts/tech-talk/research-instructions.md > research_prompt.txt
+
+          # Run Copilot CLI with shell(curl) access for web search
+          copilot -p @research_prompt.txt \
+            --allow-tool 'shell(curl)' \
+            > "tech-talks/${TOPIC}/research.md"
+
+          echo "✅ Research complete"
+
+      - name: Download images from source URLs
+        run: |
+          TOPIC="${{ steps.extract.outputs.topic }}"
+          SOURCE_URLS="${{ steps.extract.outputs.source_urls }}"
+
+          # Download images from each source URL
+          while IFS= read -r url; do
+            url=$(echo "$url" | xargs)  # trim whitespace
+            if [[ -n "$url" && "$url" =~ ^https?:// ]]; then
+              echo "📸 Downloading images from: $url"
+              python3 scripts/download-images.py "$url" "tech-talks/${TOPIC}/images" --limit 7 || echo "⚠️ Warning: Could not download images from $url"
+            fi
+          done <<< "$SOURCE_URLS"
+
+          # List what was downloaded
+          echo "📁 Downloaded images:"
+          ls -la "tech-talks/${TOPIC}/images/" 2>/dev/null || echo "  (none)"
+
+      - name: Extract code examples from research
+        env:
+          GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+        run: |
+          TOPIC="${{ steps.extract.outputs.topic }}"
+
+          # Ask Copilot CLI to extract code examples from the research as separate files
+          cat > extract_prompt.txt << 'PROMPT'
+          Read the research document below. Extract each code example, configuration,
+          or workflow definition into a separate file. For each example:
+
+          1. Choose a descriptive filename (e.g., basic-config.yml, setup-workflow.yml, example-usage.py)
+          2. Write ONLY the code/config content (no markdown, no explanation)
+          3. Output in this exact format for each file:
+
+          --- FILE: filename.ext ---
+          [file contents]
+          --- END FILE ---
+
+          If there are no extractable code examples, output: NO_EXAMPLES
+
+          Research document:
+          PROMPT
+
+          cat "tech-talks/${TOPIC}/research.md" >> extract_prompt.txt
+
+          copilot -p @extract_prompt.txt > extracted_examples.txt
+
+          # Parse and save extracted examples
+          if ! grep -q "NO_EXAMPLES" extracted_examples.txt; then
+            current_file=""
+            while IFS= read -r line; do
+              if [[ "$line" =~ ^---\ FILE:\ (.+)\ ---$ ]]; then
+                current_file="${BASH_REMATCH[1]}"
+                > "tech-talks/${TOPIC}/examples/${current_file}"
+              elif [[ "$line" =~ ^---\ END\ FILE\ ---$ ]]; then
+                current_file=""
+              elif [[ -n "$current_file" ]]; then
+                echo "$line" >> "tech-talks/${TOPIC}/examples/${current_file}"
+              fi
+            done < extracted_examples.txt
+          fi
+
+          echo "📁 Extracted examples:"
+          ls -la "tech-talks/${TOPIC}/examples/" 2>/dev/null || echo "  (none)"
+
+      - name: Add .gitkeep to empty directories
+        run: |
+          TOPIC="${{ steps.extract.outputs.topic }}"
+          # Ensure directories are committed even if empty
+          [ -z "$(ls -A tech-talks/${TOPIC}/images/)" ] && touch "tech-talks/${TOPIC}/images/.gitkeep"
+          [ -z "$(ls -A tech-talks/${TOPIC}/examples/)" ] && touch "tech-talks/${TOPIC}/examples/.gitkeep"
+
+      - name: Commit and push artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          TOPIC="${{ steps.extract.outputs.topic }}"
+          git add "tech-talks/${TOPIC}/"
+          git commit -m "Phase 1: Research artifacts for ${TOPIC} (Issue #${{ github.event.issue.number }})
+
+          - research.md: Source URL research findings
+          - images/: Visual assets from source URLs
+          - examples/: Code samples extracted from sources"
+
+          git push origin "$BRANCH_NAME"
+
+      - name: Post completion status
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const topic = '${{ steps.extract.outputs.topic }}';
+            const branch = '${{ env.BRANCH_NAME }}';
+
+            // Count artifacts
+            const imgDir = `tech-talks/${topic}/images`;
+            const exDir = `tech-talks/${topic}/examples`;
+            const imgCount = fs.readdirSync(imgDir).filter(f => f !== '.gitkeep').length;
+            const exCount = fs.readdirSync(exDir).filter(f => f !== '.gitkeep').length;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `## ✅ Phase 1: Research Complete
+
+            **Branch:** [\`${branch}\`](https://github.com/${context.repo.owner}/${context.repo.repo}/tree/${branch})
+
+            ### Artifacts Committed
+            | File | Description |
+            |------|-------------|
+            | \`tech-talks/${topic}/research.md\` | Research findings |
+            | \`tech-talks/${topic}/images/\` | ${imgCount} image(s) downloaded |
+            | \`tech-talks/${topic}/examples/\` | ${exCount} example(s) extracted |
+
+            ---
+
+            **Next:** Phase 2 (Content Planning) starts automatically.`
+            });
+
+      - name: Progress to Phase 2
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                name: 'tech-talk:intake'
+              });
+            } catch (e) { /* label may not exist */ }
+
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ['tech-talk:planned']
+            });

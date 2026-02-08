@@ -1,14 +1,12 @@
 ---
 name: tech-talk-author
-description: Generates tech talk README.md for CopilotTraining using TEMPLATE.md. Researches URLs to understand capabilities and creates technical deep-dive content.
+description: Generates tech talk content using the same phased workflow as the GitHub Issue pipeline. Produces research.md, plan.md, and README.md using shared prompt templates.
 infer: true
 ---
 
-# Tech Talk Author Skill (Condensed)
+# Tech Talk Author Skill
 
-**📖 Full Documentation:** See `/docs/skills-tech-talk-author-SKILL.md`
-
-Generate technical deep-dive content using `tech-talks/TEMPLATE.md`.
+Generate tech talks following the same 4-phase structure as the GitHub Issue workflow.
 
 ## Usage
 
@@ -18,17 +16,17 @@ Generate technical deep-dive content using `tech-talks/TEMPLATE.md`.
 
 ## Process
 
-1. Research URLs and gather technical details
-2. Follow TEMPLATE.md structure
-3. Generate README.md with working artifacts
-4. Include implementation guidance and metrics
+Follow the prompt templates in `.github/prompts/tech-talk/`:
 
-## Key Elements
+1. **Research** (`research-instructions.md`) — Fetch URLs + web search for additional references → `research.md`
+2. **Plan** (`planning-instructions.md`) — Create content outline → `plan.md`
+3. **Build** (`build-instructions.md`) — Generate README.md with inline `[^n]` citations
+4. **Slides** (`slides-instructions.md`) — Generate Slidev slides with footnotes
 
-- Clear problem statement
-- Technical depth
-- Architecture diagrams
-- Concrete examples
-- Working configs/code
+## Key Requirements
 
-See full docs for complete template and guidelines.
+- Follow `tech-talks/TEMPLATE.md` structure
+- Produce intermediate artifacts (research.md, plan.md) before README
+- Include 8-15 numbered references with inline citations
+- Web search for additional references beyond provided URLs
+- Pause for review between phases
