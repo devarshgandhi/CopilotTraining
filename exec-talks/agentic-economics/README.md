@@ -759,58 +759,6 @@ Every hour of routine work eliminated is an hour of high-value work enabled. A d
 
 ---
 
-## The Decision Framework: Build vs. Buy vs. Wait
-
-Leaders face three options:
-
-### Option 1: Build Now
-
-**Invest in infrastructure to capture agent economics immediately.**
-
-| Pros | Cons |
-|------|------|
-| Fastest path to savings | Highest upfront investment |
-| Competitive advantage | Execution risk |
-| Infrastructure benefits humans too | Requires organizational change |
-| Earlier ROI start | Distraction from other priorities |
-
-**Best for:** Organizations with strong platform engineering, clear competitive pressure, and executive commitment to transformation.
-
-### Option 2: Buy Solutions
-
-**Purchase agent platforms and services that handle infrastructure.**
-
-| Pros | Cons |
-|------|------|
-| Lower upfront investment | Vendor lock-in risk |
-| Faster time to value | Less customization |
-| Reduced execution risk | Ongoing licensing costs |
-| Someone else maintains infra | Dependency on vendor roadmap |
-
-**Best for:** Organizations with limited platform engineering capacity, urgency to show results, and comfort with SaaS models.
-
-### Option 3: Wait and Learn
-
-**Observe early adopters and invest when the market matures.**
-
-| Pros | Cons |
-|------|------|
-| Learn from others' mistakes | Competitors gain advantage |
-| Lower risk of early tech | Miss early mover benefits |
-| Market consolidation clarity | Technical debt accumulates |
-| Staff has time to adapt | Talent expects AI tooling |
-
-**Best for:** Organizations in non-competitive contexts, with significant technical debt, or undergoing other major transformations.
-
-### The Hybrid Path
-
-Most organizations benefit from pursuing a hybrid:
-
-1. **Quick wins now:** Deploy agents for triage, PR descriptions, dependency updates with minimal infrastructure
-2. **Platform investment:** Build (or buy) the infrastructure for automated verification over 6 months
-3. **Scale systematically:** Expand agent use cases as infrastructure matures
-
----
 
 ## The Leadership Calculation
 
