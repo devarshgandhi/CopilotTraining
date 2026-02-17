@@ -26,6 +26,13 @@ Transform module README markdown into beautiful, concise Slidev presentations th
 
 ## Workflow
 
+### 0. Pre-flight Checks
+
+Before generating slides, verify two prerequisites:
+
+1. **README Exists** — Confirm the source README.md file exists at the expected path. If it does not exist, **STOP** and inform the user: "No README.md found at `<path>`. The README must be generated first (e.g., via the tech-talk-generator agent) before slides can be created."
+2. **Not Archived** — Read the source README frontmatter. If `status: archived`, **STOP** and inform the user: "This content is archived and cannot be used to generate slides." Also check any existing slide file — if it has `status: archived`, refuse to modify it.
+
 ### 1. Parse Module README
 
 **CRITICAL: Be Selective, Not Comprehensive**

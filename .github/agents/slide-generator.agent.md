@@ -25,19 +25,20 @@ Transform module README markdown into beautiful, concise Slidev presentations (1
 ## Quick Workflow
 
 0. **Check Status** - Read the source README frontmatter first. If `status: archived`, **STOP** and inform the user: "This content is archived and cannot be used to generate slides." Also check any existing slide file — if it has `status: archived`, refuse to modify it.
-1. **Parse README** - Extract: title, story, objectives, personas, before/after, key concepts, exercises, metrics. Note the `section` field from README frontmatter — this determines where to place the card in `index-custom.html`.
-2. **Generate Structure** - 12-20 slides: cover → TOC → objectives → personas → before/after → concepts → exercises → quote → metrics → next
-3. **Create TOC** - Look for `<!-- 🎬 MAJOR SECTION: -->` markers, create section dividers with `name:` anchors, add navigation cards with `@click="$nav.go(N)"`
-4. **Apply Layouts** - Use Slidev's built-in layouts (default, center, two-cols, etc.)
-5. **Prevent Overflow** - Max 5 bullets, 15-line code blocks, 200-char text blocks
-6. **Update Index** - Add entry to `slides/index-custom.html` navigation. Use the `section` field from the source README frontmatter to place the card in the correct sub-group:
+1. **Verify README Exists** - Before proceeding, confirm the source README.md file exists at the expected path. If it does not exist, **STOP** and inform the user: "No README.md found at `<path>`. The README must be generated first (e.g., via the tech-talk-generator agent) before slides can be created."
+2. **Parse README** - Extract: title, story, objectives, personas, before/after, key concepts, exercises, metrics. Note the `section` field from README frontmatter — this determines where to place the card in `index-custom.html`.
+3. **Generate Structure** - 12-20 slides: cover → TOC → objectives → personas → before/after → concepts → exercises → quote → metrics → next
+4. **Create TOC** - Look for `<!-- 🎬 MAJOR SECTION: -->` markers, create section dividers with `name:` anchors, add navigation cards with `@click="$nav.go(N)"`
+5. **Apply Layouts** - Use Slidev's built-in layouts (default, center, two-cols, etc.)
+6. **Prevent Overflow** - Max 5 bullets, 15-line code blocks, 200-char text blocks
+7. **Update Index** - Add entry to `slides/index-custom.html` navigation. Use the `section` field from the source README frontmatter to place the card in the correct sub-group:
    - `Copilot Surfaces` → 💬 sub-group
    - `Context & Customization` → 🧩 sub-group
    - `Agent Architecture` → 🤖 sub-group
    - `Agentic Transformation` → 🚀 sub-group
    - `Executive Talks` → 💼 section
-7. **Set Metadata** - When creating a new slide, set `status: active` and `updated: <today's date YYYY-MM-DD>`. When modifying an existing slide, update the `updated:` field to today's date.
-8. **Sync Index Dates** - After creating or updating a slide, run `node slides/scripts/sync-index-dates.mjs` to update the `SLIDE_DATES` map in `index-custom.html`. This keeps the "NEW" badge in sync with frontmatter dates.
+8. **Set Metadata** - When creating a new slide, set `status: active` and `updated: <today's date YYYY-MM-DD>`. When modifying an existing slide, update the `updated:` field to today's date.
+9. **Sync Index Dates** - After creating or updating a slide, run `node slides/scripts/sync-index-dates.mjs` to update the `SLIDE_DATES` map in `index-custom.html`. This keeps the "NEW" badge in sync with frontmatter dates.
 
 ## Critical Rules
 
