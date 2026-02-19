@@ -15,4 +15,10 @@ Using agents in Visual Studio Code: https://code.visualstudio.com/docs/copilot/a
 
 ---
 
-add some meat around the statement "Guidance not Governance".  EAs seems to want to bring all their bad habits/assumptions to agentic delivery.
+add some meat around the statement "Guidance over Governance".  EAs seems to want to bring all their bad habits/assumptions to agentic delivery.
+
+---
+
+evergreen process: using Actions to view all changesets at PR approval and updating agents/instructions/docs each time.  maybe refernce https://github.blog/ai-and-ml/automate-repository-tasks-with-github-agentic-workflows/
+
+---
