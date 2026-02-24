@@ -34,3 +34,6 @@ lots of temp work around copilot-cli.  look in "harness" folder
 either fix or delete the ISSUE-based generation.  Probably delete, it breaks promises.
 
 ---
+
+re-brand using things using https://primer.style/.  Add my contact info, calendar link. make it clear I'm Microsoft
+---
