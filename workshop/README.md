@@ -109,7 +109,7 @@ Every module connects back to these core ideas:
 ## 🚀 Getting Started
 
 1. **Create your FanHub repository** from the template:
-   - Visit [github.com/MSBart2/FanHub](https://github.com/MSBart2/FanHub)
+   - Visit [github.com/devarshgandhi/FanHub](https://github.com/devarshgandhi/FanHub)
    - Click **"Use this template"** → **"Create a new repository"**
    - Follow the setup instructions in the FanHub README
 
@@ -222,7 +222,7 @@ A: Basic familiarity helps, but the focus is on AI assistance techniques that ap
 A: You'll need Individual, Business, or Enterprise to complete the exercises. Check with your organization or start a free trial.
 
 **Q: How do I set up my environment?**
-A: All setup instructions are in the [FanHub repository](https://github.com/MSBart2/FanHub). Create your repo from the template and follow the README there.
+A: All setup instructions are in the [FanHub repository](https://github.com/devarshgandhi/FanHub). Create your repo from the template and follow the README there.
 
 **Q: Can I use a different show/theme?**
 A: Absolutely! Pick whatever you're passionate about. That's the point.

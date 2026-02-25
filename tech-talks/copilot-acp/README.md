@@ -667,7 +667,7 @@ await connection.prompt({
 
 > **Spotlight: ACP reference implementation available today** — a full web interface for orchestrating multiple Copilot agents across repositories, built entirely on the ACP protocol.
 
-The [**ACP Agent Orchestrator**](https://github.com/MSBart2/cli-acp) takes the polyrepo use case above and turns it into a production-ready tool with an **orchestrator + worker architecture**, **broadcast prompts**, and **automatic synthesis** of cross-repo results.
+The [**ACP Agent Orchestrator**](https://github.com/devarshgandhi/cli-acp) takes the polyrepo use case above and turns it into a production-ready tool with an **orchestrator + worker architecture**, **broadcast prompts**, and **automatic synthesis** of cross-repo results.
 
 ![Multiple agents working simultaneously across repositories](images/acp-orchestrator-agents.png)
 
@@ -702,7 +702,7 @@ The canonical demo script demonstrates how an orchestrator agent manages a docum
 
 **Try it yourself:**
 ```bash
-git clone https://github.com/MSBart2/cli-acp.git
+git clone https://github.com/devarshgandhi/cli-acp.git
 cd cli-acp/webapp
 npm run install:all
 npm run dev
@@ -727,7 +727,7 @@ npm run dev
 - [ ] Try the [multi-turn example](examples/multi-turn.ts) to see session context in action
 
 **Advanced Exploration (2-4 hours):**
-- [ ] Clone and run the [ACP Agent Orchestrator](https://github.com/MSBart2/cli-acp) to see multi-agent orchestration in action
+- [ ] Clone and run the [ACP Agent Orchestrator](https://github.com/devarshgandhi/cli-acp) to see multi-agent orchestration in action
 - [ ] Build a custom ACP client for your team's preferred editor or tool
 - [ ] Implement policy-based permissions for your organization's security requirements
 - [ ] Integrate MCP servers through ACP sessions for extended tool access

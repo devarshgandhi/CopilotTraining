@@ -22,7 +22,7 @@ Hands-on, story-driven training with progressive skill-building for developers a
 | [05 — MCP Servers](workshop/05-mcp-servers/) | External system integration |
 | [06 — Custom Agents](workshop/06-custom-agents/) | Autonomous agent workflows |
 
-Uses persona-driven narratives and a production application template ([FanHub](https://github.com/MSBart2/FanHub)).
+Uses persona-driven narratives and a production application template ([FanHub](https://github.com/devarshgandhi/FanHub)).
 
 ---
 
@@ -84,7 +84,7 @@ See [DECISION-GUIDE.md](tech-talks/DECISION-GUIDE.md) for choosing the right tal
 
 ## 📽️ Slide Decks
 
-All content has accompanying [Slidev presentations](slides/) deployed to [GitHub Pages](https://MSBart2.github.io/CopilotTraining/).
+All content has accompanying [Slidev presentations](slides/) deployed to [GitHub Pages](https://devarshgandhi.github.io/CopilotTraining/).
 
 | Category | Decks | Live URL Pattern |
 |----------|-------|-----------------|
