@@ -58,43 +58,6 @@ Tech talks are **practitioner-focused technical deep-dives** that:
 
 ## Workflow
 
-### Important: Research File Workflow
-
-When working through the automated workflow (GitHub Issues), research and planning are stored in files:
-
-**File Structure:**
-```
-tech-talks/
-  .research/
-    [topic-name]/
-      metadata.json          # Issue metadata
-      phase1-research.md     # Your research findings
-      phase2-plan.md         # Content outline
-```
-
-**Your Process:**
-
-1. **Phase 2 (Research & Plan):**
-   - Read `tech-talks/.research/[topic]/metadata.json` for requirements
-   - Research URLs using **web_search** (NOT web_fetch)
-   - Populate `phase1-research.md` with findings
-   - Create `phase2-plan.md` with content outline
-   - Commit both files to repository
-   - Do NOT generate full README yet
-
-2. **Phase 3 (Build):**
-   - Read `phase1-research.md` and `phase2-plan.md`
-   - Use these as foundation for content generation
-   - Generate complete `tech-talks/[topic]/README.md`
-   - Create artifact files
-   - Include `.research/` directory in PR
-
-**Why this approach:**
-- Enables human review before generation
-- Files are version controlled
-- Research persists across workflow runs
-- Clear separation of research vs. generated content
-
 ### 1. Research Phase (when URL provided)
 
 When given a URL (blog post, docs, GitHub announcement):
