@@ -31,9 +31,17 @@ lots of temp work around copilot-cli.  look in "harness" folder
 
 ---
 
-either fix or delete the ISSUE-based generation.  Probably delete, it breaks promises.
+
+
+re-brand using things using https://primer.style/.  Add my contact info, calendar link. make it clear I'm Microsoft
 
 ---
 
-re-brand using things using https://primer.style/.  Add my contact info, calendar link. make it clear I'm Microsoft
+This is a great idea, let's build it
+
+        <a href="https://github.com/rbmathis/flowlens" class="card" target="_blank" rel="noopener">
+          <h2>FlowLens 🔍</h2>
+          <p>Visual debugging for AI agent workflows. Trace context flow, inspect tool calls, and understand how prompts transform into actions.</p>
+        </a>
+
 ---
