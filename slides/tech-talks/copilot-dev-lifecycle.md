@@ -525,3 +525,32 @@ Plan → Code → Review → Automate — Copilot participates at every phase, a
 <span class="text-white font-bold">From code-completion tool to lifecycle-spanning AI platform</span>
 </div>
 </div>
+
+<style>
+/* Force dark background on all slides */
+.slidev-layout {
+  background: #0f172a !important;
+  color: #e2e8f0 !important;
+}
+/* Dark background for default layout */
+.slidev-page {
+  background: #0f172a !important;
+}
+/* Headings bright white */
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3 {
+  color: #f1f5f9 !important;
+}
+/* Tables readable */
+.slidev-layout table th {
+  color: #e2e8f0 !important;
+}
+.slidev-layout table td {
+  color: #cbd5e1 !important;
+}
+/* Code blocks */
+.slidev-layout pre {
+  background: #1e293b !important;
+}
+</style>

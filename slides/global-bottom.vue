@@ -51,7 +51,7 @@ const deckTitle = getDeckName()
 <template>
   <!-- Branding footer (bottom-left) -->
   <footer
-    class="absolute bottom-4 left-4 text-sm text-gray-600 bg-white/90 px-3 py-1.5 rounded shadow-sm select-none"
+    class="absolute bottom-4 left-4 text-sm text-gray-300 bg-black/70 px-3 py-1.5 rounded shadow-sm select-none"
     style="z-index: 100;"
   >
     {{ deckTitle }}
@@ -60,7 +60,7 @@ const deckTitle = getDeckName()
   <!-- Slide numbers (bottom-right) -->
   <footer
     v-if="currentPage && total"
-    class="absolute bottom-4 right-4 text-sm text-gray-600 bg-white/90 px-3 py-1.5 rounded shadow-sm select-none"
+    class="absolute bottom-4 right-4 text-sm text-gray-300 bg-black/70 px-3 py-1.5 rounded shadow-sm select-none"
     style="z-index: 100;"
   >
     {{ currentPage }} / {{ total }}
