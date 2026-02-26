@@ -1,22 +1,3 @@
-/* Global styles for slide numbers */
-.slidev-page {
-  counter-increment: slidev-page;
-}
-
-.slidev-page::after {
-  content: counter(slidev-page) " / " attr(data-total);
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  font-size: 0.875rem;
-  opacity: 0.5;
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-}
-
 /* Dark mode for decks using colorSchema: dark */
 .dark .slidev-layout {
   background: #0f172a !important;
