@@ -686,7 +686,7 @@ Q: How do you want to use Copilot?
 
 ### Multi-Agent Coordination via ACP
 
-The [**ACP Agent Orchestrator**](https://github.com/devarshgandhi/cli-acp) — a full web interface for orchestrating multiple Copilot agents across repositories.
+The [**ACP Agent Orchestrator**](https://github.com/rbmathis/cli-acp) — a full web interface for orchestrating multiple Copilot agents across repositories.
 
 <div class="space-y-2 mt-3 text-xs">
 <div class="p-2 bg-violet-900/30 rounded border border-violet-500/30">🤖 One <code>copilot --acp --stdio</code> process per repo</div>
@@ -743,7 +743,7 @@ The [**ACP Agent Orchestrator**](https://github.com/devarshgandhi/cli-acp) — a
 ### Try It Yourself
 
 ```bash
-git clone https://github.com/devarshgandhi/cli-acp.git
+git clone https://github.com/rbmathis/cli-acp.git
 cd cli-acp/webapp
 npm run install:all && npm run dev
 ```

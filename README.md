@@ -22,7 +22,7 @@ Hands-on, story-driven training with progressive skill-building for developers a
 | [05 — MCP Servers](workshop/05-mcp-servers/) | External system integration |
 | [06 — Custom Agents](workshop/06-custom-agents/) | Autonomous agent workflows |
 
-Uses persona-driven narratives and a production application template ([FanHub](https://github.com/devarshgandhi/FanHub)).
+Uses persona-driven narratives and a production application template ([FanHub](https://github.com/rbmathis/FanHub)).
 
 ---
 
