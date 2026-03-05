@@ -68,3 +68,8 @@ https://github.com/congiuluc/premium-request-csv-viewer/
 AGENT COUNCIL:
 
 https://github.com/Sentry01/AgentCouncil
+
+
+---
+
+AGENTRC: https://github.com/microsoft/agentrc
