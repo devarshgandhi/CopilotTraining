@@ -544,16 +544,13 @@ my-platform-toolkit/<br />
 </div>
 
 ---
-layout: two-cols
----
 
 # Before vs After
 
-::left::
-
-### ❌ Before
-
-<div class="space-y-2 text-sm mt-4">
+<div class="grid grid-cols-2 gap-6 mt-4">
+<div>
+<h3 class="text-red-400 mb-3">❌ Before</h3>
+<div class="space-y-2 text-sm">
 <div class="p-2 bg-red-900/30 rounded-lg border-l-4 border-red-500">
 <div class="font-bold text-red-300">Generic agents</div>
 <div class="text-xs text-gray-400">Default agents don't know your domain</div>
@@ -571,12 +568,11 @@ layout: two-cols
 <div class="text-xs text-gray-400">Multi-file refactoring one at a time</div>
 </div>
 </div>
+</div>
 
-::right::
-
-### ✨ After
-
-<div class="space-y-2 text-sm mt-4">
+<div>
+<h3 class="text-green-400 mb-3">✨ After</h3>
+<div class="space-y-2 text-sm">
 <div class="p-2 bg-green-900/30 rounded-lg border-l-4 border-green-500">
 <div class="font-bold text-green-300">Specialized agents</div>
 <div class="text-xs text-gray-400">.agent.md per workflow with scoped tools</div>
@@ -592,6 +588,8 @@ layout: two-cols
 <div class="p-2 bg-green-900/30 rounded-lg border-l-4 border-green-500">
 <div class="font-bold text-green-300">12 min parallel</div>
 <div class="text-xs text-gray-400">/fleet dispatches subagents simultaneously</div>
+</div>
+</div>
 </div>
 </div>
 
