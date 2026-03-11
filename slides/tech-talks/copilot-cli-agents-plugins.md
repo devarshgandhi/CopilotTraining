@@ -267,20 +267,20 @@ You are a senior security engineer.
 <div>
 <div class="text-sm font-bold text-blue-300 mb-3">🤖 Built-in Agents</div>
 <div class="space-y-2 text-xs">
-<div class="p-2 bg-gray-800 rounded-lg">
+<div class="p-2 bg-gray-800/60 rounded-lg text-gray-100">
 <span class="font-bold text-emerald-300">Explore</span> — Fast codebase Q&amp;A and structure analysis
 </div>
-<div class="p-2 bg-gray-800 rounded-lg">
+<div class="p-2 bg-gray-800/60 rounded-lg text-gray-100">
 <span class="font-bold text-teal-300">Task</span> — Command execution, brief on success, verbose on failure
 </div>
-<div class="p-2 bg-gray-800 rounded-lg">
+<div class="p-2 bg-gray-800/60 rounded-lg text-gray-100">
 <span class="font-bold text-cyan-300">General-purpose</span> — Complex multi-step tasks, full toolset
 </div>
-<div class="p-2 bg-gray-800 rounded-lg">
+<div class="p-2 bg-gray-800/60 rounded-lg text-gray-100">
 <span class="font-bold text-blue-300">Code-review</span> — High signal-to-noise review, genuine bugs only
 </div>
 </div>
-<div class="mt-3 p-2 bg-gray-900 rounded-lg text-xs font-mono text-gray-100">
+<div class="mt-3 p-2 bg-gray-900/60 rounded-lg text-xs font-mono text-gray-100">
 /agent → browse &amp; select interactively<br />
 copilot --agent=security-reviewer
 </div>
@@ -311,7 +311,7 @@ Section 2 of 4 · /fleet command for parallel task orchestration
 # Fleet Mode: How It Works
 
 <div class="mt-4">
-<div class="p-3 bg-gray-800 rounded-lg text-xs font-mono text-gray-100 mb-4">
+<div class="p-3 bg-gray-800/60 rounded-lg text-xs font-mono text-gray-100 mb-4">
 /fleet Refactor all 6 API controllers to use the new middleware pattern
 </div>
 
@@ -394,7 +394,7 @@ Section 2 of 4 · /fleet command for parallel task orchestration
 </div>
 </div>
 
-<div class="mt-6 p-3 bg-gray-800 rounded-lg text-sm text-center">
+<div class="mt-6 p-3 bg-gray-800/60 rounded-lg text-sm text-center text-gray-100">
 <span class="font-bold text-yellow-300">💰 Cost note:</span> Each subagent consumes premium requests independently. Use <code>/fleet</code> when the task has <strong>3+ parallelizable components</strong>.
 </div>
 
@@ -445,7 +445,7 @@ description: >-
 </div>
 <div class="text-xs space-y-2">
 <div class="font-bold text-indigo-300 mb-2 text-sm">Skills vs Custom Instructions</div>
-<div class="p-2 bg-gray-800 rounded-lg">
+<div class="p-2 bg-gray-800/60 rounded-lg text-gray-100">
 <div class="grid grid-cols-2 gap-2">
 <div>
 <div class="font-bold text-yellow-300">Instructions</div>
@@ -465,7 +465,7 @@ description: >-
 <div class="font-bold text-indigo-300">💡 Key Insight</div>
 <div class="text-gray-100 mt-1">The <code>description</code> controls <em>when</em> Copilot loads the skill. Vague descriptions → never triggered. Too broad → wasted context tokens.</div>
 </div>
-<div class="p-2 bg-gray-800 rounded-lg">
+<div class="p-2 bg-gray-800/60 rounded-lg text-gray-100">
 <div class="font-bold text-cyan-300 mb-1">📂 Skill Locations</div>
 <div class="text-gray-100"><code>.github/skills/</code> → Repository scope</div>
 <div class="text-gray-100"><code>~/.copilot/skills/</code> → Personal scope</div>
@@ -499,7 +499,7 @@ Solve the last-mile problem: how to distribute team expertise as infrastructure
 <div class="grid grid-cols-2 gap-4 mt-4">
 <div class="text-xs">
 <div class="font-bold text-purple-300 text-sm mb-2">📁 Plugin Structure</div>
-<div class="p-3 bg-gray-800 rounded-lg font-mono text-gray-100">
+<div class="p-3 bg-gray-800/60 rounded-lg font-mono text-gray-100">
 my-platform-toolkit/<br />
 ├── .github/plugin/<br />
 │&nbsp;&nbsp; └── plugin.json<br />
@@ -513,7 +513,7 @@ my-platform-toolkit/<br />
 ├── .mcp.json<br />
 └── README.md
 </div>
-<div class="mt-3 p-2 bg-gray-800 rounded-lg font-mono text-gray-100">
+<div class="mt-3 p-2 bg-gray-800/60 rounded-lg font-mono text-gray-100">
 <div class="text-purple-300 font-bold mb-1"># Installation</div>
 /plugin install security-toolkit<br />
 /plugin install myorg/platform-toolkit<br />
@@ -536,7 +536,7 @@ my-platform-toolkit/<br />
 <div class="text-gray-100"><strong>awesome-copilot</strong> — Community collection</div>
 <div class="text-gray-100 mt-1">+ Custom org marketplaces via <code>/plugin marketplace add</code></div>
 </div>
-<div class="p-2 bg-gray-800 rounded-lg">
+<div class="p-2 bg-gray-800/60 rounded-lg text-gray-100">
 <div class="font-bold text-gray-100">Lifecycle</div>
 <div class="text-gray-100">Create → Publish → Discover → Install → Use → Update</div>
 </div>
