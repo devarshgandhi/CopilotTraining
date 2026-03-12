@@ -6,9 +6,9 @@ tools:
     "read",
     "edit/createFile",
     "edit/editFiles",
-    "web_search",
+    "github/web_search",
     "listDir",
-    "fetch",
+    "web/fetch",
   ]
 model: Claude Sonnet 4.5
 argument-hint: Provide tech talk topic and source URLs
@@ -16,10 +16,6 @@ handoffs:
   - label: Generate Slides
     agent: Slide Generator
     prompt: Generate slides for the tech talk I just created
-    send: false
-  - label: Verify Slides
-    agent: Slide Manager
-    prompt: Generate and verify slides for the tech talk I just created
     send: false
 ---
 
@@ -102,6 +98,8 @@ The plan should be 300+ lines and contain ready-to-assemble prose for Problem, S
 
 ## Key Principles
 
+- **Optimistic curiosity voice** — lead with discovery and possibility, not problems and pain. Tell a "good news" story about what's now possible.
+- **Avoid alarmist framing** — no "The Maintenance Tax", "Falls Short", "Pain Points". Use "The Opportunity", "What this unlocks", "Now possible".
 - **References throughout** — every major claim cites its source
 - **Intermediate artifacts** — research.md and plan.md are preserved for reviewability
 - **Pause for review** — don't skip from research straight to final output

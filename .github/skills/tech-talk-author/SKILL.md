@@ -1,7 +1,6 @@
 ---
 name: tech-talk-author
 description: Generates tech talk content (research.md, plan.md, README.md) following a 3-phase workflow. Does NOT generate slides — use Slide Generator or Slide Manager agents for that.
-infer: true
 ---
 
 # Tech Talk Author Skill
@@ -31,3 +30,30 @@ Generate tech talks following a 3-phase structure: Research → Plan → Build.
 - Include 8-15 numbered references with inline citations
 - Web search for additional references beyond provided URLs
 - Pause for review between phases
+
+## Voice and Tone
+
+Tech talks use an **optimistic curiosity** voice that illuminates what's now possible.
+
+**Lead with discovery:**
+
+- Frame content around "what this unlocks" not "what was broken"
+- Show the new path directly, without excessive comparison to old approaches
+- Tell a "good news" story, not a "better than before" story
+
+**Language to avoid:**
+
+- Alarmist framing: "The Maintenance Tax", "The Hidden Cost", "What's Broken"
+- Deficit language: "Falls Short", "Inadequate", "Pain Points", "Frustrating"
+- Comparative negativity: "Unlike the old way", "No longer suffer through"
+
+**Language to embrace:**
+
+- Possibility framing: "What this unlocks", "Now possible", "This enables"
+- Discovery language: "Explore", "Try", "Experiment with"
+- Direct positive: "Here's how it works", "This is what you get"
+
+**Section naming:**
+
+- "The Opportunity" not "The Problem"
+- "Boundaries Worth Knowing" not "Anti-patterns"

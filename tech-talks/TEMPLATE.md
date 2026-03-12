@@ -89,29 +89,29 @@ Mark major sections that should appear in the TOC with 🎬 marker in a comment:
 
 ---
 
-## The Problem
+## The Opportunity
 
-### Key Points
+### What's Now Possible
 
-- **[Issue 1]**
-  [1 sentence describing the challenge or limitation]
+- **[Capability 1]**
+  [1 sentence describing what teams can now do]
 
-- **[Issue 2]**
-  [1 sentence describing the challenge or limitation]
+- **[Capability 2]**
+  [1 sentence describing what teams can now do]
 
-- **[Issue 3]**
-  [1 sentence describing the challenge or limitation]
+- **[Capability 3]**
+  [1 sentence describing what teams can now do]
 
-- **[Issue 4]**
-  [1 sentence describing the challenge or limitation]
+- **[Capability 4]**
+  [1 sentence describing what teams can now do]
 
-### Narrative
+### The Emerging Practice
 
-[2-3 paragraphs telling the story of the problem. Set the scene: who experiences this, what makes it frustrating, what's the cost of not solving it. Paint a picture that makes readers think "yes, that's exactly my situation." Include specific examples, time costs, or failure scenarios.]
+[2-3 paragraphs illuminating the new approach. Focus on curiosity: what does this unlock? Who is already exploring this? What becomes easier or newly feasible? Paint a picture of possibility that makes readers think "I want to try that." Include specific examples of what's achievable.]
 
 ---
 
-## The Solution: [Feature Name]
+## How It Works: [Feature Name]
 
 ### What It Does
 
@@ -213,34 +213,34 @@ tech-talks/
 
 ## 🎯 Mental Model Shift
 
-> **The Core Insight:** From [old way of thinking] to [new way of thinking]
+> **The Core Insight:** [One-liner capturing the new mental model — what becomes natural with this approach]
 
 *This Core Insight line is used twice in slides: once as an early preview ("The Shift" slide) to plant the thesis, and again here as the anchor for the full reinforcement slide near the end. Write it to work standalone as a compelling one-liner.*
 
 ### Move Toward (Embrace These Patterns)
 
-These are the practices and patterns this feature enables. Start adopting these approaches.
+These are the practices and patterns this feature enables. Start experimenting with these approaches.
 
-- ✅ **[New Pattern 1]**: [Why this is better now] → [Specific benefit or outcome]
-- ✅ **[New Pattern 2]**: [Why this is better now] → [Specific benefit or outcome]
-- ✅ **[New Pattern 3]**: [Why this is better now] → [Specific benefit or outcome]
+- ✅ **[Pattern 1]**: [What this unlocks] → [Specific benefit or outcome]
+- ✅ **[Pattern 2]**: [What this unlocks] → [Specific benefit or outcome]
+- ✅ **[Pattern 3]**: [What this unlocks] → [Specific benefit or outcome]
 
 ### Move Away From (Retire These Habits)
 
-These patterns worked before but don't scale with this feature. Gradually phase them out.
+As this approach matures, some familiar patterns naturally evolve. These aren't failures — they're stepping stones.
 
-- ⚠️ **[Old Pattern 1]**: [Why it doesn't scale anymore] → [What happens if you keep doing it]
-- ⚠️ **[Old Pattern 2]**: [Why it doesn't scale anymore] → [What happens if you keep doing it]
-- ⚠️ **[Old Pattern 3]**: [Why it doesn't scale anymore] → [What happens if you keep doing it]
+- 🔄 **[Evolving Pattern 1]**: [How this naturally changes] → [What you might try instead]
+- 🔄 **[Evolving Pattern 2]**: [How this naturally changes] → [What you might try instead]
+- 🔄 **[Evolving Pattern 3]**: [How this naturally changes] → [What you might try instead]
 
-### Move Against (Active Resistance Required)
+### Move Against (Active Resistance)
 
 These are anti-patterns that will cause problems. Actively avoid or correct them.
 
 - 🛑 **[Anti-pattern 1]**: [Why this is dangerous or counterproductive] → [Specific risk, cost, or failure mode]
 - 🛑 **[Anti-pattern 2]**: [Why this is dangerous or counterproductive] → [Specific risk, cost, or failure mode]
 
-> **Example Transformation:** [Concrete before/after example showing the mental model shift in action. E.g., "Before: Manual log parsing after deployment. After: Proactive analysis during the deploy itself with AI-suggested fixes."]
+> **What This Looks Like:** [Concrete example showing the mental model in action. Focus on the new workflow, not contrast with the old. E.g., "A developer describes a new API endpoint in an issue, assigns it to Copilot, and reviews the complete PR with implementation, tests, and docs 30 minutes later."]
 
 ---
 
@@ -345,31 +345,31 @@ Q: [Top-level question about use case fit]
 
 ### Use Case 1: [Descriptive Title]
 
-**The Problem:** [Specific scenario with pain points - 2-3 sentences]
+**The Scenario:** [Specific situation where this shines - 2-3 sentences]
 
-**The Solution:** [How this feature addresses it - 2-3 sentences]
+**How It Works:** [How this feature enables it - 2-3 sentences]
 
-**Implementation:**
+**Example:**
 ```[language]
 [Code example or command sequence]
 ```
 
-**Outcome:** [Measurable improvement - e.g., "3 hours → 15 minutes" or "8 attempts → 2 attempts"]
+**What You Get:** [Concrete outcome - e.g., "Complete implementation in 15 minutes" or "Consistent results in 2 iterations"]
 
 ---
 
 ### Use Case 2: [Descriptive Title]
 
-**The Problem:** [Specific scenario]
+**The Scenario:** [Specific situation]
 
-**The Solution:** [How this feature addresses it]
+**How It Works:** [How this feature enables it]
 
-**Implementation:**
+**Example:**
 ```[language]
 [Code example]
 ```
 
-**Outcome:** [Measurable improvement]
+**What You Get:** [Concrete outcome]
 
 ---
 
@@ -509,10 +509,22 @@ Before marking this talk as complete:
 
 ### Voice and Tone
 
-- **Respectful of audience expertise**: Assume readers are professionals
-- **Practical over theoretical**: Focus on "here's how" not "here's why it's interesting"
-- **Honest about tradeoffs**: Acknowledge limitations and alternative approaches
-- **Directive without being prescriptive**: Guide decisions, don't mandate solutions
+- **Optimistic curiosity**: Lead with what's possible, not what's broken. Frame as discovery, not rescue.
+- **Respectful of audience expertise**: Assume readers are professionals who've been successful with existing approaches
+- **Illumination over comparison**: Show the new path directly; avoid "before was bad, after is good" framing
+- **Good news, not better news**: Tell the story of what's now achievable, not "this is better than the old way"
+- **Honest about boundaries**: Acknowledge limitations as useful guardrails, not failures
+- **Practical over theoretical**: Focus on "here's how" with concrete examples
+
+**Language to avoid:**
+- Alarmist framing: "The Maintenance Tax", "The Hidden Cost", "What's Broken"
+- Deficit language: "Falls Short", "Inadequate", "Frustrating", "Pain Points"
+- Comparative negativity: "Unlike the old way", "No longer need to suffer through"
+
+**Language to embrace:**
+- Possibility framing: "What this unlocks", "Now possible", "This enables"
+- Discovery language: "Explore", "Try", "Experiment with"
+- Direct positive: "Here's how it works", "This is what you get"
 
 ---
 
@@ -522,23 +534,23 @@ Before marking this talk as complete:
 
 ### Example: Mental Model Shift Section
 
-> **The Core Insight:** From "AI assists me with coding" to "AI autonomously completes work while I govern outcomes"
+> **The Core Insight:** AI agents complete work autonomously while you govern outcomes
 
 #### Move Toward (Embrace These Patterns)
 
-- ✅ **Delegation Over Instruction**: Give agents goals and constraints, let them determine approach → Agents find solutions you wouldn't have considered
-- ✅ **Outcome-Based Review**: Judge results by correctness and quality, not by how it was built → Faster iteration cycles, less micromanagement
+- ✅ **Delegation Over Instruction**: Give agents goals and constraints, let them determine approach → Agents find solutions you might not have considered
+- ✅ **Outcome-Based Review**: Judge results by correctness and quality, not by how it was built → Faster iteration cycles, more focus on what matters
 - ✅ **Parallel Workflows**: Run multiple agents on different branches simultaneously → 5-10x throughput on independent features
 
 #### Move Away From (Retire These Habits)
 
-- ⚠️ **Step-by-Step Prompting**: Telling AI exactly what to do at each step → Negates AI's reasoning abilities, wastes your time
-- ⚠️ **Single-File Focus**: Only giving AI context about the immediate file → Misses architectural patterns, creates inconsistent code
-- ⚠️ **Sequential Execution**: Waiting for one task to finish before starting next → Leaves agents idle, extends delivery timelines
+- 🔄 **Step-by-Step Prompting → Goal-Based Prompting**: As you build trust, try describing outcomes rather than steps → Let agents leverage their reasoning
+- 🔄 **Single-File Focus → Repository-Wide Context**: Experiment with giving broader context → Agents produce more architecturally consistent code
+- 🔄 **Sequential Execution → Parallel Dispatch**: When comfortable, try running multiple agents on independent work → Discover new throughput
 
-#### Move Against (Active Resistance Required)
+### Move Against (Active Resistance)
 
-- 🛑 **"AI Can't Be Trusted" Mindset**: Assuming AI output is always wrong until proven right → Creates review bottlenecks, defeats purpose of automation
-- 🛑 **No Guardrails**: Running agents with full system access without sandboxing → Security incidents, accidental deletions, configuration overwrites
+- 🛡️ **Trust builds incrementally**: Start with low-risk tasks, expand scope as you validate results → Build confidence through observation
+- 🛡️ **Sandboxing matters**: Agents work best with clear boundaries and scoped permissions → Security and confidence go together
 
-> **Example Transformation:** Before: Developer spends 3 hours writing a new API endpoint, 2 hours writing tests, 1 hour updating docs. After: Developer writes issue describing endpoint requirements, assigns to Copilot agent, reviews PR 30 minutes later with implementation + tests + docs complete.
+> **What This Looks Like:** A developer describes a new API endpoint in an issue, assigns it to a Copilot agent, and reviews the complete PR with implementation, tests, and docs 30 minutes later.

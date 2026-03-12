@@ -18,8 +18,9 @@
       padding: 2rem;
     }
     .container {
-      max-width: 1200px;
+      max-width: 1800px;
       margin: 0 auto;
+      width: 100%;
     }
     h1 {
       font-size: 3rem;
@@ -266,10 +267,6 @@
           <span class="sub-group-line"></span>
         </div>
         <div class="grid">
-          <a href="/CopilotTraining/tech-talks/copilot-chat/" class="card">
-            <h2>Copilot Chat</h2>
-            <p>Context mastery for AI collaboration. Master #file, @workspace, #codebase, and #fetch for codebase-specific responses.</p>
-          </a>
           <a href="/CopilotTraining/tech-talks/copilot-chat-internals/" class="card">
             <h2>Copilot Chat Internals</h2>
             <p>Under the hood diagnostics. Chat Debug View, customization diagnostics, and extension logs for systematic troubleshooting.</p>
@@ -290,13 +287,9 @@
             <h2>Copilot Memory</h2>
             <p>Cross-session context persistence. Store preferences, project context, and workflow patterns that persist across all conversations.</p>
           </a>
-          <a href="/CopilotTraining/tech-talks/terminal-sandboxing/" class="card">
-            <h2>Terminal Sandboxing</h2>
-            <p>Safe agentic execution. Network restrictions, filesystem limits, and execution controls for secure AI-assisted development.</p>
-          </a>
           <a href="/CopilotTraining/tech-talks/vscode-latest/" class="card">
             <h2>What's New in VS Code</h2>
-            <p>Latest Copilot features in VS Code v1.107-v1.109. Agent sessions, Claude integration, terminal sandboxing, and productivity enhancements.</p>
+            <p>Latest Copilot features in VS Code v1.108-v1.110. Agent Plugins, /create-* commands, Explore subagent, agentic browser tools, and /yolo mode.</p>
           </a>
         </div>
       </div>
@@ -367,6 +360,10 @@
           <span class="sub-group-line"></span>
         </div>
         <div class="grid">
+          <a href="/CopilotTraining/tech-talks/agentic-workflows/" class="card">
+            <h2>GitHub Agentic Workflows</h2>
+            <p>Repository automation with AI agents. Write workflows in Markdown, compiled to secure GitHub Actions with safe-output validation.</p>
+          </a>
           <a href="/CopilotTraining/tech-talks/agentic-journey/" class="card">
             <h2>Agentic Journey</h2>
             <p>From "assign to copilot" to full SDLC transformation. The 5-phase incremental path with 4-workflow architecture and historical context search.</p>
@@ -483,6 +480,14 @@
           <h2>ACP Orchestrator 🎛️</h2>
           <p>Web UI for orchestrating Copilot CLI agents across multiple repos via Agent Client Protocol. Broadcast prompts, coalesce results, coordinate cross-repo work.</p>
         </a>
+        <a href="https://github.com/Sentry01/AgentCouncil" class="card" target="_blank" rel="noopener">
+          <h2>Agent Council 🏛️</h2>
+          <p>Multi-agent deliberation framework. Agents debate, vote, and reach consensus on complex decisions through structured council sessions.</p>
+        </a>
+        <a href="https://github.com/bradygaster/squad" class="card" target="_blank" rel="noopener">
+          <h2>Squad 🤝</h2>
+          <p>Coordinated multi-agent workflows using the Agent Client Protocol. Define agent teams, assign roles, and orchestrate collaborative task execution.</p>
+        </a>
       </div>
     </div>
 
@@ -504,11 +509,12 @@
       'agentic-repos': '2026-02-01',
       'agentic-sdlc': '2026-02-01',
       'agentic-sessions': '2026-02-01',
+      'agentic-workflows': '2026-03-05',
       'context-engineering-foundations': '2026-02-01',
       'copilot-acp': '2026-02-11',
       'copilot-advanced-workshop': '2026-03-02',
       'copilot-chat': '2026-02-01',
-      'copilot-chat-internals': '2026-02-01',
+      'copilot-chat-internals': '2026-03-05',
       'copilot-cli': '2026-02-23',
       'copilot-cli-agents-plugins': '2025-07-17',
       'copilot-code-review': '2026-02-17',
@@ -525,7 +531,7 @@
       'parallel-execution': '2026-02-01',
       'subagents': '2026-02-01',
       'terminal-sandboxing': '2026-02-01',
-      'vscode-latest': '2026-02-12',
+      'vscode-latest': '2026-03-05',
     };
 
     document.addEventListener('DOMContentLoaded', () => {

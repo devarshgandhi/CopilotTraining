@@ -33,12 +33,19 @@ This repository contains three types of content, each with different purposes an
 
 **Key characteristics:**
 
-- Clear problem statement and motivation
+- Clear opportunity statement framed as discovery (not problem/pain)
 - Technical depth with practical examples
 - Architectural diagrams and system flows
 - Implementation guidance and tradeoffs
 - Concrete takeaways for immediate application
 - Required working artifacts (configs, workflows, code samples)
+
+**Voice:** Optimistic curiosity — illuminate what's now possible, tell a "good news" story
+
+- Lead with discovery: "What this unlocks", "Now possible", "This enables"
+- Avoid alarmist language: "The Maintenance Tax", "Falls Short", "Pain Points"
+- Avoid comparative negativity: Frame the new approach directly, not "better than before"
+- Section naming: "The Opportunity" not "The Problem", "Evolving Practices" not "Retire These"
 
 **For content creation:** Use `Tech Talk Generator` agent (detailed requirements in `.github/agents/tech-talk-generator.agent.md`)
 
