@@ -1,7 +1,7 @@
 ---
 status: active
 updated: 2026-02-17
-section: "Copilot Surfaces"
+section: "Copilot Tools"
 references:
   - url: https://docs.github.com/en/copilot/concepts/agents/code-review
     label: "Copilot Code Review overview"
@@ -212,16 +212,16 @@ review:
     - pull_request_opened      # When PR is first created
     - pull_request_synchronize # When new commits are pushed
     - pull_request_reopened    # When closed PR is reopened
-  
+
   # Minimum severity level to report (info, low, medium, high, critical)
   severity_threshold: medium
-  
+
   # File patterns to include in review
   include_patterns:
     - "src/**/*.{js,ts,jsx,tsx}"
     - "lib/**/*.py"
     - "**/*.java"
-  
+
   # File patterns to exclude from review
   exclude_patterns:
     - "**/*.test.js"
@@ -230,7 +230,7 @@ review:
     - "dist/**"
     - "build/**"
     - "*.md"
-  
+
   # Focus areas for review
   focus:
     - security          # Security vulnerabilities
@@ -238,7 +238,7 @@ review:
     - maintainability   # Code quality and readability
     - testing           # Test coverage and quality
     - best_practices    # Language-specific best practices
-  
+
   # Integration with required status checks
   status_check:
     enabled: true
@@ -330,21 +330,21 @@ rules:
     name: "PII Data Encryption"
     severity: critical
     description: "All PII fields must be encrypted at rest and in transit"
-    pattern: 
+    pattern:
       language: "javascript,typescript,python"
       match: "(email|ssn|phone|address|dob)\\s*[:=]"
       require_context: ["encrypt", "cipher", "crypto"]
     message: |
       Personal Identifiable Information (PII) detected without encryption.
-      
+
       Required actions:
       1. Use approved encryption library (AES-256 or RSA-2048)
       2. Add audit log entry for PII access
       3. Document encryption key management
-      
+
       Reference: Security Policy Section 4.2
       Compliance: GDPR Article 32, SOC2 CC6.1
-    
+
     suggested_fix: |
       const crypto = require('crypto');
       const encryptedEmail = crypto.encrypt(email, process.env.ENCRYPTION_KEY);
@@ -358,26 +358,26 @@ rules:
       require_context: ["try", "catch", "error"]
     message: |
       All API endpoints must include comprehensive error handling.
-      
+
       Required:
       - try/catch blocks for async operations
       - Structured error logging with request ID
       - Appropriate HTTP status codes (400, 500, etc.)
       - No sensitive data in error responses
-    
+
     suggested_fix: |
       app.post('/api/users', async (req, res) => {
         try {
           const user = await createUser(req.body);
           res.status(201).json(user);
         } catch (error) {
-          logger.error('User creation failed', { 
-            requestId: req.id, 
-            error: error.message 
+          logger.error('User creation failed', {
+            requestId: req.id,
+            error: error.message
           });
-          res.status(500).json({ 
+          res.status(500).json({
             error: 'User creation failed',
-            requestId: req.id 
+            requestId: req.id
           });
         }
       });
@@ -391,10 +391,10 @@ rules:
       require_context: ["transaction", "commit", "rollback"]
     message: |
       Multiple database operations detected without transaction wrapper.
-      
+
       Risk: Partial failures can leave database in inconsistent state.
       Required: Wrap multi-step operations in database transaction.
-    
+
     suggested_fix: |
       const transaction = await db.transaction();
       try {
@@ -414,12 +414,12 @@ rules:
     condition: "new_file"  # Only trigger for new files
     message: |
       New source file created without corresponding test file.
-      
+
       Required: Create test file with minimum coverage:
       - Happy path test cases
       - Error handling test cases
       - Edge case validation
-      
+
       Expected location: src/**/*.test.{js,ts} or __tests__/**/*.{js,ts}
 ```
 
@@ -486,18 +486,18 @@ The primary ROI driver is reduction in PR review cycle time—the hours between 
 
 **Baseline measurement (before Copilot):**
 ```sql
-SELECT 
+SELECT
   AVG(TIMESTAMPDIFF(HOUR, created_at, merged_at)) as avg_pr_duration_hours,
   COUNT(*) as total_prs
 FROM pull_requests
-WHERE created_at BETWEEN DATE_SUB(NOW(), INTERVAL 180 DAY) 
+WHERE created_at BETWEEN DATE_SUB(NOW(), INTERVAL 180 DAY)
                      AND DATE_SUB(NOW(), INTERVAL 90 DAY)
   AND status = 'merged';
 ```
 
 **Current measurement (after Copilot):**
 ```sql
-SELECT 
+SELECT
   AVG(TIMESTAMPDIFF(HOUR, created_at, merged_at)) as avg_pr_duration_hours,
   COUNT(*) as total_prs
 FROM pull_requests
@@ -570,21 +570,21 @@ Here's a production-ready SQL query that calculates comprehensive ROI metrics:
 
 WITH baseline_metrics AS (
   -- Period before Copilot Code Review (e.g., 90 days before implementation)
-  SELECT 
+  SELECT
     COUNT(*) as total_prs,
     AVG(TIMESTAMPDIFF(HOUR, created_at, merged_at)) as avg_pr_duration_hours,
     AVG(commits_count) as avg_commits_per_pr,
     AVG(review_comments_count) as avg_review_comments,
     SUM(CASE WHEN reverted THEN 1 ELSE 0 END) / COUNT(*) as revert_rate
   FROM pull_requests
-  WHERE created_at BETWEEN DATE_SUB(NOW(), INTERVAL 180 DAY) 
+  WHERE created_at BETWEEN DATE_SUB(NOW(), INTERVAL 180 DAY)
                        AND DATE_SUB(NOW(), INTERVAL 90 DAY)
     AND status = 'merged'
 ),
 
 copilot_metrics AS (
   -- Period after Copilot Code Review implementation
-  SELECT 
+  SELECT
     COUNT(*) as total_prs,
     AVG(TIMESTAMPDIFF(HOUR, created_at, merged_at)) as avg_pr_duration_hours,
     AVG(commits_count) as avg_commits_per_pr,
@@ -598,46 +598,46 @@ copilot_metrics AS (
 ),
 
 cost_analysis AS (
-  SELECT 
+  SELECT
     -- Average developer hourly cost (adjust for your org)
     150 as developer_hourly_rate,
-    
+
     -- Copilot Enterprise cost per seat per month
     39 as copilot_monthly_cost,
-    
+
     -- Number of active developers
-    (SELECT COUNT(DISTINCT author) FROM pull_requests 
+    (SELECT COUNT(DISTINCT author) FROM pull_requests
      WHERE created_at >= DATE_SUB(NOW(), INTERVAL 90 DAY)) as active_developers
 )
 
-SELECT 
+SELECT
   -- Time Savings
   b.avg_pr_duration_hours - c.avg_pr_duration_hours as hours_saved_per_pr,
   (b.avg_pr_duration_hours - c.avg_pr_duration_hours) * c.total_prs as total_hours_saved,
-  
+
   -- Quality Improvements
   (b.revert_rate - c.revert_rate) * 100 as revert_rate_improvement_pct,
   b.avg_commits_per_pr - c.avg_commits_per_pr as commits_reduced_per_pr,
-  
+
   -- ROI Calculation
-  ((b.avg_pr_duration_hours - c.avg_pr_duration_hours) * c.total_prs * ca.developer_hourly_rate) 
+  ((b.avg_pr_duration_hours - c.avg_pr_duration_hours) * c.total_prs * ca.developer_hourly_rate)
     as labor_cost_savings,
   (ca.copilot_monthly_cost * ca.active_developers * 3) as copilot_cost_3_months,
-  
-  ((b.avg_pr_duration_hours - c.avg_pr_duration_hours) * c.total_prs * ca.developer_hourly_rate) 
+
+  ((b.avg_pr_duration_hours - c.avg_pr_duration_hours) * c.total_prs * ca.developer_hourly_rate)
     / (ca.copilot_monthly_cost * ca.active_developers * 3) as roi_ratio,
-  
+
   -- Engagement Metrics
   c.avg_copilot_findings as avg_findings_per_pr,
   c.avg_critical_findings as avg_critical_per_pr,
-  
+
   -- Recommendations
-  CASE 
-    WHEN ((b.avg_pr_duration_hours - c.avg_pr_duration_hours) * c.total_prs * ca.developer_hourly_rate) 
-         / (ca.copilot_monthly_cost * ca.active_developers * 3) > 3 
+  CASE
+    WHEN ((b.avg_pr_duration_hours - c.avg_pr_duration_hours) * c.total_prs * ca.developer_hourly_rate)
+         / (ca.copilot_monthly_cost * ca.active_developers * 3) > 3
     THEN 'Strong ROI - Expand usage'
-    WHEN ((b.avg_pr_duration_hours - c.avg_pr_duration_hours) * c.total_prs * ca.developer_hourly_rate) 
-         / (ca.copilot_monthly_cost * ca.active_developers * 3) > 1 
+    WHEN ((b.avg_pr_duration_hours - c.avg_pr_duration_hours) * c.total_prs * ca.developer_hourly_rate)
+         / (ca.copilot_monthly_cost * ca.active_developers * 3) > 1
     THEN 'Positive ROI - Continue monitoring'
     ELSE 'Review configuration and adoption'
   END as recommendation
@@ -672,31 +672,31 @@ jobs:
               repo: context.repo.repo,
               pull_number: context.issue.number
             });
-            
-            const copilotComments = comments.filter(c => 
+
+            const copilotComments = comments.filter(c =>
               c.user.login === 'github-copilot[bot]'
             );
-            
+
             // Categorize by severity
-            const critical = copilotComments.filter(c => 
+            const critical = copilotComments.filter(c =>
               c.body.includes('🔴') || c.body.includes('Critical')
             ).length;
-            
-            const high = copilotComments.filter(c => 
+
+            const high = copilotComments.filter(c =>
               c.body.includes('🟠') || c.body.includes('High')
             ).length;
-            
+
             core.setOutput('total_findings', copilotComments.length);
             core.setOutput('critical_findings', critical);
             core.setOutput('high_findings', high);
-            
+
             return {
               total: copilotComments.length,
               critical,
               high,
               pr_number: context.issue.number
             };
-      
+
       - name: Block Merge on Critical Issues
         if: steps.metrics.outputs.critical_findings > 0
         run: |
@@ -888,11 +888,11 @@ This continuous iteration ensures Copilot stays valuable as your codebase evolve
 rules:
   - id: "payment-data-encryption"
     severity: critical
-    pattern: 
+    pattern:
       match: "(cardNumber|cvv|cardholderName)"
       require_context: ["encrypt", "tokenize"]
     message: "Payment data must be encrypted/tokenized before storage"
-  
+
   - id: "payment-audit-logging"
     severity: high
     pattern:
@@ -916,7 +916,7 @@ rules:
 
 **The Solution:** Enabled Copilot Code Review with architectural consistency rules and compliance checks[^6]. New developers receive immediate educational feedback on every PR, learning patterns through iteration rather than waiting days for human review. Senior developers focus mentorship on business logic and strategy rather than syntax and standards. Custom rules encode SOC2 requirements and internal API patterns.
 
-**Implementation Complexity:** Beginner to Intermediate  
+**Implementation Complexity:** Beginner to Intermediate
 **Time to Deploy:** 1 hour (basic config + architectural rules)
 
 **Capabilities Used:**
@@ -939,7 +939,7 @@ rules:
 
 **The Solution:** Implemented Copilot Code Review for automated first-pass analysis (syntax, style, common errors, test coverage)[^1]. Maintainers focus on architectural decisions and complex logic while Copilot handles 80% of mechanical review work. Added GitHub Actions integration to auto-label PRs by review finding severity, triaging work efficiently[^14].
 
-**Implementation Complexity:** Advanced  
+**Implementation Complexity:** Advanced
 **Time to Deploy:** 3 hours (config + Actions workflow + community docs)
 
 **Capabilities Used:**
@@ -964,7 +964,7 @@ rules:
 
 **The Solution:** Deployed organization-wide Copilot Code Review with standardized rulesets for logging format, error handling patterns, and API conventions[^4]. Created cross-repository architectural consistency checks ensuring new services follow established patterns. Required status check for all production deployments with critical finding blocking enforced.
 
-**Implementation Complexity:** Advanced  
+**Implementation Complexity:** Advanced
 **Time to Deploy:** Full day (org-wide rollout + custom rules + team training)
 
 **Capabilities Used:**
@@ -987,7 +987,7 @@ rules:
 
 **The Solution:** Implemented Copilot Code Review with HIPAA-specific rules: PHI encryption, access logging, data retention, consent verification[^4][^11]. Automated audit trail generation for compliance reporting, reducing manual documentation burden. Made review required status check for all code touching patient data, creating enforcement gate that doesn't rely on human vigilance.
 
-**Implementation Complexity:** Intermediate to Advanced  
+**Implementation Complexity:** Intermediate to Advanced
 **Time to Deploy:** 4 hours (HIPAA ruleset + audit integration + team training)
 
 **Capabilities Used:**
@@ -1185,4 +1185,3 @@ This context window typically totals 50,000-100,000 tokens—enough to understan
 ---
 
 **This tech talk README is complete and ready for use.** All sections follow the TEMPLATE structure, artifacts are embedded inline with explanations, 15 references are cited throughout, and the content delivers actionable ROI-focused guidance practitioners can implement today.
-

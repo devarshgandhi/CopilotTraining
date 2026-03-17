@@ -1,7 +1,7 @@
 ---
 status: active
 updated: 2026-02-01
-section: "Copilot Surfaces"
+section: "Copilot Tools"
 references:
   - url: https://docs.github.com/en/copilot/github-copilot-chat/copilot-chat-in-github/using-github-copilot-chat-in-githubcom
     label: "Using Copilot Chat on GitHub.com"

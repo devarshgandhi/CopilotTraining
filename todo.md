@@ -15,27 +15,11 @@ Using agents in Visual Studio Code: https://code.visualstudio.com/docs/copilot/a
 
 ---
 
-add some meat around the statement "Guidance over Governance".  EAs seems to want to bring all their bad habits/assumptions to agentic delivery.
-
----
-
 evergreen process: using Actions to view all changesets at PR approval and updating agents/instructions/docs each time.  maybe refernce https://github.blog/ai-and-ml/automate-repository-tasks-with-github-agentic-workflows/
 
 ---
 
-let's implement functionality for one-off talks/slidevs.  never published to pages, just live locally in the repo to be run manually.
-
----
-
-lots of temp work around copilot-cli.  look in "harness" folder
-
----
-
-
-
-re-brand using things using https://primer.style/.  Add my contact info, calendar link. make it clear I'm Microsoft
-
----
+In-Flight : agent-visualizer
 
 This is a great idea, let's build it
 
@@ -43,5 +27,50 @@ This is a great idea, let's build it
           <h2>FlowLens 🔍</h2>
           <p>Visual debugging for AI agent workflows. Trace context flow, inspect tool calls, and understand how prompts transform into actions.</p>
         </a>
+
+---
+
+new talk on agentic workflows: Create a workflow for GitHub Agentic Workflows using https://github.com/github/gh-aw/blob/main/create.md
+
+  The purpose of the workflow is to
+gh-aw/create.md at main · github/gh-aw
+GitHub Agentic Workflows. Contribute to github/gh-aw development by creating an account on GitHub.
+
+---
+
+METRICS:
+https://github.blog/changelog/2026-02-27-copilot-metrics-is-now-generally-available/
+https://microsoft.sharepoint.com/:w:/s/GitHubHelp/IQCnHadAR7j0RIuemY_5lEQpAebwTKXugI4TBgsPhjvt6i0?e=paySaK
+https://microsoft.sharepoint.com/:p:/s/GitHubHelp/IQDE4mYaDTASQJ4R73B2GQCaAWJmn7IxA4Rp_gJi4FJL1PY?e=0Gu7do
+https://github.com/congiuluc/premium-request-csv-viewer/
+
+
+---
+
+AGENT COUNCIL:
+
+https://github.com/Sentry01/AgentCouncil
+
+
+---
+
+AGENTRC: https://github.com/microsoft/agentrc
+
+---
+
+https://code.visualstudio.com/updates/v1_111
+
+---
+
+Modernize .NET Anywhere with GitHub Copilot - .NET Blog https://share.google/wVwPSslJEQwVTFrSm
+
+---
+
+https://code.visualstudio.com/blogs/2026/03/05/making-agents-practical-for-real-world-development
+
+
+---
+
+https://github.blog/changelog/2026-03-06-figma-mcp-server-can-now-generate-design-layers-from-vs-code/
 
 ---

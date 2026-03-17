@@ -1,7 +1,7 @@
 ---
 status: archived
 updated: 2026-02-06
-section: "Agentic Transformation"
+section: "Agentic SDLC"
 ---
 
 # Agentic CI: The Trust Factory

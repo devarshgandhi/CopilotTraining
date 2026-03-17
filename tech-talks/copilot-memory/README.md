@@ -1,7 +1,7 @@
 ---
 status: active
 updated: 2026-02-01
-section: "Copilot Surfaces"
+section: "Customization & Context"
 references:
   - url: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/copilot-memory
     label: "Copilot Memory documentation"

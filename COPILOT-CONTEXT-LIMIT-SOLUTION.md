@@ -62,7 +62,7 @@ Agents can read the full docs when needed for implementation details.
 ### Condensed (in `.github/`)
 - `.github/agents/module-creator.agent.md` (7,445 → 1,291 chars)
 - `.github/agents/module-planner.agent.md` (6,236 → 1,406 chars)
-- `.github/agents/slide-generator.agent.md` (44,260 → 3,270 chars)
+- `.github/agents/slide-generator.agent.md` (44,260 → 3,270 chars) — **Note:** subsequently re-merged to full content; no longer constrained to Copilot Workspace usage**
 - `.github/agents/tech-talk-generator.agent.md` (11,774 → 1,291 chars)
 - `.github/skills/exercise-author/SKILL.md` (12,582 → 931 chars)
 - `.github/skills/module-author/SKILL.md` (10,796 → 905 chars)

@@ -93,7 +93,7 @@ All paths start with [Copilot Chat](copilot-chat/) → [Copilot Primitives](copi
 
 💡 **Defense in depth:** Use both together — sandboxing for baseline safety, hooks for policy enforcement.
 
-### Agentic Transformation Stages
+### Agentic SDLC Stages
 
 | Stage | Scope | Talk | Expected ROI |
 |-------|-------|------|-------------|

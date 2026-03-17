@@ -1,7 +1,7 @@
 ---
 status: active
 updated: 2026-02-01
-section: "Context & Customization"
+section: "Customization & Context"
 references:
   - url: https://code.visualstudio.com/blogs/2026/01/26/mcp-apps-support
     label: "MCP Apps support in VS Code"

@@ -602,7 +602,7 @@ name: context-strategy
     <div class="font-bold text-red-300 mb-1">The Problem</div>
     <div class="text-xs text-gray-300">New developer joins team, needs to understand 50K-line React app with unfamiliar state management. Manual code reading takes weeks.</div>
   </div>
-  
+
   <div class="p-4 bg-green-900/40 rounded-lg border-l-4 border-green-500">
     <div class="font-bold text-green-300 mb-1">The Outcome</div>
     <div class="text-xs text-gray-300">
@@ -651,7 +651,7 @@ name: context-strategy
     <div class="font-bold text-red-300 mb-1">The Problem</div>
     <div class="text-xs text-gray-300">Add Microsoft OAuth to existing auth system. Has Google and GitHub OAuth, but no docs on adding new providers.</div>
   </div>
-  
+
   <div class="p-4 bg-green-900/40 rounded-lg border-l-4 border-green-500">
     <div class="font-bold text-green-300 mb-1">The Outcome</div>
     <div class="text-xs text-gray-300">
@@ -696,7 +696,7 @@ name: context-strategy
     <div class="font-bold text-red-300 mb-1">The Problem</div>
     <div class="text-xs text-gray-300">Production error: "Cannot read property 'id' of undefined" in checkout flow. Codebase has 200+ files—finding root cause manually would take hours.</div>
   </div>
-  
+
   <div class="p-4 bg-green-900/40 rounded-lg border-l-4 border-green-500">
     <div class="font-bold text-green-300 mb-1">The Outcome</div>
     <div class="text-xs text-gray-300">

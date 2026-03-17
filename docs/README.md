@@ -19,7 +19,7 @@ We condensed the agent and skill files in `.github/` to essential definitions (t
 - `agents-module-creator-FULL.md` → Referenced by `.github/agents/module-creator.agent.md`
 - `agents-module-planner-FULL.md` → Referenced by `.github/agents/module-planner.agent.md`
 - `agents-tech-talk-generator.agent.md` → Referenced by `.github/agents/tech-talk-generator.agent.md`
-- `slide-generator-FULL.md` → Referenced by `.github/agents/slide-generator.agent.md`
+- `slide-generator-FULL.md` → ~~Merged into `.github/agents/slide-generator.agent.md`~~ (no longer split)
 
 ### Skills (Full Documentation)
 

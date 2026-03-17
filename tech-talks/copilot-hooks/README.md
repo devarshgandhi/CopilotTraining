@@ -1,7 +1,7 @@
 ---
 status: active
 updated: 2026-02-11
-section: "Context & Customization"
+section: "Customization & Context"
 references:
   - url: https://code.visualstudio.com/docs/copilot/customization/hooks
     label: "Agent hooks configuration in VS Code"
