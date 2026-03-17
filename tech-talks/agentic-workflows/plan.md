@@ -20,7 +20,7 @@ This plan contains **near-final prose** for every section of the Agentic Workflo
 ---
 status: active
 updated: 2026-03-05
-section: "Agentic Transformation"
+section: "Agentic SDLC"
 references:
   - url: https://github.blog/ai-and-ml/automate-repository-tasks-with-github-agentic-workflows/
     label: "GitHub Blog: Automate repository tasks with GitHub Agentic Workflows"

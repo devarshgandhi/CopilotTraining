@@ -1,7 +1,7 @@
 ---
 status: active
 updated: 2026-02-01
-section: "Agentic Transformation"
+section: "Agentic SDLC"
 references:
   - url: https://docs.github.com/en/copilot/managing-copilot/managing-github-copilot-in-your-organization
     label: "Managing Copilot in your organization"

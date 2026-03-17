@@ -70,7 +70,7 @@ Technical presentations for practitioners exploring specific capabilities and pa
 | [Multi-Step Tasks](tech-talks/multi-step-tasks/) | Context isolation with subagents for complex workflows |
 | [Parallel Execution](tech-talks/parallel-execution/) | Simultaneous agents on different branches via Git worktree |
 
-#### 🚀 Agentic Transformation
+#### 🚀 Agentic SDLC
 
 | Talk | Focus |
 |------|-------|

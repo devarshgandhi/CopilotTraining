@@ -1,7 +1,7 @@
 ---
 status: active
 updated: 2026-02-08
-section: "Context & Customization"
+section: "Customization & Context"
 references:
   - url: https://code.visualstudio.com/docs/copilot/copilot-customization
     label: "Customize AI in Visual Studio Code"

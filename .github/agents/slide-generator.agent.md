@@ -19,12 +19,14 @@ Transform module README files into beautiful, concise Slidev presentations for C
 1. **README Exists** — Confirm the source README.md exists. If not, stop: "No README.md found at `<path>`. Generate it first (e.g., via tech-talk-generator) before creating slides."
 2. **Not Archived** — Read the source README frontmatter. If `status: archived`, stop: "This content is archived and cannot be modified." Also refuse to modify an existing slide file with `status: archived`.
 3. **Read Template** — Read `slides/TEMPLATE.md` for all visual patterns before writing a single slide.
+4. **Read Sections** — Read `slides/SECTIONS.md` for the authoritative section→icon→container mapping before updating the index.
 
 ### 1. Parse the README
 
 **Be selective — target 15-20 slides, not exhaustive coverage.**
 
 Extract:
+
 - Title, timing, category (workshop / tech-talk / exec-talk)
 - `section` field from frontmatter (determines index sub-group placement)
 - Story/context (condense if > 200 words)
@@ -37,6 +39,7 @@ Extract:
 - Next up / compounding value
 
 For tech talks, also extract:
+
 - `<!-- 🎬 MAJOR SECTION: [Name] -->` markers (become TOC entries)
 - Core Insight one-liner from Mental Model Shift
 
@@ -71,15 +74,15 @@ Add section divider slides for each 🎬 major section (tech talks / exec talks)
 
 ### 3. Content Limits (HARD LIMITS — count before writing)
 
-| Element | Maximum | If Exceeded |
-|---|---|---|
-| Bullets per column | 5 | Split into (1/2) / (2/2) slides |
-| Paragraph length | 200 chars | Break into bullets or split slide |
-| Use cases per slide | 2 | "Part 1" / "Part 2" |
-| Code examples per slide | 1 | Dedicated "Implementation" slide |
-| Comparison pairs | 3 | Split slides |
-| Grid items | 6 (2×3) | Continuation slide |
-| Vertical div stacks | 3 | Grid layout or split |
+| Element                 | Maximum   | If Exceeded                       |
+| ----------------------- | --------- | --------------------------------- |
+| Bullets per column      | 5         | Split into (1/2) / (2/2) slides   |
+| Paragraph length        | 200 chars | Break into bullets or split slide |
+| Use cases per slide     | 2         | "Part 1" / "Part 2"               |
+| Code examples per slide | 1         | Dedicated "Implementation" slide  |
+| Comparison pairs        | 3         | Split slides                      |
+| Grid items              | 6 (2×3)   | Continuation slide                |
+| Vertical div stacks     | 3         | Grid layout or split              |
 
 **Prefer splitting over condensing.** More slides with clear content beats fewer cramped slides.
 
@@ -97,12 +100,8 @@ Before writing any slide with HTML:
 
 After generating slides, update `slides/index-custom.html`:
 
-- Add a card in the correct section and sub-group based on the README `section` field:
-  - `Copilot Surfaces` → 💬 sub-group
-  - `Context & Customization` → 🧩 sub-group
-  - `Agent Architecture` → 🤖 sub-group
-  - `Agentic Transformation` → 🚀 sub-group
-  - `Executive Talks` → 💼 section
+- Read `slides/SECTIONS.md` for the authoritative section→icon→container mapping before placing any card.
+- Add a card in the correct section and sub-group based on the README `section` field (see SECTIONS.md for current values and icons).
 - Maintain alphabetical order within sub-groups (workshop modules by number)
 - Card template: `<a href="/CopilotTraining/{section}/{slug}/" class="card"><h2>{Title}</h2><p>{Description}</p></a>`
 
@@ -117,10 +116,10 @@ Run `node slides/scripts/sync-index-dates.mjs` after creating or updating any sl
 
 ## Output Paths
 
-| Source | Output |
-|---|---|
-| `workshop/03-custom-prompts/` | `slides/workshop/03-custom-prompts.md` |
-| `tech-talks/copilot-cli/` | `slides/tech-talks/copilot-cli.md` |
+| Source                         | Output                                  |
+| ------------------------------ | --------------------------------------- |
+| `workshop/03-custom-prompts/`  | `slides/workshop/03-custom-prompts.md`  |
+| `tech-talks/copilot-cli/`      | `slides/tech-talks/copilot-cli.md`      |
 | `exec-talks/agentic-delivery/` | `slides/exec-talks/agentic-delivery.md` |
 
 ## Content Guidelines
@@ -132,6 +131,7 @@ Run `node slides/scripts/sync-index-dates.mjs` after creating or updating any sl
 ## Quality Checklist
 
 ### Content
+
 - [ ] 15-20 slides (split, don't cram)
 - [ ] No column exceeds 5 bullets
 - [ ] No paragraph exceeds 200 characters
@@ -139,6 +139,7 @@ Run `node slides/scripts/sync-index-dates.mjs` after creating or updating any sl
 - [ ] Code blocks on dedicated slides
 
 ### HTML
+
 - [ ] All `<div>` tags matched with `</div>` (count them)
 - [ ] All `<span>` tags matched with `</span>`
 - [ ] All attribute quotes closed and consistent
@@ -147,6 +148,7 @@ Run `node slides/scripts/sync-index-dates.mjs` after creating or updating any sl
 - [ ] Self-closing tags use `/>` syntax
 
 ### Visual & Structure
+
 - [ ] Title slide uses TEMPLATE.md pattern with correct category colors
 - [ ] SDP logo included with glow effect (`./sdp-logo.png`)
 - [ ] `module` field in frontmatter with correct path
@@ -156,15 +158,15 @@ Run `node slides/scripts/sync-index-dates.mjs` after creating or updating any sl
 
 ## Common Mistakes
 
-| Mistake | Prevention |
-|---|---|
-| Unclosed `<div>` tags | Count open/close before writing |
-| 7+ bullets on one slide | Split at 5; create (1/2)/(2/2) |
-| Mixed `"` and `'` quotes | Use `"` everywhere |
-| 4+ space HTML indentation | Keep all tags flush-left |
-| 4+ vertical stacked divs | Use grid layout or split |
-| Hash anchors in TOC | Use `@click="$nav.go(N)"` only |
-| Mermaid diagrams | Always use styled HTML divs |
+| Mistake                   | Prevention                      |
+| ------------------------- | ------------------------------- |
+| Unclosed `<div>` tags     | Count open/close before writing |
+| 7+ bullets on one slide   | Split at 5; create (1/2)/(2/2)  |
+| Mixed `"` and `'` quotes  | Use `"` everywhere              |
+| 4+ space HTML indentation | Keep all tags flush-left        |
+| 4+ vertical stacked divs  | Use grid layout or split        |
+| Hash anchors in TOC       | Use `@click="$nav.go(N)"` only  |
+| Mermaid diagrams          | Always use styled HTML divs     |
 
 ## Error Handling
 

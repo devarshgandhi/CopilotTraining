@@ -190,6 +190,12 @@
       background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, transparent 100%);
       margin-left: 0.5rem;
     }
+    .sub-group-desc {
+      font-size: 0.75rem;
+      color: #475569;
+      font-style: italic;
+      margin-left: 0.5rem;
+    }
     /* Related Repos: purple → pink → rose */
     .section.repos {
       border-color: rgba(168, 85, 247, 0.3);
@@ -259,11 +265,12 @@
           <p class="section-description">Technical deep-dives for practitioners on specific capabilities</p>
         </div>
       </div>
-      <!-- Copilot Surfaces -->
+      <!-- Copilot Tools -->
       <div class="sub-group">
         <div class="sub-group-header">
           <span class="sub-group-icon">💬</span>
-          <span class="sub-group-label">Copilot Surfaces</span>
+          <span class="sub-group-label">Copilot Tools</span>
+          <span class="sub-group-desc">Where you interact with Copilot every day</span>
           <span class="sub-group-line"></span>
         </div>
         <div class="grid">
@@ -283,10 +290,6 @@
             <h2>Copilot Web</h2>
             <p>AI assistance beyond the IDE. PR reviews in browsers, issue triage on mobile, with full repository customizations.</p>
           </a>
-          <a href="/CopilotTraining/tech-talks/copilot-memory/" class="card">
-            <h2>Copilot Memory</h2>
-            <p>Cross-session context persistence. Store preferences, project context, and workflow patterns that persist across all conversations.</p>
-          </a>
           <a href="/CopilotTraining/tech-talks/vscode-latest/" class="card">
             <h2>What's New in VS Code</h2>
             <p>Latest Copilot features in VS Code v1.108-v1.110. Agent Plugins, /create-* commands, Explore subagent, agentic browser tools, and /yolo mode.</p>
@@ -294,33 +297,34 @@
         </div>
       </div>
 
-      <!-- Context & Customization -->
+      <!-- Customization & Context -->
       <div class="sub-group">
         <div class="sub-group-header">
           <span class="sub-group-icon">🧩</span>
-          <span class="sub-group-label">Context & Customization</span>
+          <span class="sub-group-label">Customization & Context</span>
+          <span class="sub-group-desc">Making it yours — instructions, skills, and integrations</span>
           <span class="sub-group-line"></span>
         </div>
         <div class="grid">
+          <a href="/CopilotTraining/tech-talks/copilot-primitives/" class="card">
+            <h2>Copilot Primitives</h2>
+            <p>The 4 configuration primitives. Instructions, prompts, skills, and agents — make Copilot understand your codebase better.</p>
+          </a>
           <a href="/CopilotTraining/tech-talks/copilot-hooks/" class="card">
             <h2>Copilot Hooks</h2>
             <p>Programmable governance for AI agents. Real-time prevention, audit trails, and compliance enforcement at execution time.</p>
+          </a>
+          <a href="/CopilotTraining/tech-talks/copilot-memory/" class="card">
+            <h2>Copilot Memory</h2>
+            <p>Cross-session context persistence. Store preferences, project context, and workflow patterns that persist across all conversations.</p>
           </a>
           <a href="/CopilotTraining/tech-talks/copilot-sdk/" class="card">
             <h2>Copilot SDK</h2>
             <p>Embedding AI agents in your applications. Build custom tools, bots, and automation with programmatic Copilot access.</p>
           </a>
-          <a href="/CopilotTraining/tech-talks/copilot-primitives/" class="card">
-            <h2>Copilot Primitives</h2>
-            <p>The 4 configuration primitives. Instructions, prompts, skills, and agents — make Copilot understand your codebase better.</p>
-          </a>
           <a href="/CopilotTraining/tech-talks/mcp-apps/" class="card">
             <h2>MCP Apps</h2>
             <p>Rich UI in chat responses. Transform chat from text-only to interactive visual experiences with component-based MCP tools.</p>
-          </a>
-          <a href="/CopilotTraining/tech-talks/copilot-acp/" class="card">
-            <h2>Copilot ACP</h2>
-            <p>The Agent Client Protocol for universal AI integration. Use Copilot's agentic capabilities in any editor, tool, or workflow — not just VS Code.</p>
           </a>
         </div>
       </div>
@@ -330,6 +334,7 @@
         <div class="sub-group-header">
           <span class="sub-group-icon">🤖</span>
           <span class="sub-group-label">Agent Architecture</span>
+          <span class="sub-group-desc">Patterns for composing and orchestrating multi-agent systems</span>
           <span class="sub-group-line"></span>
         </div>
         <div class="grid">
@@ -345,14 +350,19 @@
             <h2>Parallel Execution</h2>
             <p>When agents work simultaneously. Run multiple agents on different branches without conflicts using Git worktree isolation.</p>
           </a>
+          <a href="/CopilotTraining/tech-talks/copilot-acp/" class="card">
+            <h2>Copilot ACP</h2>
+            <p>The Agent Client Protocol for universal AI integration. Use Copilot's agentic capabilities in any editor, tool, or workflow — not just VS Code.</p>
+          </a>
         </div>
       </div>
 
-      <!-- Agentic Transformation -->
+      <!-- Agentic SDLC -->
       <div class="sub-group">
         <div class="sub-group-header">
           <span class="sub-group-icon">🚀</span>
-          <span class="sub-group-label">Agentic Transformation</span>
+          <span class="sub-group-label">Agentic SDLC</span>
+          <span class="sub-group-desc">Transforming the full software delivery lifecycle with AI agents</span>
           <span class="sub-group-line"></span>
         </div>
         <div class="grid">

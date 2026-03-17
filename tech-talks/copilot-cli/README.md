@@ -1,7 +1,7 @@
 ---
 status: active
 updated: 2026-02-23
-section: "Copilot Surfaces"
+section: "Copilot Tools"
 references:
   - url: https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli
     label: "About GitHub Copilot CLI"

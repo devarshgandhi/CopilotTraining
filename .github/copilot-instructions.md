@@ -134,7 +134,7 @@ All tech talk and exec talk README.md files **must** include YAML frontmatter at
 ---
 status: active # or "archived"
 updated: 2026-02-08 # last modification date
-section: "Context & Customization" # index-custom.html sub-group
+section: "Customization & Context" # index-custom.html sub-group
 ---
 ```
 
@@ -142,12 +142,7 @@ section: "Context & Customization" # index-custom.html sub-group
 
 - `status` — `active` or `archived`. Archived talks must never be modified by agents.
 - `updated` — Date of last modification (YYYY-MM-DD). Agents must update this when modifying content.
-- `section` — The sub-group in `slides/index-custom.html` where the slide card belongs. Valid values:
-  - `Copilot Surfaces` — Chat, CLI, Web, Memory, Terminal Sandboxing
-  - `Context & Customization` — Instructions, Hooks, SDK, MCP, Primitives
-  - `Agent Architecture` — Teams, Multi-Step Tasks, Parallel Execution
-  - `Agentic Transformation` — Journey, SDLC, Enterprise Patterns
-  - `Executive Talks` — Used for exec-talks only
+- `section` — The sub-group in `slides/index-custom.html` where the slide card belongs. Valid values are defined in **[`slides/SECTIONS.md`](../slides/SECTIONS.md)** (single source of truth). Current values: `Copilot Tools`, `Customization & Context`, `Agent Architecture`, `Agentic SDLC`, `Executive Talks`, `Workshop`.
 - `references` — _(optional)_ Array of authoritative URLs used as sources for the talk's content. Each entry has:
   - `url` — _(required)_ Full URL to the official documentation or source
   - `label` — _(required)_ Short human-readable description of the page
