@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-02-12
+updated: 2026-03-17
 section: "Agent Architecture"
 references:
   - url: https://code.visualstudio.com/docs/copilot/customization/custom-agents
@@ -15,6 +15,9 @@ references:
   - url: https://github.com/bradygaster/squad
     label: "Squad — production-ready agent team system"
     verified: 2026-02-12
+  - url: https://github.com/Sentry01/AgentCouncil
+    label: "AgentCouncil — multi-model collaborative/adversarial deliberation"
+    verified: 2026-03-17
 ---
 
 # Agent Teams: Coordinating Specialized AI Roles for Complex Development
@@ -53,7 +56,8 @@ references:
 9. **Core Architecture** ← 🎬 Section 1 (2-3 slides)
 10. **Squad: Production-Ready Agent Teams** ← 🎬 Section 2 (3-4 slides)
 11. **Getting Started with Squad** ← 🎬 Section 3 (4-5 slides)
-12. **Orchestration Patterns** ← 🎬 Section 4 (3-4 slides)
+12. **Agent Council: Cross-Model Deliberation** ← 🎬 Section 4 (2-3 slides)
+13. **Orchestration Patterns** ← 🎬 Section 5 (3-4 slides)
 13. **Use Cases** ← Real-World Use Cases (1-2 slides)
 14. **Actionable Outcomes** ← What You Can Do Today
 15. **Related Patterns** ← Related Patterns
@@ -66,6 +70,7 @@ references:
 <!-- 🎬 MAJOR SECTION: Core Architecture -->
 <!-- 🎬 MAJOR SECTION: Squad: Production-Ready Agent Teams -->
 <!-- 🎬 MAJOR SECTION: Getting Started with Squad -->
+<!-- 🎬 MAJOR SECTION: Agent Council: Cross-Model Deliberation -->
 <!-- 🎬 MAJOR SECTION: Orchestration Patterns -->
 ```
 
@@ -144,11 +149,21 @@ Agents run in isolated context windows — the coordinator uses only 6.6% of its
 
 ### Supporting Files
 
-*Referenced but not shown inline — available in the Squad repository*
+*Referenced but not shown inline — available in the respective repositories*
 
 - **[Squad Repository](https://github.com/bradygaster/squad)** — Complete agent team system with persistent memory, parallel execution, GitHub Issues integration, ceremonies, and skills system
 - **[Squad Product Guide](https://github.com/bradygaster/squad/blob/main/docs/guide.md)** — Comprehensive usage guide covering all features
 - **[workshop/06-custom-agents](../../workshop/06-custom-agents/)** — Hands-on exercises for building custom agents
+
+### Agent Council Artifacts
+
+*A different pattern — multi-model deliberation rather than role specialization*
+
+- **[AgentCouncil Repository](https://github.com/Sentry01/AgentCouncil)** — Copilot CLI skill/agent that runs Claude, GPT, and Gemini in parallel across two modes
+- **`skills/agent-council/skill.md`** — Drop-in skill for any Copilot CLI session (`council: your question`)
+- **`agents/AgentCouncil.agent.md`** — Standalone agent (`copilot --agent AgentCouncil "..."`)
+
+> **Pattern distinction:** Squad coordinates *role specialists* to build things. AgentCouncil coordinates *model families* to deliberate on decisions. They are complementary — use AgentCouncil to validate an architecture choice, then Squad to implement it.
 
 ---
 
@@ -615,6 +630,128 @@ Agent histories are split into **portable knowledge** (general learnings that tr
 
 ---
 
+<!-- 🎬 MAJOR SECTION: Agent Council: Cross-Model Deliberation -->
+## Agent Council: When Different Models Think Differently
+
+*A Copilot CLI skill that runs Claude, GPT, and Gemini in parallel — then has them build on each other's ideas or debate to stress-test the answer*
+
+**Repository:** [github.com/Sentry01/AgentCouncil](https://github.com/Sentry01/AgentCouncil)
+
+AgentCouncil takes a fundamentally different approach to agent teams: instead of **role specialization** (planner/implementer/reviewer), it uses **model diversity**. Three model families tackle the same problem independently, then interact — either by stealing each other's best ideas, or by attacking each other's positions.
+
+The insight driving it: different models have different blind spots. Claude is good at nuance but may overcomplicate. GPT might miss edge cases Claude catches. Gemini has strong factual grounding but different reasoning patterns. Running them in parallel — then having them interact — surfaces what no single model can produce alone.
+
+### The Ensemble
+
+| # | Agent | Collaborative Role | Adversarial Role | Default Model |
+|---|-------|--------------------|-----------------|---------------|
+| 1 | **Alpha** | Deep Explorer | Drafter & Red Teamer | claude-opus-4.6 |
+| 2 | **Beta** | Practical Builder | Fact-Checker & Validator | gpt-5.4 |
+| 3 | **Gamma** | Elegant Minimalist | Optimizer & Devil's Advocate | gemini-3.1-pro |
+| 4 | **Orchestrator** | Author (writes synthesis) | Judge (delivers verdict) | claude-opus-4.6 |
+
+All models are configurable — swap any to match your access.
+
+### Two Modes
+
+#### Collaborative 🤝 (Default)
+Agents explore the problem independently, then read each other's drafts and improve. The orchestrator authors the final synthesis from all three enriched perspectives.
+
+```
+Phase 1 (parallel): Alpha, Beta, Gamma each draft independently
+Phase 2 (parallel): Each reads the other two drafts → writes improved version
+Phase 3:            Orchestrator synthesizes all three enriched perspectives
+```
+
+**7 total model calls. Wall-clock ≈ 2 sequential subagent calls (phases run in parallel within each round).**
+
+Best for: brainstorming, design space exploration, research synthesis, any problem where diverse perspectives help.
+
+#### Adversarial 🗡️
+Agents draft independently, the orchestrator identifies the dominant position. The others attack it. A verdict is delivered.
+
+```
+Phase 1 (parallel): Alpha, Beta, Gamma each tackle the problem independently
+Phase 2:            Orchestrator identifies strongest position (skips to verdict if consensus)
+Phase 3 (parallel): Other two agents attempt to tear apart the leading position
+Phase 4:            Orchestrator delivers verdict: SURVIVED / MODIFIED / OVERTURNED
+```
+
+**6 total model calls. Wall-clock ≈ 2 sequential subagent calls.**
+
+Best for: architecture decisions you'll live with for years, security reviews, head-to-head technology comparisons.
+
+### Mode Detection (Automatic)
+
+AgentCouncil reads intent from your phrasing — no flags needed:
+
+| Trigger word | Mode | Example |
+|-------------|------|---------|
+| `council:`, `brainstorm:` | 🤝 Collaborative | `council: How should we structure the API?` |
+| `debate:`, `stress-test:`, `vs` | 🗡️ Adversarial | `debate: Monorepo vs polyrepo` |
+| `verbose council:` | 🤝 Collaborative + narration | Shows each agent's draft + improvements |
+| `verbose stress-test:` | 🗡️ Adversarial + narration | Shows positions + attacks + verdict |
+
+### Installing AgentCouncil
+
+```bash
+git clone https://github.com/Sentry01/AgentCouncil.git
+cd AgentCouncil
+
+# As a Copilot CLI skill (triggers inside any session with "council: ...")
+mkdir -p ~/.copilot/skills/agent-council
+cp skills/agent-council/skill.md ~/.copilot/skills/agent-council/skill.md
+
+# As a standalone agent
+mkdir -p ~/.copilot/agents
+cp agents/AgentCouncil.agent.md ~/.copilot/agents/AgentCouncil.agent.md
+```
+
+No dependencies. No build. Just markdown files that Copilot CLI reads.
+
+### Example Prompts
+
+**Collaborative — brainstorming:**
+```
+council: Novel approaches to real-time collaboration in a document editor. Think beyond CRDTs and OT.
+```
+
+**Collaborative — architecture design:**
+```
+council: Design a notification system that scales to 1M users. Push, pull, fan-out tradeoffs.
+```
+
+**Adversarial — technology decision:**
+```
+debate: WebSockets + Redis pub/sub vs SSE + message queue for 10K concurrent users.
+       Cost, complexity, scaling, failure modes.
+```
+
+**Adversarial — security review:**
+```
+verbose stress-test: Review this JWT implementation for vulnerabilities: [paste code]
+```
+
+### When to Use AgentCouncil vs. Squad
+
+| Situation | Use | Why |
+|-----------|-----|-----|
+| "What's the right architecture?" | AgentCouncil 🗡️ | Stress-test the answer across model families before committing |
+| "Brainstorm caching strategies" | AgentCouncil 🤝 | Diverse perspectives, novel synthesis |
+| "Build the authentication system" | Squad | Role specialists execute in parallel with persistent memory |
+| "Review this PR for security issues" | AgentCouncil 🗡️ | Multiple models attack the implementation independently |
+| "We agreed on the plan — implement it" | Squad | Coordinator delegates to implementers, tester runs in parallel |
+
+**Combining both:** Use AgentCouncil to deliberate on the right approach, then hand the validated decision to Squad for implementation. Deliberation → Execution.
+
+### Not Worth It (Either Mode)
+
+- Quick fixes, file lookups, simple factual questions — single agent is faster
+- Tight model budget (collaborative = 7 calls, adversarial = 6)
+- When speed matters more than correctness
+
+---
+
 <!-- 🎬 MAJOR SECTION: Orchestration Patterns -->
 ## Four Proven Orchestration Patterns
 
@@ -836,12 +973,45 @@ You: "Team, build the authentication system"
 
 ---
 
+### Use Case 4: Architecture Decision Under Uncertainty
+
+**The Problem:** Team needed to choose a messaging architecture (WebSockets + Redis pub/sub vs. SSE + message queue) for a real-time feature serving 10K concurrent users. Each approach had tradeoffs across cost, operational complexity, and failure modes. No single engineer had deep expertise in all dimensions, and the decision would be hard to reverse.
+
+**The Solution:** AgentCouncil adversarial mode to stress-test the decision before writing a line of code:
+
+```
+debate: WebSockets + Redis pub/sub vs SSE + message queue for 10K concurrent users.
+        Cost, complexity, scaling, failure modes.
+
+→ Alpha (Deep Explorer): favors WebSockets for bidirectional flexibility — outlines failure modes in detail
+→ Beta (Practical Builder): favors SSE — lower client complexity, HTTP/2 multiplexing, simpler ops
+→ Gamma (Elegant Minimalist): flags that 10K concurrent is the wrong constraint to optimize for
+
+Orchestrator triage: Gamma's reframing is strongest
+→ Alpha + Beta attack Gamma's position
+→ Gamma survives: the team was solving the wrong problem
+
+Verdict: SSE + message queue wins for current scale, with architecture designed for migration to
+WebSockets at 100K+ concurrent. Decision documented and handed to Squad for implementation.
+```
+
+**Outcome:**
+- Decision quality: Three model families caught a framing error ("optimize for 10K" vs. "design for growth") that human review had missed
+- Confidence: Team committed with documented rationale rather than a team vote
+- Time saved: 2-hour architecture meeting → 12-minute AgentCouncil session
+- Execution: Validated plan handed to Squad — Backend Dev implemented, Tester wrote load tests in parallel
+- Compounding: Decision captured in Squad's `decisions.md` — future agents can't accidentally reverse it
+
+---
+
 ## ✅ What You Can Do Today
 
 **Immediate Actions (10 minutes):**
 - [ ] Install Squad in a project: `npx github:bradygaster/squad`
 - [ ] Form your team by describing your project to the Squad agent
 - [ ] Give your first task: `"Team, build [something small]"` and watch parallel execution in action
+- [ ] Try AgentCouncil: `git clone https://github.com/Sentry01/AgentCouncil && cp skills/agent-council/skill.md ~/.copilot/skills/agent-council/skill.md`
+- [ ] Ask it something you're genuinely unsure about: `council: [your architecture question]`
 
 **Short-Term Exploration (1-2 hours):**
 - [ ] Run 3-5 tasks to let agents accumulate `history.md` knowledge — notice how they stop asking questions they've already answered
@@ -849,6 +1019,7 @@ You: "Team, build the authentication system"
 - [ ] Check `.ai-team/decisions.md` to see captured team decisions
 - [ ] Add a new team member: `"I need a DevOps person"`
 - [ ] Try the reviewer protocol: have Lead review work and observe the rejection/reassignment flow
+- [ ] Run an adversarial council on a real pending decision: `debate: [Option A] vs [Option B]` — compare result to your intuition
 
 **Advanced Adoption (1-2 weeks):**
 - [ ] Enable GitHub Issues integration with `squad` label-based triage
@@ -905,6 +1076,10 @@ See [DECISION-GUIDE.md](../DECISION-GUIDE.md) for complete navigation help.
 - 📖 [Squad Model Selection](https://github.com/bradygaster/squad/blob/main/docs/features/model-selection.md) — Cost-first per-agent model routing
 - 📖 [Squad Skills System](https://github.com/bradygaster/squad/blob/main/docs/features/skills.md) — Earned knowledge with confidence lifecycle
 - 📖 [Ralph Work Monitor](https://github.com/bradygaster/squad/blob/main/docs/features/ralph.md) — Autonomous backlog processing
+
+**Agent Council Resources:**
+- 🐙 **[AgentCouncil Repository](https://github.com/Sentry01/AgentCouncil)** — Multi-model collaborative/adversarial deliberation for Copilot CLI
+- 💡 [Inspiration: llm-council by Andrej Karpathy](https://github.com/karpathy/llm-council) — The original LLM council concept AgentCouncil is adapted from
 
 **Additional Resources:**
 - 🎓 [Chat Sessions](https://code.visualstudio.com/docs/copilot/chat/chat-sessions) — Managing context windows and agent sessions

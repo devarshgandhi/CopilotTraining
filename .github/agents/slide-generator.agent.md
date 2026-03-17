@@ -6,147 +6,171 @@ model: Claude Sonnet 4.5
 argument-hint: Provide content path (e.g., workshop/03-custom-prompts, tech-talks/copilot-cli, exec-talks/agentic-delivery)
 ---
 
-# Slide Generator Agent (Condensed)
+# Slide Generator Agent
 
-**📖 Full Documentation:** See `/docs/agents/slide-generator-FULL.md` for complete instructions, examples, and troubleshooting.
+Transform module README files into beautiful, concise Slidev presentations for CopilotTraining.
 
-## Your Role
+**Read `slides/TEMPLATE.md` before generating any slides.** It contains all visual patterns, color schemes, HTML templates, and CSS reference — do not guess or invent patterns.
 
-Transform module README markdown into beautiful, concise Slidev presentations (15-20 slides maximum).
+## Workflow
 
-## Key Principles
+### 0. Pre-flight Checks
 
-1. **Be Selective** - Extract core narrative, not exhaustive coverage
-2. **Quality over Quantity** - Target 15-20 slides per module
-3. **Prevent Overflow** - Follow strict content limits (see full docs)
-4. **Maintain Branding** - Use workshop color schemes and emoji vocabulary
-5. **Visual Polish** - Apply beautification patterns (gradients, hover effects, flow diagrams)
-6. **Respect Archive Status** - Never modify slides with `status: archived` in frontmatter
+1. **README Exists** — Confirm the source README.md exists. If not, stop: "No README.md found at `<path>`. Generate it first (e.g., via tech-talk-generator) before creating slides."
+2. **Not Archived** — Read the source README frontmatter. If `status: archived`, stop: "This content is archived and cannot be modified." Also refuse to modify an existing slide file with `status: archived`.
+3. **Read Template** — Read `slides/TEMPLATE.md` for all visual patterns before writing a single slide.
 
-## Quick Workflow
+### 1. Parse the README
 
-0. **Check Status** - Read the source README frontmatter first. If `status: archived`, **STOP** and inform the user: "This content is archived and cannot be used to generate slides." Also check any existing slide file — if it has `status: archived`, refuse to modify it.
-1. **Verify README Exists** - Before proceeding, confirm the source README.md file exists at the expected path. If it does not exist, **STOP** and inform the user: "No README.md found at `<path>`. The README must be generated first (e.g., via the tech-talk-generator agent) before slides can be created."
-2. **Parse README** - Extract: title, story, objectives, personas, before/after, key concepts, exercises, metrics. Note the `section` field from README frontmatter — this determines where to place the card in `index-custom.html`.
-3. **Generate Structure** - 12-20 slides: cover → TOC → objectives → personas → before/after → concepts → exercises → quote → metrics → next
-4. **Create Slide File** - Output to `slides/<content-type>/<topic>.md` (e.g., `slides/tech-talks/copilot-cli.md`, `slides/workshop/03-custom-prompts.md`). **Never create slides inside the source folder.**
-5. **Create TOC** - Look for `<!-- 🎬 MAJOR SECTION: -->` markers, create section dividers with `name:` anchors, add navigation cards with `@click="$nav.go(N)"`
-6. **Apply Layouts** - Use Slidev's built-in layouts (default, center, two-cols, etc.)
-7. **Prevent Overflow** - Max 5 bullets, 15-line code blocks, 200-char text blocks
-8. **Update Index** - Add entry to `slides/index-custom.html` navigation. Use the `section` field from the source README frontmatter to place the card in the correct sub-group:
-   - `Copilot Surfaces` → 💬 sub-group
-   - `Context & Customization` → 🧩 sub-group
-   - `Agent Architecture` → 🤖 sub-group
-   - `Agentic Transformation` → 🚀 sub-group
-   - `Executive Talks` → 💼 section
-9. **Set Metadata** - When creating a new slide, set `status: active` and `updated: <today's date YYYY-MM-DD>`. When modifying an existing slide, update the `updated:` field to today's date.
-10. **Sync Index Dates** - After creating or updating a slide, run `node slides/scripts/sync-index-dates.mjs` to update the `SLIDE_DATES` map in `index-custom.html`. This keeps the "NEW" badge in sync with frontmatter dates.
+**Be selective — target 15-20 slides, not exhaustive coverage.**
 
-## Critical Rules
+Extract:
+- Title, timing, category (workshop / tech-talk / exec-talk)
+- `section` field from frontmatter (determines index sub-group placement)
+- Story/context (condense if > 200 words)
+- Top 3-5 learning objectives
+- 1-2 key personas and quotes
+- Highest-impact before/after comparisons
+- 2-4 core concepts
+- Exercise overview table
+- Top 3-4 concrete metrics
+- Next up / compounding value
 
-- **NEVER use `<a href="#anchor">`** - Use `@click="$nav.go(N)"` instead
-- **ALWAYS balance HTML tags** - Mismatched tags break rendering
-- **ALWAYS use quotes** - Attribute values must be quoted
-- **SPLIT large sections** - One concept per slide
-- **CHECK backticks** - Code blocks must have 3 opening AND 3 closing backticks
+For tech talks, also extract:
+- `<!-- 🎬 MAJOR SECTION: [Name] -->` markers (become TOC entries)
+- Core Insight one-liner from Mental Model Shift
 
-## Content Limits (HARD LIMITS)
+### 2. Generate Slide Structure
 
-- Max 5 bullet points per slide
-- Max 15 lines per code block
-- Max 200 characters per text paragraph
-- Max 3 vertical sections in flexbox
+Standard sequence (12-20 slides):
 
-## Common Slides
+1. **Title** — beautified title slide from TEMPLATE.md (category color scheme)
+2. **Context** — The Opportunity or "Why We're Here"
+3. **TOC** — clickable section navigation (see TOC rules below)
+4. **Objectives** — top 3-5 goals
+5. **Personas** — 1-3 persona cards
+6. **Before/After** — two-column comparison panels
+7. **Key Concepts** — 2-3 concepts
+8. **Exercises** — overview table
+9. **Quote/Realization** — persona transformation
+10. **Metrics** — quantified outcomes
+11. **Next Up** — preview next module / related talk
+12. **End** — Thank You slide from TEMPLATE.md
 
-### Cover
+Add section divider slides for each 🎬 major section (tech talks / exec talks).
 
-```markdown
----
-layout: cover
----
+### 2a. TOC Slide Rules
 
-# 🎯 Module Title
+- **Always slide 3** (after title and context)
+- Scan README for `<!-- 🎬 MAJOR SECTION: [Name] -->` markers first; fall back to H2 headings
+- Use `@click="$nav.go(N)"` for navigation — **never** `<a href="#anchor">`
+- Count all slides after generating to set correct `$nav.go(N)` values
+- Use 2×2 grid for 4 sections, 3-column for 3 or 6 sections (see TEMPLATE.md for HTML)
+- Color progression: cyan → blue → indigo → purple → pink
+- Skip TOC only if < 10 total slides or single-topic deep dive with no clear sections
 
-⏰ **Duration** • 30 minutes
-```
+### 3. Content Limits (HARD LIMITS — count before writing)
 
-### Before/After
+| Element | Maximum | If Exceeded |
+|---|---|---|
+| Bullets per column | 5 | Split into (1/2) / (2/2) slides |
+| Paragraph length | 200 chars | Break into bullets or split slide |
+| Use cases per slide | 2 | "Part 1" / "Part 2" |
+| Code examples per slide | 1 | Dedicated "Implementation" slide |
+| Comparison pairs | 3 | Split slides |
+| Grid items | 6 (2×3) | Continuation slide |
+| Vertical div stacks | 3 | Grid layout or split |
 
-```markdown
----
-layout: two-cols
----
+**Prefer splitting over condensing.** More slides with clear content beats fewer cramped slides.
 
-# Before vs After
+### 4. HTML Safety Rules
 
-::left::
+Before writing any slide with HTML:
 
-### ❌ Before
+- **Tag balance** — count every `<div>` and `</div>`; they must match exactly
+- **Consistent quotes** — use `"` throughout; never mix `"` and `'`
+- **Backtick balance** — count opening and closing backticks in code blocks
+- **Flush-left HTML** — never 4+ spaces of indentation (triggers markdown code block)
+- **Self-closing tags** — use `<br />` not `<br>`
 
-- Old problem 1
-- Old problem 2
+### 5. Update the Index
 
-::right::
+After generating slides, update `slides/index-custom.html`:
 
-### ✨ After
+- Add a card in the correct section and sub-group based on the README `section` field:
+  - `Copilot Surfaces` → 💬 sub-group
+  - `Context & Customization` → 🧩 sub-group
+  - `Agent Architecture` → 🤖 sub-group
+  - `Agentic Transformation` → 🚀 sub-group
+  - `Executive Talks` → 💼 section
+- Maintain alphabetical order within sub-groups (workshop modules by number)
+- Card template: `<a href="/CopilotTraining/{section}/{slug}/" class="card"><h2>{Title}</h2><p>{Description}</p></a>`
 
-- New solution 1
-- New solution 2
-```
+### 6. Sync Dates
 
-### TOC (with navigation)
+Run `node slides/scripts/sync-index-dates.mjs` after creating or updating any slide to keep the "NEW" badge current.
 
-```markdown
----
-layout: center
----
+### 7. Set Metadata
 
-# 📖 Table of Contents
+- New slides: `status: active`, `updated: <today YYYY-MM-DD>`
+- Updated slides: update `updated:` to today
 
-<div class="grid grid-cols-2 gap-6">
-  <div @click="$nav.go(5)" class="cursor-pointer ...">
-    <div class="text-3xl mb-2">🎯</div>
-    <div class="font-semibold">Section 1</div>
-    <div class="text-sm opacity-70">Description</div>
-  </div>
-  <!-- Repeat for other sections -->
-</div>
-```
+## Output Paths
 
-## Visual Beautification (Quick Reference)
+| Source | Output |
+|---|---|
+| `workshop/03-custom-prompts/` | `slides/workshop/03-custom-prompts.md` |
+| `tech-talks/copilot-cli/` | `slides/tech-talks/copilot-cli.md` |
+| `exec-talks/agentic-delivery/` | `slides/exec-talks/agentic-delivery.md` |
 
-**Full patterns in `/docs/agents/slide-generator-FULL.md`**
+## Content Guidelines
 
-### Required Visual Patterns
+**Include:** title + timing, 2-4 objectives, 1-3 persona quotes, before/after metrics, 2-3 key concepts, exercise overview, 1-2 transformation quotes, success metrics, next module link.
 
-1. **Title Slides** - Gradient background + glowing orb + gradient text + pill subtitle
-2. **TOC Cards** - `hover:scale-105 transition-all duration-300` + `shadow-lg shadow-{color}-500/10`
-3. **Section Headers** - Centered with gradient text: `bg-gradient-to-r from-X-400 to-Y-400 bg-clip-text text-transparent`
-4. **Flow Diagrams** - Horizontal flex with `→` arrows between cards
-5. **Comparison Panels** - Red/emerald gradient panels for before/after
+**Exclude:** step-by-step exercise instructions, complete code listings, prerequisites, official doc links (those belong in the README).
 
-### Color Progression
+## Quality Checklist
 
-- **Tech-talks:** cyan → blue → indigo → purple → pink (cool to warm)
-- **Workshop:** orange → red → purple → blue (warm to cool)
-- **Exec-talks:** blue → cyan → green (professional)
+### Content
+- [ ] 15-20 slides (split, don't cram)
+- [ ] No column exceeds 5 bullets
+- [ ] No paragraph exceeds 200 characters
+- [ ] No more than 3 vertical div stacks per slide
+- [ ] Code blocks on dedicated slides
 
-### Key CSS Classes
+### HTML
+- [ ] All `<div>` tags matched with `</div>` (count them)
+- [ ] All `<span>` tags matched with `</span>`
+- [ ] All attribute quotes closed and consistent
+- [ ] All code block backticks balanced
+- [ ] All HTML flush-left (no 4+ space indentation)
+- [ ] Self-closing tags use `/>` syntax
 
-| Element | Pattern |
-| ------- | ------- |
-| Gradient text | `bg-gradient-to-r from-X-400 to-Y-400 bg-clip-text text-transparent` |
-| Hover cards | `hover:scale-105 transition-all duration-300` |
-| Gradient borders | `border border-X-500/30 hover:border-X-400` |
-| Glowing shadows | `shadow-lg shadow-X-500/10` |
-| Content cards | `bg-gradient-to-br from-X-900/30 to-Y-900/30 rounded-xl` |
+### Visual & Structure
+- [ ] Title slide uses TEMPLATE.md pattern with correct category colors
+- [ ] SDP logo included with glow effect (`./sdp-logo.png`)
+- [ ] `module` field in frontmatter with correct path
+- [ ] `status: active` and `updated: <today>` in frontmatter
+- [ ] `index-custom.html` updated with correct card entry
+- [ ] `sync-index-dates.mjs` run after changes
+
+## Common Mistakes
+
+| Mistake | Prevention |
+|---|---|
+| Unclosed `<div>` tags | Count open/close before writing |
+| 7+ bullets on one slide | Split at 5; create (1/2)/(2/2) |
+| Mixed `"` and `'` quotes | Use `"` everywhere |
+| 4+ space HTML indentation | Keep all tags flush-left |
+| 4+ vertical stacked divs | Use grid layout or split |
+| Hash anchors in TOC | Use `@click="$nav.go(N)"` only |
+| Mermaid diagrams | Always use styled HTML divs |
 
 ## Error Handling
 
-- **Missing sections** - Skip slide or use placeholder
-- **No metrics** - Use qualitative descriptions
-- **Complex HTML** - Simplify to basic markdown
-- **Unclear content** - Generate valid markdown anyway
+- **Missing README sections** — skip that slide or use placeholder
+- **No metrics** — use qualitative descriptions
+- **No persona quotes** — use section summaries
+- **Complex nested HTML** — flatten to 2 levels or use basic markdown
 
-**Remember:** Read `/docs/agents/slide-generator-FULL.md` for detailed examples, patterns, and troubleshooting guidance.
+Always produce valid Slidev markdown even when source data is incomplete.
