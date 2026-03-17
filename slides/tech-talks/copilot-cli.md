@@ -20,8 +20,8 @@ mdc: true
 <div class="absolute inset-0 bg-gradient-to-br from-cyan-900/20 via-blue-900/10 to-indigo-900/20"></div>
 <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-indigo-500/20 rounded-full blur-3xl"></div>
 <div class="relative z-10">
-<div class="absolute inset-0 blur-2xl opacity-50"><img src="../sdp-logo.png" class="w-64" alt="" /></div>
-<img src="../sdp-logo.png" class="w-64 relative" alt="SDP Logo" />
+<div class="absolute inset-0 blur-2xl opacity-50"><img src="./sdp-logo.png" class="w-64" alt="" /></div>
+<img src="./sdp-logo.png" class="w-64 relative" alt="SDP Logo" />
 </div>
 <h1 class="!text-5xl !font-bold !mt-8 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent relative z-10">GitHub Copilot CLI</h1>
 <div class="mt-4 relative z-10">
@@ -1375,8 +1375,8 @@ class: text-center
 <div class="absolute inset-0 bg-gradient-to-br from-cyan-900/20 via-blue-900/10 to-indigo-900/20"></div>
 <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-indigo-500/20 rounded-full blur-3xl"></div>
 <div class="relative z-10">
-<div class="absolute inset-0 blur-2xl opacity-50"><img src="../sdp-logo.png" class="w-48" alt="" /></div>
-<img src="../sdp-logo.png" class="w-48 relative" alt="SDP Logo" />
+<div class="absolute inset-0 blur-2xl opacity-50"><img src="./sdp-logo.png" class="w-48" alt="" /></div>
+<img src="./sdp-logo.png" class="w-48 relative" alt="SDP Logo" />
 </div>
 <h1 class="!text-5xl !font-bold !mt-6 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent relative z-10">Thank You!</h1>
 <div class="mt-4 relative z-10">

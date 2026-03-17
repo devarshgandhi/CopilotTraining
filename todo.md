@@ -19,25 +19,6 @@ evergreen process: using Actions to view all changesets at PR approval and updat
 
 ---
 
-In-Flight : agent-visualizer
-
-This is a great idea, let's build it
-
-        <a href="https://github.com/rbmathis/flowlens" class="card" target="_blank" rel="noopener">
-          <h2>FlowLens 🔍</h2>
-          <p>Visual debugging for AI agent workflows. Trace context flow, inspect tool calls, and understand how prompts transform into actions.</p>
-        </a>
-
----
-
-new talk on agentic workflows: Create a workflow for GitHub Agentic Workflows using https://github.com/github/gh-aw/blob/main/create.md
-
-  The purpose of the workflow is to
-gh-aw/create.md at main · github/gh-aw
-GitHub Agentic Workflows. Contribute to github/gh-aw development by creating an account on GitHub.
-
----
-
 METRICS:
 https://github.blog/changelog/2026-02-27-copilot-metrics-is-now-generally-available/
 https://microsoft.sharepoint.com/:w:/s/GitHubHelp/IQCnHadAR7j0RIuemY_5lEQpAebwTKXugI4TBgsPhjvt6i0?e=paySaK
