@@ -58,8 +58,8 @@ This template is structured to generate Slidev slides automatically. Understandi
 14. **🧠 Mental Model Shift (Full)** ← Full Move-Toward/Away/Against grid. Reinforces the thesis with evidence.
 15. **Actionable Outcomes** ← "What You Can Do Today" checklist
 16. **Related Patterns** ← "Related Patterns" section
-17. **📖 References** ← "📖 References" section (REQUIRED)
-18. **End Slide** ← Auto-generated
+17. **📖 References** ← "� References" section (REQUIRED — always 2nd to last)
+18. **Thank You** ← "🎉 Thank You" section (REQUIRED — always last); uses logo + gradient heading + 3 action cards pattern
 
 ### Mental Model: Thesis → Evidence → Reinforcement
 
@@ -367,6 +367,51 @@ Q: [Top-level question about use case fit]
 **Example:**
 ```[language]
 [Code example]
+```
+
+**What You Get:** [Concrete outcome]
+
+---
+
+## 📎 References
+
+> **Note for authors:** This section becomes the **second-to-last slide** (References). List the most important official docs only — 4 per column maximum. Always include a live URL. The slide generator renders these as clickable cards with two columns: left for core docs (cyan), right for guides/announcements (blue).
+
+### Core Documentation
+
+- 📖 **[Doc Title 1](https://docs.github.com/en/copilot/...)** — [One-line description]
+- 📖 **[Doc Title 2](https://docs.github.com/en/copilot/...)** — [One-line description]
+- 📖 **[Doc Title 3](https://docs.github.com/en/copilot/...)** — [One-line description]
+- 🔧 **[Command/API Reference](https://docs.github.com/en/copilot/...)** — [One-line description]
+
+### Guides & Announcements
+
+- 🎓 **[Best Practices Guide](https://docs.github.com/en/copilot/...)** — [One-line description]
+- 🎓 **[How-To: Key Workflow](https://docs.github.com/en/copilot/...)** — [One-line description]
+- 📋 **[GitHub Blog: Feature Announcement](https://github.blog/changelog/...)** — [One-line description]
+- 🚀 **[Advanced Feature Docs](https://docs.github.com/en/copilot/...)** — [One-line description]
+
+---
+
+## 🎉 Thank You
+
+> **Note for authors:** This section becomes the **last slide** (Thank You). The slide generator uses the pattern from `slides/tech-talks/agent-teams.md` — logo with blur double, gradient heading, pill subtitle with the talk title, three action cards with the most important takeaways, and a fading rule. Fill in the three action cards with the key commands or callouts from this talk.
+
+**Subtitle:** [Full talk title — same as H1 subtitle]
+
+**Action Card 1 (cyan):**
+- Label: `[install command or first action]`
+- Subtext: [e.g., "Get started in 2 minutes"]
+
+**Action Card 2 (blue):**
+- Label: `[key shortcut or command]`
+- Subtext: [e.g., "Activate the key feature"]
+
+**Action Card 3 (indigo):**
+- Label: `[key command or concept]`
+- Subtext: [e.g., "Primary value proposition]
+
+**Closing line:** Questions? Let's discuss [topic].
 ```
 
 **What You Get:** [Concrete outcome]

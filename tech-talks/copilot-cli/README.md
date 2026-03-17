@@ -1,11 +1,14 @@
 ---
 status: active
-updated: 2026-02-23
+updated: 2026-03-17
 section: "Copilot Tools"
 references:
-  - url: https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli
+  - url: https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli
     label: "About GitHub Copilot CLI"
-    verified: 2026-02-10
+    verified: 2026-03-17
+  - url: https://docs.github.com/en/copilot/concepts/agents/copilot-cli/fleet
+    label: "Running tasks in parallel with /fleet"
+    verified: 2026-03-17
   - url: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli
     label: "Use Copilot CLI"
     verified: 2026-02-10
@@ -85,23 +88,14 @@ references:
 
 ### Key Points
 
-- **Greenfield development is decision-dense**
-  Building something new means constant choices: which library, what architecture, how to handle edge cases — without institutional knowledge or a colleague to ask. Every decision competes for your attention while you're trying to maintain momentum
+- **The IDE only sees code; the terminal sees everything**
+  When you're debugging a failure, the information that matters — container logs, environment variables, process state, network traffic, file system layout — isn't in your source files. It's in what's running. An AI that lives in the terminal has access to all of it. One that lives in the editor is context-blind to most of what's actually wrong
 
-- **Terminal is the developer's workhorse, but it's silent**
-  Developers scaffold projects, run tests, debug failures, and explore new libraries all from the terminal — but must context-switch to a browser or IDE to get AI help, forcing them to re-explain local context they already have at their fingertips
+- **AI tools target 16% of your day**
+  Research from Bicameral AI: developers spend just 16% of their time writing code. The other 84% — deployments, debugging failures, requirements clarification, log analysis, CI triage — all happens in the terminal. Most AI coding tools optimize the 16% and leave the 84% untouched
 
-- **Manual investigation overhead**
-  Debugging failures — whether a test suite, a Docker container, or a deployment — takes 45+ minutes of manual work: parsing stack traces, checking configuration files, verifying environment variables, searching documentation
-
-- **Automation without understanding**
-  Traditional CLI tools execute predefined commands without adapting to context or learning from failures
-
-- **Long-running agent tasks consume your IDE**
-  Firing off a 20-minute background task (security audit, large refactor, test scaffolding) from VS Code ties up your editor and its resources. The CLI runs agentic workloads completely independently — delegate from the terminal, close the session if you want, and get notified when the PR is ready
-
-- **Context switching breaks flow**
-  Moving between terminal and IDE/web for AI assistance costs 5-10 minutes per switch, disrupts concentration, and forces re-explaining what's already present in the terminal
+- **AI guesses when requirements are ambiguous. You pay for that later**
+  A human developer hits an edge case in a spec and asks a question. AI hits the same ambiguity and picks one interpretation — confidently. You don't find out the guess was wrong until code review, or production. The right moment to catch this is before the first line of code is written, in a conversation that asks the questions a senior engineer would ask
 
 ---
 
@@ -119,6 +113,7 @@ GitHub Copilot CLI brings conversational AI directly into terminal workflows wit
 - **Programmatic Mode**: Single-command execution for scripts and pipelines — designed for headless CI/CD automation
 - **Cloud Delegation**: Background execution frees terminal for other work — delegate large tasks with `&` prefix
 - **Built-in Agents**: Specialized agents (Explore, Task, Plan, Code-review) automatically handle common patterns
+- **`/fleet` Fan-Out**: Explicitly decompose a plan into parallel subtasks — orchestrator assigns work to subagents, each in their own context window; results are merged back automatically
 - **IDE Bridge via `/ide`**: Open any file in VS Code mid-session — CLI context and conversation stay alive; use terminal and IDE simultaneously
 - **Automatic Context Management**: Auto-compaction at 95% token limit enables virtually infinite sessions
 - **Repository Memory**: AI remembers team conventions, patterns, and preferences across sessions
@@ -163,7 +158,7 @@ Three modes cover distinct workflows: **Interactive** for collaborative problem-
 
 *Available in documentation references*
 
-- **[Custom instructions guide](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli#use-custom-instructions)** — Repository-specific behavior configuration
+- **[Custom instructions guide](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli#use-custom-instructions)** — Repository-specific behavior configuration. Note: all custom instruction files now **combine** (additive merge) instead of falling back to the highest-priority file — user-level + repo-level + org-level instructions are all applied together
 - **[MCP server setup](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli#add-an-mcp-server)** — Extending functionality with external tools
 - **[Configure an MCP registry](https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-mcp-usage/configure-mcp-registry)** — Organization-wide discovery and governance for MCP tools
 - **[Built-in agents reference](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli#use-custom-agents)** — Explore, Task, Plan, Code-review agent details
@@ -176,26 +171,22 @@ Three modes cover distinct workflows: **Interactive** for collaborative problem-
 
 ### Move Toward (Embrace These Patterns)
 
-- ✅ **AI as Thought Partner for Greenfield Work**: Use interactive mode to explore library choices, scaffold new projects, and talk through architecture decisions before writing code → Reduces the "pick wrong library" tax and the decision paralysis that stalls new projects
-- ✅ **Collaborative Planning Before Coding**: Use Plan Mode to ask clarifying questions and approve strategy before implementation → Reduces debugging cycles from 8 attempts to 2
-- ✅ **Terminal as Collaboration Space**: Keep development and infrastructure work in the terminal with conversational AI → Eliminates context-switching overhead (5-10 min per switch) and avoids re-explaining local context
-- ✅ **Programmatic AI for Automation**: Use `copilot -p` in CI/CD pipelines for intelligent build failure analysis → 25 min → 5 min investigation time
-- ✅ **Cloud Delegation for IDE-Independent Execution**: Prefix prompts with `&` to run long-running agentic tasks (security audits, large refactors, test scaffolding) entirely in the cloud → IDE stays completely free, terminal stays free, PR arrives when the agent finishes
-- ✅ **Repository Memory Accumulation**: Let AI learn and remember team conventions across sessions → Future interactions leverage institutional knowledge automatically
+- ✅ **AI as Thought Partner for Greenfield Work**: Use Copilot CLI to explore library choices, scaffold projects, and talk through architecture decisions *before* writing code → 90 min of library research → 15 min with documented rationale and a working scaffold
+- ✅ **Plan Before You Build**: Use Plan Mode (Shift+Tab) to clarify intent and approve a strategy before implementation begins → 8 debugging attempts → 2; most rework in development comes from ambiguous starts, not bad code
+- ✅ **Delegate, Don't Block**: Long-running tasks (security audits, large refactors, doc generation) don't need to occupy your IDE or terminal — delegate with `& <task>` and get a PR when the agent finishes; both tools stay completely free
+- ✅ **Let /fleet Execute the Plan**: Once Plan Mode produces a strategy, hand it off — `/fleet implement all phases of this plan` decomposes the work into parallel subtasks, assigns each to a subagent, and merges results; you review the outcome, not the steps
 
 ### Move Away From (Retire These Habits)
 
-- ⚠️ **Building Without Talking Through Decisions First**: On greenfield work, jumping straight to implementation without exploring options → Use Copilot CLI as a thought partner before committing to an approach; the cost of exploring in conversation is minutes, the cost of redoing a bad library choice is hours
-- ⚠️ **Immediate Code Generation**: Jumping straight to implementation without clarifying requirements → Leads to 6-8 iteration cycles when 2 would suffice with planning
-- ⚠️ **Context-Switching to IDE for AI Help**: Leaving terminal to use IDE Copilot for terminal questions → Breaks flow, requires re-explaining context (5-10 min cost per switch)
-- ⚠️ **Manual Log Parsing and Documentation Search**: Reading stack traces and searching docs manually for 45+ minutes → Automated analysis with Copilot CLI completes in 8 minutes
-- ⚠️ **Fixed Automation Scripts**: Writing brittle shell scripts that can't adapt to context → Programmatic Copilot CLI understands failures and suggests fixes dynamically
+- ⚠️ **Starting new projects from the IDE**: Opening VS Code, creating a folder, and guessing at a tech stack before writing anything is the old way. The terminal is where you have the most context — what exists on disk, what's running, what the environment looks like. Use Copilot CLI as a design partner *before* you open the IDE: talk through the architecture, pick the libraries, generate the scaffold. Then open the IDE already oriented
+- ⚠️ **Re-explaining your codebase every session**: Spending the first 10 minutes of each Copilot session giving context — "we use docker-compose networking, not host networking; we deploy to Kubernetes; our convention is X" — is a sign repository memory isn't working for you yet. Invest once in teaching Copilot your conventions; subsequent sessions inherit that knowledge automatically
+- ⚠️ **Treating every long-running task as IDE-bound**: Kicking off a security audit, large refactor, or test suite generation from VS Code means your editor is occupied until the agent finishes. These tasks are better delegated from the CLI with `& <task>` — the agent runs in the cloud, both your IDE and terminal stay completely free, and a PR arrives when it's done
 
 ### Move Against (Active Resistance Required)
 
-- 🛑 **Using Interactive Mode in CI/CD**: Running interactive `copilot` sessions in automated pipelines → Use programmatic mode (`copilot -p`) designed for headless operation
-- 🛑 **Over-Approving Permissions in Production**: Using `--yolo` flag in production environments without understanding scope → Maintain security boundaries; use targeted `--allow-tool` for specific commands only
-- 🛑 **Ignoring Repository Memory**: Starting every session from scratch without leveraging learned conventions → Wastes time re-explaining patterns that AI could remember across sessions
+- 🛑 **Pasting secrets into prompts**: Credentials, tokens, and API keys typed into CLI sessions travel to GitHub's API as prompt content — the same way any other context does. It feels natural to give Copilot what it needs to help, but this is a data exposure risk. Use environment variables or secret managers; reference the name, not the value
+- 🛑 **`--yolo` outside sandboxed environments**: Permission prompts feel like friction when you're in flow. `--allow-all-tools` or `--yolo` removes that friction instantly — and grants the agent permission to run any shell command, edit any file, make any API call with your current credentials. If you're authenticated to production, the agent has production access. Approve per-tool or per-session, never blanket
+- 🛑 **Skipping Plan Mode because you're in a hurry**: When the deadline is close and you think you know what you need, Plan Mode feels like overhead. It isn't — it's most valuable precisely when you're rushing. The sessions that spiral into 8 failed attempts almost always started with "I'll just jump in." One minute of clarifying questions saves thirty minutes of rework
 
 > **Developer:** 90 min of library research + second-guessing → 15 min with Plan Mode proposing options, tradeoffs, and scaffolding the chosen stack. ~75 minutes saved.
 
@@ -249,15 +240,6 @@ Q: What's your primary workflow environment?
 - Need graphical debugging with breakpoints → Use IDE tools
 - Need rich cross-repository architectural analysis across many repos → Use Copilot Web
 - Workflow is entirely GUI-based with no terminal use → No benefit to CLI-specific features
-
-### Comparison with Related Features
-
-| Aspect | Copilot CLI | VS Code Copilot | Copilot Web |
-|--------|-------------|-----------------|-------------|
-| **Best For** | Terminal workflows: greenfield dev, debugging, infrastructure | Code editing, inline suggestions | Cross-repo analysis, PR review |
-| **Strengths** | Plan Mode, programmatic automation, terminal-native, no re-explaining local context, IDE-independent long-running agent execution | Inline completions, edits in editor context | Multi-repo queries, architectural context |
-| **Limitations** | Requires terminal comfort; no built-in graphical UI (use `/ide` to bridge to VS Code mid-session) | IDE-bound, not for terminal or infrastructure | No local file operations |
-| **Setup Time** | 2 minutes (install + auth) | Built into VS Code | Zero (web browser) |
 
 > 💡 **CLI and IDE work simultaneously, not in competition.** Use the `/ide` slash command from within a Copilot CLI session to open any file directly in VS Code — without losing your terminal context or conversation state. Identify the problem in the terminal, open the file in the IDE for editing, and return to the same CLI session. Both tools stay active and aware.
 >
@@ -535,19 +517,17 @@ jobs:
 
 ### Repository Memory: Cross-Session Learning
 
-Copilot CLI stores learned facts about your codebase — conventions, patterns, preferred approaches — and applies them automatically in future sessions. New team members inherit institutional knowledge without re-explanation.
+Copilot CLI stores learned facts about your codebase — conventions, patterns, preferred approaches — and applies them automatically in future sessions. This is covered in depth in the [Copilot Memory](../copilot-memory/) talk.
 
-**Example:**
+### Model Selection and Premium Request Cost
+
+**Default model:** Claude Sonnet 4.5. Change model at any time:
+
 ```bash
-Session 1 (Monday):
-> "Debug Docker networking issue"
-[You explain services use docker-compose networking, not host networking]
-
-Session 2 (Wednesday):
-> "Service A can't reach Service B"
-✅ Copilot: "Checking docker-compose networking configuration..."
-[AI applies Monday's context without re-explaining]
+/model   # Opens model picker showing all available models with their multiplier
 ```
+
+The multiplier next to each model (`1x`, `2x`, etc.) shows how many premium requests one prompt consumes. Example: `Claude Sonnet 4.5 (1x)` means each prompt costs 1 premium request. Higher-capability models have higher multipliers. Use `/model` before starting a session to select the right cost/quality tradeoff for your task.
 
 ### Shell & Output Improvements
 
@@ -623,6 +603,54 @@ Multiple agents can work simultaneously:
 
 **Result:** Three operations complete in the time of one — agents don't block each other.
 
+### /fleet: Explicit Fan-Out Mode
+
+While Copilot routes multiple agent types automatically from a single prompt, `/fleet` is the **explicit** fan-out command — designed for large, multi-part plans you want Copilot to decompose and execute in parallel with full orchestration.
+
+```bash
+# After working through a plan in plan mode:
+/fleet implement all phases of this auth refactor plan
+
+# Or directly:
+/fleet create a test suite: unit tests for auth, integration tests for API, e2e tests for login flow
+```
+
+**How it works:**
+1. The main agent analyzes the prompt and identifies subtasks
+2. It assesses dependencies — what can run in parallel, what must be sequential
+3. It acts as **orchestrator**: assigns subtasks to subagents, manages the workflow
+4. Subagents run in parallel where possible, each in their own context window
+5. Results are merged back by the orchestrator
+
+**Benefits:**
+
+| Benefit | Detail |
+|---------|--------|
+| **Speed** | Parallel subtasks complete in the time of the longest, not the sum |
+| **Context isolation** | Each subagent has its own window — no context pollution between tasks |
+| **Specialization** | Custom agents (`@test-writer`, `@security-reviewer`) are automatically used for matching subtasks |
+| **Model selection** | Subagents default to low-cost models; specify per-subtask: `Use Claude Opus 4.5 to analyze...` |
+
+**When to use `/fleet`:**
+- Large tasks with multiple independent steps (refactor N files, update N dependencies)
+- Tasks well-suited to parallelization: test suite creation, multi-module analysis, documentation
+- Autopilot mode — pair with `Shift+Tab` to switch to plan mode, then accept the plan with *Accept plan and build on autopilot + /fleet*
+
+**When NOT to use it:** If tasks are inherently sequential (step B requires step A's output), `/fleet` won't provide speedup — the orchestrator will simply run them in order.
+
+**Cost note:** Each subagent makes independent LLM calls, so `/fleet` may consume more premium requests than a single-agent approach. Use `/model` to check your current model multiplier.
+
+**Workflow with autopilot:**
+```
+Shift+Tab → plan mode
+  └─ Work with Copilot to create an implementation plan
+     └─ Plan complete → "Accept plan and build on autopilot + /fleet"
+        └─ Copilot runs subtasks in parallel autonomously
+           └─ You review finished results
+```
+
+See also: [Speeding up task completion with /fleet](https://docs.github.com/en/copilot/how-tos/copilot-cli/speeding-up-task-completion)
+
 ### Custom Agents
 
 Beyond built-in agents, create specialized versions for your workflows:
@@ -652,113 +680,10 @@ For more information, see [Creating custom agents](https://docs.github.com/en/co
 
 Plugins are packages that extend Copilot CLI's functionality beyond its built-in capabilities. They can add new tools, specialized workflows, or domain-specific knowledge. Plugins are installed from marketplaces or directly from Git repositories.
 
-### Finding Plugins via Marketplaces
-
-Copilot CLI comes with two default marketplaces pre-registered:
-- **`copilot-plugins`** — GitHub's official plugin collection
-- **`awesome-copilot`** — Community-curated plugins
-
-**Browse available marketplaces:**
 ```bash
-# List registered marketplaces
-copilot plugin marketplace list
-
-# Or in an interactive session
-/plugin marketplace list
-```
-
-**Browse plugins in a marketplace:**
-```bash
-# Browse a specific marketplace
+# Browse and install from a marketplace
 copilot plugin marketplace browse awesome-copilot
-```
-
-### Installing Plugins
-
-**From a registered marketplace:**
-```bash
-# Install from marketplace
 copilot plugin install database-data-management@awesome-copilot
-
-# Or in an interactive session
-/plugin install database-data-management@awesome-copilot
-```
-
-**Directly from a GitHub repository:**
-```bash
-# From GitHub
-copilot plugin install OWNER/REPO
-
-# From any Git repository
-copilot plugin install https://gitlab.com/OWNER/REPO.git
-```
-
-**From a subdirectory in a repository** (e.g., marketplace repos with multiple plugins):
-```bash
-copilot plugin install anthropics/claude-code:plugins/frontend-design
-```
-
-**From a local path:**
-```bash
-copilot plugin install ./path/to/my-plugin
-```
-
-> **Note:** For direct repository installs to work, the repository must contain a `plugin.json` file in `.github/plugin/`, `.claude-plugin/`, or the repository root.
-
-### Managing Installed Plugins
-
-```bash
-copilot plugin list                    # View installed plugins
-copilot plugin update PLUGIN-NAME      # Update plugin to latest version
-copilot plugin uninstall PLUGIN-NAME   # Remove plugin completely
-```
-
-### Where Plugins Are Stored
-
-Plugins are stored locally under `~/.copilot/installed-plugins/`:
-
-```
-~/.copilot/installed-plugins/
-├── awesome-copilot/              # Plugins from marketplace
-│   └── database-data-management/
-├── copilot-plugins/
-│   └── another-plugin/
-└── _direct/                      # Plugins installed directly
-    └── my-local-plugin/
-```
-
-### Adding and Removing Plugin Marketplaces
-
-**Add a marketplace:**
-```bash
-# Add from GitHub repository
-copilot plugin marketplace add anthropics/claude-code
-
-# Add from any Git URL
-copilot plugin marketplace add https://gitlab.com/OWNER/REPO.git
-
-# Add from local path
-copilot plugin marketplace add /path/to/marketplace-directory
-```
-
-**Remove a marketplace:**
-```bash
-# Remove by marketplace name (not OWNER/REPO)
-copilot plugin marketplace remove MARKETPLACE-NAME
-
-# Force remove (also uninstalls all plugins from that marketplace)
-copilot plugin marketplace remove MARKETPLACE-NAME --force
-```
-
-### Example: Adding a Database Plugin
-
-```bash
-$ copilot plugin marketplace browse awesome-copilot
-# Browse available plugins...
-
-$ copilot plugin install database-data-management@awesome-copilot
-Installing database-data-management from awesome-copilot...
-✅ Plugin installed successfully.
 
 $ copilot
 > "Show me the schema for the users table"
@@ -766,6 +691,8 @@ $ copilot
 ```
 
 **Outcome:** Extend Copilot CLI with specialized domain capabilities without writing custom agents — leverage the community ecosystem.
+
+For plugin management, creating plugins, or hosting your own marketplace, see [Finding and Installing Plugins](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-finding-installing).
 
 ---
 
@@ -813,142 +740,70 @@ Shall I scaffold the project structure?
 
 ---
 
-### Use Case 2: Debugging Your Own Failing Code
+### Use Case 2: Debugging a Running System
 
-**The Problem:** Test passes locally, fails in CI. Something returns `None` when it shouldn't. 30+ minutes of print statements and grep before finding the cause.
+**The Problem:** Service fails in staging, works fine locally. The relevant information — container logs, environment variables, network connectivity, process state — is in the runtime environment, not the source files. VS Code can read your code; it can't interrogate what's actually running.
 
-**The Solution:** Use interactive Copilot CLI with full codebase context
-
-```bash
-$ copilot
-> "My async fetch_user() returns None intermittently in CI but never locally. Help me debug."
-
-🤔 Copilot:
-I see a few possible causes for intermittent None in async code. Let me check:
-1. Are there exception handlers that silently return None on failure?
-2. Does the CI environment have different timeout or environment variable values?
-3. Is the async context properly awaited at every call site?
-
-> "Check exception handlers first"
-
-[Copilot reads the relevant file, finds a bare except that swallows the ConnectionError and returns None]
-
-Found: Line 47 — bare `except:` block returns None silently when a ConnectionError occurs.
-In CI, the database connection times out because CI_DB_HOST isn't set.
-
-Fix: Add specific exception handling and log the error. Add CI_DB_HOST to your workflow secrets.
-```
-
-**Outcome:**
-- **30 minutes → 5 minutes** to root cause (test vs CI environment difference instantly surfaced)
-- **Context-aware analysis** — Copilot reads your actual code, not a description of it
-- **No re-explaining** — the codebase is already in context from the terminal
-- **Fix + prevention** — solution addresses the symptom and the underlying config gap
-
----
-
-### Use Case 3: Docker Debugging with Plan Mode
-
-**The Problem:** 45 minutes manually checking logs, config, and env vars. 8 trial-and-error attempts before finding the cause.
-
-**The Solution:** Use Copilot CLI with Plan Mode for collaborative investigation
+**The Solution:** Copilot CLI runs commands against the live environment to gather its own context
 
 ```bash
 $ copilot
-> "Debug why the backend container won't start"
+> "My auth service is returning 503 in staging but works locally. Debug it."
 
-# Copilot asks clarifying questions:
-# "Should I check docker-compose config, logs, or both?"
-# "Do you want environment variable analysis?"
+🤔 Copilot: Let me check the running environment directly.
 
-> "Start with logs, then check config if needed"
+[runs: docker logs auth-service --tail 50]
+[runs: docker exec auth-service env | grep -E 'DB|REDIS|JWT']
+[runs: curl -sv http://redis-staging:6379/ping]
 
-# Copilot creates plan, executes after approval
-# Identifies misconfigured port binding in docker-compose.yml
+Found: JWT_SECRET is set locally but missing from the staging container.
+Redis connectivity is fine. The service is failing silently on token validation
+and returning 503 instead of 401.
+
+Fix: Add JWT_SECRET to your staging environment secrets and restart the container.
+The 503 vs 401 mismatch is a separate issue — I'll flag a bug for that too.
 ```
 
+**What makes this different from VS Code:** Copilot ran `docker logs`, `env`, and `curl` itself — it gathered the evidence rather than asking you to paste it in. An IDE-based assistant can read your source files; it can't reach into what's running. The terminal is where the runtime lives.
+
 **Outcome:**
-- **45 minutes → 8 minutes** debug time (83% reduction)
-- **8 attempts → 2 attempts** (AI asks right questions first)
-- **Automated log analysis** with reasoning transparency
-- **Documented workflow** reusable by entire team
+- **Evidence gathered automatically** — no copy-pasting logs into chat
+- **Cross-system diagnosis** — checks container, env, and network in one session
+- **Root cause + side-effect** — finds the missing secret *and* flags the misleading status code
 
 ---
 
-### Use Case 4: CI/CD Build Failure Analysis
+### Use Case 3: GitHub.com Integration — Issues, PRs, and Actions
 
-**The Problem:** 25 minutes per build failure — log analysis, commit archaeology, dependency checks — repeated manually every time with no pattern recognition.
+**The Problem:** Context-switching between terminal and browser to manage GitHub tasks (triage issues, review PRs, create workflows) breaks flow and requires re-explaining what you were doing.
 
-**The Solution:** Programmatic Copilot CLI in GitHub Actions workflow
-
-```yaml
-# .github/workflows/build.yml
-- name: Analyze build failure
-  if: failure()
-  run: |
-    copilot -p "Analyze build failure and suggest fixes" \
-      --allow-tools \
-      --model gpt-5.2-codex > analysis.txt
-    gh pr comment --body-file analysis.txt
-```
-
-**Outcome:**
-- **25 minutes → 5 minutes** investigation time
-- **12 manual steps → 3 automated steps**
-- **Pattern recognition enabled** across historical failures
-- **Zero human intervention** for known failure types
-
----
-
-### Use Case 5: Infrastructure Documentation Generation
-
-**The Problem:** Docs lag deployments by 3 days. Manual diagram creation from docker-compose.yml is tedious enough that it simply doesn't get done.
-
-**The Solution:** Generate directly from infrastructure-as-code
+**The Solution:** Copilot CLI connects directly to GitHub.com — no browser required
 
 ```bash
-# Generate docs from docker-compose.yml
-$ copilot "Generate architecture documentation from docker-compose.yml"
+$ copilot
+# Working with issues
+> "List all open issues assigned to me in my-org/my-repo"
+> "I've been assigned this issue: https://github.com/my-org/my-repo/issues/42. Start working on it in a feature branch."
+> "Raise an improvement issue in my-org/my-repo. In src/auth.py the file handle is never closed."
 
-# Create system diagrams
-$ copilot "Create deployment diagram showing service dependencies"
+# Working with pull requests
+> "List my open PRs"
+> "Check the changes made in PR https://github.com/my-org/my-repo/pull/123. Report any serious errors."
+> "Merge all the open PRs I've created in my-org/my-repo"
 
-# Update docs when config changes
-$ copilot "Update architecture.md to reflect new Redis cache service"
+# Creating GitHub Actions workflows
+> "Create a GitHub Actions workflow that runs eslint on PRs and fails if errors are found. Push and open a PR."
+
+# Using the GitHub MCP server
+> "Use the GitHub MCP server to find good first issues for a new team member in my-org/my-repo"
 ```
 
-**Outcome:**
-- **3 days → 30 minutes** documentation time
-- **Automated diagram generation** from infrastructure code
-- **Real-time architecture updates** when configs change
-- **Always-current docs** for stakeholder presentations
-
----
-
-### Use Case 6: Cross-Session Learning with Repository Memory
-
-**The Problem:** Senior engineer re-explains the same deployment conventions 5-6 times over 2 weeks to each new team member.
-
-**The Solution:** Repository memory accumulates institutional knowledge
-
-```bash
-# Week 1: Senior explains conventions to Copilot during work
-$ copilot
-> "Deploy to staging"
-# Copilot learns: staging uses blue-green deployment, requires approval, runs smoke tests
-
-# Week 2: New team member uses same commands
-$ copilot
-> "Deploy to staging"
-✅ Copilot: "Running blue-green deployment to staging..."
-[Automatically follows learned conventions without re-explaining]
-```
+**Key insight:** Copilot CLI can create pull requests on your behalf — you're marked as the author. This means you can describe a change in plain English from your terminal and end up with a PR on GitHub.com, without ever leaving the CLI session.
 
 **Outcome:**
-- **2 weeks → 3 days** onboarding for infrastructure work
-- **5-6 explanations → 1 explanation** (AI remembers for team)
-- **Consistent practices** across all team members
-- **Institutional knowledge** persists beyond individual engineers
+- **Browser context switches eliminated** — GitHub.com tasks stay in terminal flow
+- **Issue → branch → PR** completed without switching tools
+- **Workflow creation** from natural language description, not YAML from scratch
 
 ---
 
@@ -968,16 +823,9 @@ $ copilot
 - [ ] Run `/context` and `/usage` to understand session management and auto-compaction
 
 **DevOps Short-Term (1 hour):**
-- [ ] Add Copilot CLI to one CI/CD pipeline for build failure analysis (see Use Case 4)
+- [ ] Add Copilot CLI to one CI/CD pipeline for build failure analysis — use `copilot -p "Analyze build failure" --allow-tool 'shell(gh)'`
 - [ ] Run a long-running agentic task with `& <task>` (security audit, doc generation) — confirm your IDE and terminal stay free while the agent runs in the cloud
-- [ ] Test interactive Docker debugging instead of manual log parsing next time a container fails
-
-**Advanced Exploration (2-4 hours):**
-- [ ] Create custom agents in `.github/agents/` for specialized workflows
-- [ ] Configure automatic build failure analysis in all CI/CD workflows
-- [ ] Set up MCP servers via the GitHub MCP Registry (`/mcp add`)
-- [ ] Browse and install plugins: `copilot plugin marketplace browse awesome-copilot`
-- [ ] Measure ROI: Track before/after metrics for debugging time and iteration cycles
+- [ ] Try GitHub.com integration: manage issues and open PRs directly from your terminal (see Use Case 3)
 
 **Next:** Review [Copilot CLI Best Practices](https://docs.github.com/en/copilot/how-tos/copilot-cli/cli-best-practices) · Share time-savings wins · Explore [Copilot Hooks](../copilot-hooks/) for governance
 
@@ -1039,45 +887,7 @@ See [DECISION-GUIDE.md](../DECISION-GUIDE.md) for complete navigation help.
 
 Plan Mode uses the `ask_user` tool to pause generation and prompt for clarification — this is a first-class model capability, not a prompt trick. The model predicts ambiguity, asks targeted questions, waits for answers, then commits to an approach. This eliminates the "assume and implement wrong" failure mode that causes 6-8 iteration cycles.
 
-### Programmatic Mode Architecture
 
-Programmatic mode (`copilot -p`) is **fundamentally different** from interactive mode:
-
-- **Stateless execution:** No conversation history, each invocation is independent
-- **Structured output:** Designed for parsing by scripts (not human reading)
-- **Permission model:** Requires explicit `--allow-tool` or `--allow-all-tools` flags
-- **Exit codes:** Success (0) or failure (non-zero) for automation workflows
-
-```bash
-# Interactive mode: maintains context
-$ copilot
-> "What's in logs?"
-> "Check config too"
-> "Now analyze both"
-
-# Programmatic mode: one-shot execution
-$ copilot -p "Analyze logs and config, suggest fixes" --allow-tools
-```
-
-**Key Takeaway:** Don't use interactive mode in CI/CD (builds break when it prompts for input). Don't use programmatic mode for iterative debugging (loses context each time).
-
-### Context Auto-Compaction Algorithm
-
-At 95% token limit: compressible segments (verbose outputs, repetitive exchanges) are identified and replaced with a dense summary; key decisions and facts are preserved. Sessions can run indefinitely (tested: 200+ exchanges) with no user interruption.
-
-### Repository Memory Storage
-
-Memories are stored in `.copilot/memory/` directory (local to repository):
-
-```
-.copilot/
-└── memory/
-    ├── conventions.json      # Coding standards
-    ├── architecture.json     # System patterns
-    └── workflows.json        # Common procedures
-```
-
-**Privacy model:** Memories never leave your local machine except when explicitly referenced in prompts (then sent to GitHub API like any other context). You can review/edit memory files anytime. Delete `.copilot/memory/` to reset learned knowledge.
 
 ---
 

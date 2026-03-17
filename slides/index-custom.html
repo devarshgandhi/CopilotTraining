@@ -245,6 +245,31 @@
       border-color: rgba(251, 191, 36, 0.8) !important;
       box-shadow: 0 0 20px rgba(251, 191, 36, 0.3), 0 8px 32px rgba(251, 191, 36, 0.15) !important;
     }
+    /* Deprecated card — muted/dimmed treatment */
+    .card-deprecated {
+      opacity: 0.45;
+      filter: grayscale(0.6);
+      border-color: rgba(255, 255, 255, 0.06) !important;
+      background: rgba(255, 255, 255, 0.02) !important;
+      pointer-events: none;
+    }
+    .card-deprecated:hover {
+      transform: none;
+    }
+    .badge-deprecated {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      background: rgba(100, 116, 139, 0.3);
+      color: #64748b;
+      -webkit-text-fill-color: #64748b;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
     @keyframes pulse-new {
       0%, 100% { box-shadow: 0 0 10px rgba(251, 191, 36, 0.6), 0 0 20px rgba(251, 191, 36, 0.2); }
       50% { box-shadow: 0 0 14px rgba(251, 191, 36, 0.8), 0 0 28px rgba(251, 191, 36, 0.3); }
@@ -339,16 +364,16 @@
         </div>
         <div class="grid">
           <a href="/CopilotTraining/tech-talks/agent-teams/" class="card">
-            <h2>Agent Teams</h2>
-            <p>Coordinated specialists working together. When you need multiple specialized roles like planners, reviewers, and testers collaborating.</p>
+            <h2>Building Agent Systems</h2>
+            <p>From subagents to autonomous teams. The complete stack: context isolation, role specialists (Squad), background agents + worktrees, and multi-model deliberation (AgentCouncil).</p>
           </a>
-          <a href="/CopilotTraining/tech-talks/multi-step-tasks/" class="card">
-            <h2>Multi-Step Tasks</h2>
-            <p>Context isolation for complex workflows. Break work into focused phases using subagents—parallel execution without context pollution.</p>
+          <a href="/CopilotTraining/tech-talks/multi-step-tasks/" class="card card-deprecated">
+            <h2>Multi-Step Tasks <span class="badge-deprecated">Merged</span></h2>
+            <p>Merged into Building Agent Systems. Subagent delegation, context isolation, and phased workflows are now covered there.</p>
           </a>
-          <a href="/CopilotTraining/tech-talks/parallel-execution/" class="card">
-            <h2>Parallel Execution</h2>
-            <p>When agents work simultaneously. Run multiple agents on different branches without conflicts using Git worktree isolation.</p>
+          <a href="/CopilotTraining/tech-talks/parallel-execution/" class="card card-deprecated">
+            <h2>Parallel Execution <span class="badge-deprecated">Merged</span></h2>
+            <p>Merged into Building Agent Systems. Background agents + Git worktrees for autonomous parallel execution are now covered there.</p>
           </a>
           <a href="/CopilotTraining/tech-talks/copilot-acp/" class="card">
             <h2>Copilot ACP</h2>
@@ -516,7 +541,7 @@
       'copilot-acp': '2026-02-11',
       'copilot-chat': '2026-02-01',
       'copilot-chat-internals': '2026-03-05',
-      'copilot-cli': '2026-02-23',
+      'copilot-cli': '2026-03-17',
       'copilot-code-review': '2026-02-17',
       'copilot-hooks': '2026-02-11',
       'copilot-memory': '2026-02-01',

@@ -43,6 +43,33 @@ For tech talks, also extract:
 - `<!-- 🎬 MAJOR SECTION: [Name] -->` markers (become TOC entries)
 - Core Insight one-liner from Mental Model Shift
 
+### 1a. Editorial Curation (tech talks and exec talks only)
+
+**Before choosing which content gets slides, rank it.** The README is a reference document — comprehensive, not curated. Your job is to be an editor, not a transcriber.
+
+For each use case, feature, or major section, score it on three axes:
+
+| Axis                | Question                                                           | Signal                                                       |
+| ------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------ |
+| **Novelty**         | Is this new/surprising to a practitioner audience?                 | Unique capabilities, recent additions, unexpected use cases  |
+| **Differentiation** | Does this show something _only this tool_ can do?                  | Avoid demos that could apply to any AI assistant             |
+| **Audience impact** | Would a developer/DevOps engineer immediately think "I need that"? | Real time savings, workflow unblocking, capability unlocking |
+
+**Apply these heuristics:**
+
+- **Prefer recent additions over established patterns.** If the README `updated:` date is recent and a section was clearly added late (appears after earlier sections, references newer docs), that content probably deserves a slide more than the foundational content that's been there since launch.
+- **Deprioritize demos that have become table-stakes.** Basic Docker log debugging, CI/CD failure triage — audiences have seen these in many AI tool demos. They don't need a full slide unless the _mechanism_ (Plan Mode, programmatic flags) is genuinely distinct.
+- **Elevate surprising integrations.** GitHub.com from the terminal, `/fleet` fan-out, model multipliers — these challenge assumptions and create "I didn't know it could do that" moments. Give these prominent placement.
+- **Combine or compress the expected.** Well-known patterns (install, auth, basic commands) can be one compact reference slide or skipped entirely. Use the saved slide budget for compelling content.
+- **Preserve the best metric.** If a use case has a striking time-savings figure (45 min → 8 min, 90 min → 15 min), include it — but you don't need all use cases; keep the 2-3 with the most dramatic numbers.
+
+**Output a mental ranking before writing slides** (you don't need to write this out — just use it to decide):
+
+1. Which 2-3 use cases are the most novel/compelling? → Each gets a slide
+2. Which capabilities are most differentiated? → Feature in section slides
+3. Which content is well-known or expected? → Compress or skip
+4. What's the single "I didn't know it could do that" moment in this README? → Make it the centerpiece
+
 ### 2. Generate Slide Structure
 
 Standard sequence (12-20 slides):
@@ -133,6 +160,9 @@ Run `node slides/scripts/sync-index-dates.mjs` after creating or updating any sl
 ### Content
 
 - [ ] 15-20 slides (split, don't cram)
+- [ ] Editorial ranking applied: newest/most novel content gets slides, expected patterns compressed
+- [ ] At least one "I didn't know it could do that" capability featured prominently
+- [ ] Use cases chosen for novelty + impact, not just README order
 - [ ] No column exceeds 5 bullets
 - [ ] No paragraph exceeds 200 characters
 - [ ] No more than 3 vertical div stacks per slide
@@ -158,15 +188,17 @@ Run `node slides/scripts/sync-index-dates.mjs` after creating or updating any sl
 
 ## Common Mistakes
 
-| Mistake                   | Prevention                      |
-| ------------------------- | ------------------------------- |
-| Unclosed `<div>` tags     | Count open/close before writing |
-| 7+ bullets on one slide   | Split at 5; create (1/2)/(2/2)  |
-| Mixed `"` and `'` quotes  | Use `"` everywhere              |
-| 4+ space HTML indentation | Keep all tags flush-left        |
-| 4+ vertical stacked divs  | Use grid layout or split        |
-| Hash anchors in TOC       | Use `@click="$nav.go(N)"` only  |
-| Mermaid diagrams          | Always use styled HTML divs     |
+| Mistake                     | Prevention                                                                     |
+| --------------------------- | ------------------------------------------------------------------------------ |
+| Unclosed `<div>` tags       | Count open/close before writing                                                |
+| 7+ bullets on one slide     | Split at 5; create (1/2)/(2/2)                                                 |
+| Mixed `"` and `'` quotes    | Use `"` everywhere                                                             |
+| 4+ space HTML indentation   | Keep all tags flush-left                                                       |
+| 4+ vertical stacked divs    | Use grid layout or split                                                       |
+| Hash anchors in TOC         | Use `@click="$nav.go(N)"` only                                                 |
+| Mermaid diagrams            | Always use styled HTML divs                                                    |
+| README order = slide order  | Apply editorial ranking (§1a); newest/most differentiated content earns slides |
+| All use cases shown equally | 2-3 best use cases get slides; compress or skip table-stakes demos             |
 
 ## Error Handling
 
