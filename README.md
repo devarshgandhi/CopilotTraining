@@ -124,6 +124,7 @@ If you are here to create or update content, these are the most useful starting 
 - [tech-talks/README.md](tech-talks/README.md) for the tech talk authoring workflow
 - [slides/TEMPLATE.md](slides/TEMPLATE.md) for slide design patterns
 - [.github/copilot-instructions.md](.github/copilot-instructions.md) for repo-wide Copilot guidance
+- [docs/github-configuration.md](docs/github-configuration.md) for the `.github` folder overview and workflow map
 - [workshop/README.md](workshop/README.md) for the workshop narrative and module structure
 
 ## Core Point of View
