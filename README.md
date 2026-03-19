@@ -137,9 +137,11 @@ In the age of AI assistance, the bottleneck isn't "can you write the code?" — 
 New tech talks are generated through an automated 4-phase workflow:
 
 1. **Research** — Copilot CLI gathers source material and examples from URLs
-2. **Plan** — Content outline committed for review
-3. **Build** — README.md generated from approved plan (`/approve-plan`)
-4. **Slides** — Slidev deck generated from README
+2. **Plan** — Research brief plus a recommended outline (with bounded structural choices) committed for review
+3. **Build** — reader-first `tech-talks/{topic}/README.md` plus a per-talk `deck.recipe.yml` generated from the approved plan
+4. **Slides** — separate `slides/tech-talks/{topic}.md` deck generated from the README
+
+For tech talks, the README is the canonical deep dive for humans. Slide-specific pacing and presentation structure belong in the generated Slidev deck, not in the README body.
 
 See the [Tech Talks Creation Guide](tech-talks/README.md) for detailed instructions on both the issue-based and local IDE workflows.
 

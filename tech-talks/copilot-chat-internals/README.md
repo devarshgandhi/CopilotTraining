@@ -47,42 +47,6 @@ references:
 
 ---
 
-## 📽️ Slide Generation Mapping
-
-### Slide Sequence (Generated Automatically)
-
-1. **Title/Logo Slide** ← H1 title + subtitle
-2. **Question/Objective Slide** ← "The Question This Talk Answers"
-3. **Table of Contents Slide** ← Auto-generated from 🎬 sections
-4. **Problem Slide** ← "The Problem"
-5. **Solution Overview** ← "The Solution"
-6. **Key Artifacts** ← Diagnostic tools inventory
-7. **Mental Model Shift** ← Move-Toward/Away/Against
-8. **When to Use Decision Tree** ← "When to Use This Pattern"
-9. **Chat Debug View** ← 🎬 Section 1 (3-4 slides)
-10. **Thinking Tokens** ← 🎬 Section 2 (2-3 slides)
-11. **Diagnostics View** ← 🎬 Section 3 (2-3 slides)
-12. **Extension Logs & MCP** ← 🎬 Section 4 (2-3 slides)
-13. **Troubleshooting Patterns** ← 🎬 Section 5 (3-4 slides)
-14. **Use Cases** ← Real-World Use Cases (1-2 slides)
-15. **Actionable Outcomes** ← What You Can Do Today
-16. **Related Patterns** ← Related Patterns
-17. **Official Documentation** ← 📚 section
-18. **End Slide** ← Auto-generated
-
-### Major Sections (TOC Entries)
-
-```markdown
-<!-- 🎬 MAJOR SECTION: Agent Debug Panel -->
-<!-- 🎬 MAJOR SECTION: Chat Debug View -->
-<!-- 🎬 MAJOR SECTION: Thinking Tokens -->
-<!-- 🎬 MAJOR SECTION: Context Management -->
-<!-- 🎬 MAJOR SECTION: Diagnostics View -->
-<!-- 🎬 MAJOR SECTION: Extension Logs & MCP -->
-<!-- 🎬 MAJOR SECTION: Troubleshooting Patterns -->
-```
-
----
 
 ## The Problem
 

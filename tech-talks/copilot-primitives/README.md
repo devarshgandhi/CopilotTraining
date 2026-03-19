@@ -47,44 +47,6 @@ references:
 
 ---
 
-## 📽️ Slide Generation Mapping
-
-### Slide Sequence (Generated Automatically)
-
-1. **Title/Logo Slide** ← H1 title + subtitle
-2. **Question/Objective Slide** ← "The Question This Talk Answers"
-3. **Table of Contents Slide** ← Auto-generated from 🎬 sections
-4. **Problem Slide** ← "The Problem"
-5. **Solution Overview** ← "The Solution"
-6. **Key Artifacts** ← Primitives inventory
-7. **🧠 The Shift (Preview)** ← Core Insight one-liner
-8. **When to Use Decision Tree** ← "When to Use This Pattern"
-9. **Instructions Divider** ← 🎬 Section 1
-10. **Instructions Content** ← 3 slides
-11. **Skills Divider** ← 🎬 Section 2
-12. **Skills Content** ← 2 slides
-13. **Prompts Divider** ← 🎬 Section 3
-14. **Prompts Content** ← 2 slides
-15. **Agents Divider** ← 🎬 Section 4
-16. **Agents Content** ← 3 slides
-17. **Choosing Divider** ← 🎬 Section 5
-18. **Use Cases** ← Real-World Use Cases (1-2 slides)
-19. **🧠 Mental Model Shift (Full)** ← Full Move-Toward/Away/Against
-20. **Actionable Outcomes** ← What You Can Do Today
-21. **📖 References** ← References section
-22. **End Slide** ← Auto-generated
-
-### Major Sections (TOC Entries)
-
-```markdown
-<!-- 🎬 MAJOR SECTION: Instructions -->
-<!-- 🎬 MAJOR SECTION: Skills -->
-<!-- 🎬 MAJOR SECTION: Custom Prompts -->
-<!-- 🎬 MAJOR SECTION: Agents -->
-<!-- 🎬 MAJOR SECTION: Choosing the Right Primitive -->
-```
-
----
 
 ## The Problem
 

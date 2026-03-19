@@ -13,7 +13,7 @@ title: Copilot Code Review
 module: tech-talks/copilot-code-review
 mdc: true
 status: active
-updated: 2026-02-17
+updated: 2026-03-19
 ---
 
 <div class="h-full flex flex-col items-center justify-center relative overflow-hidden">
@@ -43,16 +43,40 @@ Accelerating PR Velocity & Maximizing ROI
 
 # The Central Question
 
-<div class="h-full flex items-center justify-center">
-<div class="max-w-4xl">
-<div class="text-6xl text-center mb-8">🤔</div>
-<div class="text-4xl font-bold text-center bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent mb-6">
-"How can Copilot Code Review reduce PR review time by 40-60% while delivering measurable ROI?"
+<div class="max-w-5xl mx-auto mt-3">
+<div class="p-6 bg-gradient-to-br from-cyan-900/30 via-blue-900/20 to-indigo-900/30 rounded-2xl border-2 border-cyan-500/40 shadow-2xl shadow-cyan-900/20 relative overflow-hidden">
+<div class="absolute -top-12 right-10 w-40 h-40 rounded-full bg-cyan-400/10 blur-3xl"></div>
+<div class="absolute -bottom-12 left-12 w-48 h-48 rounded-full bg-indigo-400/10 blur-3xl"></div>
+<div class="relative z-10">
+<div class="text-5xl text-center mb-4">🤔</div>
+<div class="text-[10px] uppercase tracking-[0.35em] text-cyan-300/80 text-center mb-3">The Executive Framing</div>
+<div class="text-3xl leading-tight font-bold text-center bg-gradient-to-r from-cyan-300 via-blue-300 to-indigo-300 bg-clip-text text-transparent mb-4">
+"How can Copilot Code Review cut PR review time by 40-60% while making the business case obvious?"
 </div>
-<div class="text-xl text-center opacity-80 mt-8">
-PRs sit for days. Reviewers are overwhelmed. Quality vs. speed is a false choice.
+<div class="max-w-3xl mx-auto text-base text-center text-gray-200/90">
+PRs sit open for days, senior reviewers become the throughput constraint, and leadership still expects proof that faster review does not mean weaker quality.
 </div>
 </div>
+</div>
+
+<div class="grid grid-cols-3 gap-3 mt-4 text-sm">
+<div class="p-3 bg-red-900/20 rounded-xl border border-red-500/30">
+<div class="text-red-300 font-semibold mb-2">The Friction</div>
+<div class="text-xl font-bold text-white">Days of Delay</div>
+<div class="text-gray-300 mt-1 text-xs">PRs wait on scarce reviewer time, context switching, and inconsistent standards.</div>
+</div>
+<div class="p-3 bg-cyan-900/20 rounded-xl border border-cyan-500/30">
+<div class="text-cyan-300 font-semibold mb-2">The Shift</div>
+<div class="text-xl font-bold text-white">Review as Feedback</div>
+<div class="text-gray-300 mt-1 text-xs">Copilot handles the mechanical review load so humans can focus on intent, risk, and exceptions.</div>
+</div>
+<div class="p-3 bg-indigo-900/20 rounded-xl border border-indigo-500/30">
+<div class="text-indigo-300 font-semibold mb-2">The Proof</div>
+<div class="text-xl font-bold text-white">ROI You Can Reuse</div>
+<div class="text-gray-300 mt-1 text-xs">The calculator turns PR analytics and assumptions into a stakeholder-ready value story.</div>
+</div>
+</div>
+
 </div>
 
 ---
@@ -76,9 +100,9 @@ layout: center
 </div>
 <div @click="$nav.go(11)" class="cursor-pointer p-6 bg-indigo-900/40 rounded-lg border-2 border-indigo-500 hover:bg-indigo-900/60 transition-all">
 <div class="text-2xl mb-2">📊</div>
-<div class="text-lg font-bold text-indigo-300">ROI Metrics</div>
-<div class="text-sm text-gray-300 mt-1">Track savings and prove business value</div>
-<div class="text-xs text-gray-400 mt-2">$15K+ monthly savings / 10-person team</div>
+<div class="text-lg font-bold text-indigo-300">ROI Calculator</div>
+<div class="text-sm text-gray-300 mt-1">Turn PR analytics into an executive-ready savings story</div>
+<div class="text-xs text-gray-400 mt-2">Cycle time, labor savings, and upside</div>
 </div>
 <div @click="$nav.go(14)" class="cursor-pointer p-6 bg-purple-900/40 rounded-lg border-2 border-purple-500 hover:bg-purple-900/60 transition-all">
 <div class="text-2xl mb-2">🚀</div>
@@ -126,16 +150,39 @@ name: setup
 
 # ⚙️ Setup & Configuration
 
-<div class="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+<div class="max-w-4xl mx-auto mt-6">
+<div class="p-8 bg-gradient-to-br from-cyan-900/30 via-blue-900/20 to-indigo-900/30 rounded-2xl border-2 border-cyan-500/40 shadow-2xl shadow-cyan-900/20 relative overflow-hidden">
+<div class="absolute -top-12 right-8 w-40 h-40 rounded-full bg-cyan-400/10 blur-3xl"></div>
+<div class="absolute -bottom-12 left-10 w-44 h-44 rounded-full bg-blue-400/10 blur-3xl"></div>
+<div class="relative z-10">
+<div class="text-[10px] uppercase tracking-[0.35em] text-cyan-300/80 mb-3">Section 1 of 4</div>
+<div class="text-5xl font-bold bg-gradient-to-r from-cyan-300 via-blue-300 to-indigo-300 bg-clip-text text-transparent leading-tight">
 From Zero to First Review
 </div>
-
-<div class="mt-6 text-xl opacity-80">
-15 minutes to automated code review
+<div class="mt-4 text-xl text-gray-200/90 max-w-3xl mx-auto">
+Turn Copilot review on fast, choose the right activation path, and grow toward enforceable quality gates.
+</div>
+</div>
 </div>
 
-<div class="mt-8 text-sm opacity-60">
-Section 1 of 4 · Basic config to required status checks
+<div class="grid grid-cols-3 gap-4 mt-5 text-center text-sm">
+<div class="p-4 bg-cyan-900/25 rounded-xl border border-cyan-500/30">
+<div class="text-cyan-300 font-semibold">Manual</div>
+<div class="text-xs text-gray-300 mt-1">Start with a single PR</div>
+</div>
+<div class="p-4 bg-blue-900/25 rounded-xl border border-blue-500/30">
+<div class="text-blue-300 font-semibold">Repository Ruleset</div>
+<div class="text-xs text-gray-300 mt-1">Automate for one team</div>
+</div>
+<div class="p-4 bg-indigo-900/25 rounded-xl border border-indigo-500/30">
+<div class="text-indigo-300 font-semibold">Required Checks</div>
+<div class="text-xs text-gray-300 mt-1">Enforce trusted feedback</div>
+</div>
+</div>
+
+<div class="mt-5 p-3 bg-gradient-to-r from-cyan-600/80 to-blue-600/80 rounded-xl text-center shadow-lg shadow-cyan-900/20">
+<span class="text-white font-bold text-sm">Start simple, then add automation and enforcement once the team trusts the signal.</span>
+</div>
 </div>
 
 ---
@@ -216,16 +263,39 @@ name: compliance
 
 # 🔒 Compliance & Security
 
-<div class="text-5xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+<div class="max-w-4xl mx-auto mt-6">
+<div class="p-8 bg-gradient-to-br from-blue-900/30 via-indigo-900/20 to-slate-900/30 rounded-2xl border-2 border-blue-500/40 shadow-2xl shadow-indigo-900/20 relative overflow-hidden">
+<div class="absolute -top-12 right-8 w-40 h-40 rounded-full bg-blue-400/10 blur-3xl"></div>
+<div class="absolute -bottom-12 left-10 w-44 h-44 rounded-full bg-indigo-400/10 blur-3xl"></div>
+<div class="relative z-10">
+<div class="text-[10px] uppercase tracking-[0.35em] text-blue-300/80 mb-3">Section 2 of 4</div>
+<div class="text-5xl font-bold bg-gradient-to-r from-blue-300 via-indigo-300 to-slate-200 bg-clip-text text-transparent leading-tight">
 Custom Rulesets for Your Organization
 </div>
-
-<div class="mt-6 text-xl opacity-80">
-HIPAA · PCI-DSS · SOC2 · Custom Standards
+<div class="mt-4 text-xl text-gray-200/90 max-w-3xl mx-auto">
+Move from generic review to policy-aware enforcement for security, compliance, and organization-specific standards.
+</div>
+</div>
 </div>
 
-<div class="mt-8 text-sm opacity-60">
-Section 2 of 4 · Automated compliance enforcement
+<div class="grid grid-cols-4 gap-3 mt-5 text-center text-sm">
+<div class="p-3 bg-blue-900/25 rounded-xl border border-blue-500/30">
+<div class="text-blue-300 font-semibold">HIPAA</div>
+</div>
+<div class="p-3 bg-indigo-900/25 rounded-xl border border-indigo-500/30">
+<div class="text-indigo-300 font-semibold">PCI-DSS</div>
+</div>
+<div class="p-3 bg-slate-800/40 rounded-xl border border-slate-500/30">
+<div class="text-slate-200 font-semibold">SOC2</div>
+</div>
+<div class="p-3 bg-cyan-900/25 rounded-xl border border-cyan-500/30">
+<div class="text-cyan-300 font-semibold">Custom Standards</div>
+</div>
+</div>
+
+<div class="mt-5 p-3 bg-gradient-to-r from-blue-600/80 to-indigo-600/80 rounded-xl text-center shadow-lg shadow-indigo-900/20">
+<span class="text-white font-bold text-sm">The goal is consistent enforcement without turning every pull request into a manual audit.</span>
+</div>
 </div>
 
 ---
@@ -321,77 +391,111 @@ name: roi
 
 # 📊 ROI Metrics
 
-<div class="text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-Measuring Business Impact
+<div class="max-w-4xl mx-auto mt-6">
+<div class="p-8 bg-gradient-to-br from-indigo-900/30 via-purple-900/20 to-slate-900/30 rounded-2xl border-2 border-indigo-500/40 shadow-2xl shadow-purple-900/20 relative overflow-hidden">
+<div class="absolute -top-12 right-8 w-40 h-40 rounded-full bg-indigo-400/10 blur-3xl"></div>
+<div class="absolute -bottom-12 left-10 w-44 h-44 rounded-full bg-purple-400/10 blur-3xl"></div>
+<div class="relative z-10">
+<div class="text-[10px] uppercase tracking-[0.35em] text-indigo-300/80 mb-3">Section 3 of 4</div>
+<div class="text-5xl font-bold bg-gradient-to-r from-indigo-300 via-purple-300 to-fuchsia-200 bg-clip-text text-transparent leading-tight">
+Calculator-Driven Business Impact
 </div>
-
-<div class="mt-6 text-xl opacity-80">
-Prove the value with concrete numbers
-</div>
-
-<div class="mt-8 text-sm opacity-60">
-Section 3 of 4 · Time savings, quality gains, cost-benefit
-</div>
-
----
-
-# 📊 Before vs. After
-
-<div class="grid grid-cols-2 gap-6 mt-6">
-<div class="p-4 bg-red-900/30 rounded-lg border-l-4 border-red-500">
-<div class="text-lg font-bold text-red-300 mb-3">❌ Before Copilot Review</div>
-<div class="text-sm text-gray-300 space-y-2">
-<div>• PR merge time: <strong>3.2 days</strong> average</div>
-<div>• Security issues missed: <strong>40-60%</strong></div>
-<div>• Review coverage: <strong>30%</strong> of PRs</div>
-<div>• New dev onboarding: <strong>6-8 weeks</strong></div>
-</div>
-</div>
-<div class="p-4 bg-green-900/30 rounded-lg border-l-4 border-green-500">
-<div class="text-lg font-bold text-green-300 mb-3">✅ After Copilot Review</div>
-<div class="text-sm text-gray-300 space-y-2">
-<div>• PR merge time: <strong>same day</strong></div>
-<div>• Security issues caught: <strong>90%+</strong></div>
-<div>• Review coverage: <strong>100%</strong> of PRs</div>
-<div>• New dev onboarding: <strong>3-4 weeks</strong></div>
+<div class="mt-4 text-xl text-gray-200/90 max-w-3xl mx-auto">
+Turn PR analytics and review-time assumptions into a value story that engineering leaders and buyers can reuse.
 </div>
 </div>
 </div>
 
-<div class="mt-6 p-4 bg-gradient-to-r from-green-600/80 to-blue-600/80 rounded-lg text-center">
-<span class="text-white font-bold">40-60% reduction in review cycle time · 25-35% higher first-submission acceptance</span>
+<div class="grid grid-cols-3 gap-4 mt-5 text-center text-sm">
+<div class="p-4 bg-indigo-900/25 rounded-xl border border-indigo-500/30">
+<div class="text-indigo-300 font-semibold">Inputs</div>
+<div class="text-xs text-gray-300 mt-1">PR data + model assumptions</div>
+</div>
+<div class="p-4 bg-purple-900/25 rounded-xl border border-purple-500/30">
+<div class="text-purple-300 font-semibold">Results</div>
+<div class="text-xs text-gray-300 mt-1">Cycle time, savings, upside</div>
+</div>
+<div class="p-4 bg-fuchsia-900/25 rounded-xl border border-fuchsia-500/30">
+<div class="text-fuchsia-300 font-semibold">Output</div>
+<div class="text-xs text-gray-300 mt-1">Executive-ready summary</div>
+</div>
+</div>
+
+<div class="mt-5 p-3 bg-gradient-to-r from-indigo-600/80 to-purple-600/80 rounded-xl text-center shadow-lg shadow-purple-900/20">
+<span class="text-white font-bold text-sm">The point is to make the ROI story inutitive, credible, and relevant.</span>
+</div>
 </div>
 
 ---
 
-# 💰 Cost-Benefit Analysis
+# 🧮 Calculator Workflow
 
-<div class="grid grid-cols-3 gap-4 mt-6">
-<div class="p-4 bg-green-900/40 rounded-lg text-center">
-<div class="text-3xl font-bold text-green-300">$150/hr</div>
-<div class="text-sm text-gray-400 mt-2">Developer time saved</div>
-<div class="text-xs text-gray-500 mt-1">Context switching + review hours</div>
-</div>
-<div class="p-4 bg-cyan-900/40 rounded-lg text-center">
-<div class="text-3xl font-bold text-cyan-300">$39/mo</div>
-<div class="text-sm text-gray-400 mt-2">License cost per user</div>
-<div class="text-xs text-gray-500 mt-1">Copilot Enterprise tier</div>
-</div>
-<div class="p-4 bg-purple-900/40 rounded-lg text-center">
-<div class="text-3xl font-bold text-purple-300">$15K+</div>
-<div class="text-sm text-gray-400 mt-2">Monthly savings</div>
-<div class="text-xs text-gray-500 mt-1">For a 10-person team</div>
-</div>
+<div class="grid grid-cols-2 gap-6 mt-4 items-center">
+<div>
+<img src="./copilot-code-review/images/calculator-workflow.svg" class="rounded-lg border border-cyan-500/30 shadow-lg" alt="Illustrated Copilot Code Review calculator workflow" />
+<div class="mt-2 text-xs opacity-70 text-center">A purpose-built visual of the live calculator flow, not a raw screenshot</div>
 </div>
 
-<div class="mt-6 p-3 bg-gray-800 rounded-lg">
+<div class="space-y-4 text-sm">
+<div class="p-4 bg-cyan-900/30 rounded-lg border-l-4 border-cyan-400">
+<div class="font-bold text-cyan-300 mb-1">What the app replaces</div>
+<div class="text-gray-300">Manual spreadsheet storytelling, hand-built ROI formulas, and a long explanation of how to combine PR analytics with labor-cost assumptions.</div>
+</div>
+<div class="p-4 bg-indigo-900/30 rounded-lg border-l-4 border-indigo-400">
+<div class="font-bold text-indigo-300 mb-1">What still belongs in YAML</div>
+<div class="text-gray-300">Review triggers, focus areas, required checks, and compliance rules. YAML controls review behavior, not the business case.</div>
+</div>
+<div class="p-4 bg-purple-900/30 rounded-lg border-l-4 border-purple-400">
+<div class="font-bold text-purple-300 mb-1">Key takeaway</div>
+<div class="text-gray-300">PR cycle time shows delivery speed. Review minutes drive labor savings. The calculator keeps those two ideas separate and defensible.</div>
+</div>
+</div>
+</div>
 
-```sql
--- ROI = (time_saved * hourly_rate) - (users * license_cost)
-SELECT (avg_hours_saved * 150) - (team_size * 39)
-  AS monthly_roi FROM review_metrics;
-```
+<div class="mt-4 p-4 bg-gradient-to-r from-indigo-600/80 to-purple-600/80 rounded-lg text-center">
+<span class="text-white font-bold">Calculator for ROI narrative. YAML for automation and policy.</span>
+</div>
 
+---
+
+# 📈 Live Example: March 2026 Snapshot
+
+<div class="grid grid-cols-2 gap-6 mt-4 items-center">
+<div>
+<img src="./copilot-code-review/images/calculator-summary.svg" class="rounded-lg border border-purple-500/30 shadow-lg" alt="Illustrated Copilot Code Review executive summary output" />
+<div class="mt-2 text-xs opacity-70 text-center">The app packages metrics and assumptions into a reusable summary</div>
+</div>
+
+<div class="grid grid-cols-2 gap-4 text-sm">
+<div class="p-4 bg-green-900/40 rounded-lg border border-green-500">
+<div class="font-bold text-green-300 mb-2">Cycle Time</div>
+<div class="text-3xl font-bold text-white">19.0 → 4.0</div>
+<div class="text-gray-300 mt-1">15.0 days faster</div>
+<div class="text-xs text-gray-400 mt-1">78.9% improvement</div>
+</div>
+<div class="p-4 bg-cyan-900/40 rounded-lg border border-cyan-500">
+<div class="font-bold text-cyan-300 mb-2">Adoption</div>
+<div class="text-3xl font-bold text-white">15.3%</div>
+<div class="text-gray-300 mt-1">4,914 of 32,196 PRs</div>
+<div class="text-xs text-gray-400 mt-1">Current observed usage</div>
+</div>
+<div class="p-4 bg-indigo-900/40 rounded-lg border border-indigo-500">
+<div class="font-bold text-indigo-300 mb-2">Current Savings</div>
+<div class="text-3xl font-bold text-white">1,229 hrs</div>
+<div class="text-gray-300 mt-1">$88,594 monthly value</div>
+<div class="text-xs text-gray-400 mt-1">153.6 work days</div>
+</div>
+<div class="p-4 bg-fuchsia-900/40 rounded-lg border border-fuchsia-500">
+<div class="font-bold text-fuchsia-300 mb-2">Expansion Upside</div>
+<div class="text-3xl font-bold text-white">6,821 hrs</div>
+<div class="text-gray-300 mt-1">$491,863 available</div>
+<div class="text-xs text-gray-400 mt-1">If CCR reaches all PRs</div>
+</div>
+</div>
+</div>
+
+<div class="mt-4 p-3 bg-gradient-to-r from-green-600/80 to-fuchsia-600/80 rounded-lg text-center">
+<span class="text-white font-bold text-sm">Use the app for the live ROI conversation. Use SQL and workflows only when you need repeatable internal reporting.</span>
 </div>
 
 ---
@@ -401,16 +505,39 @@ name: adoption
 
 # 🚀 Team Adoption
 
-<div class="text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+<div class="max-w-4xl mx-auto mt-6">
+<div class="p-8 bg-gradient-to-br from-purple-900/30 via-pink-900/20 to-slate-900/30 rounded-2xl border-2 border-purple-500/40 shadow-2xl shadow-purple-900/20 relative overflow-hidden">
+<div class="absolute -top-12 right-8 w-40 h-40 rounded-full bg-pink-400/10 blur-3xl"></div>
+<div class="absolute -bottom-12 left-10 w-44 h-44 rounded-full bg-purple-400/10 blur-3xl"></div>
+<div class="relative z-10">
+<div class="text-[10px] uppercase tracking-[0.35em] text-purple-300/80 mb-3">Section 4 of 4</div>
+<div class="text-5xl font-bold bg-gradient-to-r from-purple-300 via-pink-300 to-rose-200 bg-clip-text text-transparent leading-tight">
 Best Practices & Rollout
 </div>
-
-<div class="mt-6 text-xl opacity-80">
-Technology creates value only when people use it well
+<div class="mt-4 text-xl text-gray-200/90 max-w-3xl mx-auto">
+The technical setup matters, but adoption determines whether faster review becomes an enduring team habit.
+</div>
+</div>
 </div>
 
-<div class="mt-8 text-sm opacity-60">
-Section 4 of 4 · Phased rollout, training, iteration
+<div class="grid grid-cols-3 gap-4 mt-5 text-center text-sm">
+<div class="p-4 bg-cyan-900/25 rounded-xl border border-cyan-500/30">
+<div class="text-cyan-300 font-semibold">Pilot</div>
+<div class="text-xs text-gray-300 mt-1">Prove signal with one team</div>
+</div>
+<div class="p-4 bg-blue-900/25 rounded-xl border border-blue-500/30">
+<div class="text-blue-300 font-semibold">Expand</div>
+<div class="text-xs text-gray-300 mt-1">Tune rules and train usage</div>
+</div>
+<div class="p-4 bg-purple-900/25 rounded-xl border border-purple-500/30">
+<div class="text-purple-300 font-semibold">Scale</div>
+<div class="text-xs text-gray-300 mt-1">Operationalize trust and measurement</div>
+</div>
+</div>
+
+<div class="mt-5 p-3 bg-gradient-to-r from-purple-600/80 to-pink-600/80 rounded-xl text-center shadow-lg shadow-purple-900/20">
+<span class="text-white font-bold text-sm">Adoption succeeds when teams trust the feedback, know how to act on it, and can see the results.</span>
+</div>
 </div>
 
 ---
@@ -455,79 +582,148 @@ Section 4 of 4 · Phased rollout, training, iteration
 
 # 🧠 Mental Model Shift
 
-<div class="grid grid-cols-2 gap-6 mt-6">
-<div class="p-4 bg-green-900/30 rounded-lg border-l-4 border-green-500">
-<div class="text-sm font-bold text-green-300 mb-2">✅ Move Toward</div>
-<div class="text-xs text-gray-300 space-y-2">
+<div class="max-w-6xl mx-auto mt-3 min-h-[19rem] flex flex-col justify-between">
+<div class="grid grid-cols-3 gap-4 items-stretch">
+<div class="p-4 bg-gradient-to-br from-green-900/30 to-emerald-900/20 rounded-2xl border-l-4 border-green-500 shadow-xl shadow-green-900/10 min-h-[12.5rem] flex flex-col">
+<div class="text-base font-bold text-green-300 mb-3">✅ Move Toward</div>
+<div class="text-[1rem] text-gray-300 space-y-2.5 leading-relaxed flex-1">
 <div>• <strong>Immediate feedback</strong> over delayed review</div>
 <div>• <strong>Consistent enforcement</strong> over variable quality</div>
 <div>• <strong>Educational review</strong> over gatekeeping</div>
 <div>• <strong>Measurable ROI</strong> over qualitative value</div>
 </div>
 </div>
-<div class="p-4 bg-red-900/30 rounded-lg border-l-4 border-red-500">
-<div class="text-sm font-bold text-red-300 mb-2">🛑 Move Away From</div>
-<div class="text-xs text-gray-300 space-y-2">
+<div class="p-4 bg-gradient-to-br from-amber-900/30 to-yellow-900/20 rounded-2xl border-l-4 border-amber-500 shadow-xl shadow-amber-900/10 min-h-[12.5rem] flex flex-col">
+<div class="text-base font-bold text-amber-300 mb-3">⚠️ Move Away From</div>
+<div class="text-[1rem] text-gray-300 space-y-2.5 leading-relaxed flex-1">
 <div>• Manual-only review for all code</div>
 <div>• Rubber-stamping under deadline pressure</div>
 <div>• Inconsistent standards across teams</div>
 <div>• Learning through production incidents</div>
 </div>
 </div>
+<div class="p-4 bg-gradient-to-br from-red-900/30 to-rose-900/20 rounded-2xl border-l-4 border-red-500 shadow-xl shadow-red-900/10 min-h-[12.5rem] flex flex-col">
+<div class="text-base font-bold text-red-300 mb-3">🛑 Move Against</div>
+<div class="text-[1rem] text-gray-300 space-y-2.5 leading-relaxed flex-1">
+<div>• Treating Copilot review as a replacement for human judgment</div>
+<div>• Auto-approving changes because AI commented first</div>
+<div>• Scaling enforcement before teams trust the signal</div>
+<div>• Measuring comment volume instead of delivery and quality outcomes</div>
+</div>
+</div>
 </div>
 
-<div class="mt-6 p-4 bg-gradient-to-r from-blue-600/80 to-indigo-600/80 rounded-lg text-center">
+<div class="mt-4 p-3 bg-gradient-to-r from-blue-600/80 to-indigo-600/80 rounded-2xl text-center shadow-xl shadow-indigo-900/20">
 <span class="text-white font-bold text-sm">🧠 From "review as manual quality gate" → "review as automated continuous feedback"</span>
+</div>
 </div>
 
 ---
 
-# 🌍 Real-World Use Cases
+# 🌍 Illustrative Use Cases
 
 <div class="grid grid-cols-2 gap-4 mt-6">
-<div class="p-3 bg-cyan-900/30 rounded-lg border-l-4 border-cyan-400">
-<div class="text-sm font-bold text-cyan-300">🛒 E-Commerce · PCI-DSS</div>
-<div class="text-xs text-gray-300 mt-1">Security review: 30% → 100% coverage</div>
-<div class="text-xs text-gray-400 mt-1">Critical vulns to prod: 8/qtr → 0/qtr</div>
+<div class="p-4 bg-cyan-900/30 rounded-lg border-l-4 border-cyan-400">
+<div class="text-base font-bold text-cyan-300">🛒 E-Commerce · PCI-DSS</div>
+<div class="text-sm text-gray-300 mt-2">Broader first-pass review coverage on payment and security-sensitive PRs</div>
+<div class="text-sm text-gray-400 mt-2">Helps surface risky changes earlier, before manual security review becomes the bottleneck</div>
 </div>
-<div class="p-3 bg-blue-900/30 rounded-lg border-l-4 border-blue-400">
-<div class="text-sm font-bold text-blue-300">💰 FinTech · Onboarding</div>
-<div class="text-xs text-gray-300 mt-1">Onboarding time: 6-8 weeks → 3-4 weeks</div>
-<div class="text-xs text-gray-400 mt-1">Revert rate for new devs: 15% → 4%</div>
+<div class="p-4 bg-blue-900/30 rounded-lg border-l-4 border-blue-400">
+<div class="text-base font-bold text-blue-300">💰 FinTech · Onboarding</div>
+<div class="text-sm text-gray-300 mt-2">New developers get immediate feedback on standards, patterns, and review expectations</div>
+<div class="text-sm text-gray-400 mt-2">Can reduce rework and shorten the path to a confident first merged PR</div>
 </div>
-<div class="p-3 bg-indigo-900/30 rounded-lg border-l-4 border-indigo-400">
-<div class="text-sm font-bold text-indigo-300">🌐 Open Source · Scale</div>
-<div class="text-xs text-gray-300 mt-1">PR backlog: 150 → 25 pending</div>
-<div class="text-xs text-gray-400 mt-1">Velocity: 25 → 65 PRs merged/month</div>
+<div class="p-4 bg-indigo-900/30 rounded-lg border-l-4 border-indigo-400">
+<div class="text-base font-bold text-indigo-300">🌐 Open Source · Scale</div>
+<div class="text-sm text-gray-300 mt-2">Maintainers get a faster first-pass signal on common quality, test, and style issues</div>
+<div class="text-sm text-gray-400 mt-2">Helps reserve scarce reviewer attention for design judgment and contributor coaching</div>
 </div>
-<div class="p-3 bg-purple-900/30 rounded-lg border-l-4 border-purple-400">
-<div class="text-sm font-bold text-purple-300">🏥 Healthcare · HIPAA</div>
-<div class="text-xs text-gray-300 mt-1">HIPAA violations: 25/qtr → 1/qtr</div>
-<div class="text-xs text-gray-400 mt-1">Audit prep: 200 hrs → 40 hrs</div>
+<div class="p-4 bg-purple-900/30 rounded-lg border-l-4 border-purple-400">
+<div class="text-base font-bold text-purple-300">🏥 Healthcare · HIPAA</div>
+<div class="text-sm text-gray-300 mt-2">Custom instructions can reinforce patient-data handling and audit-related coding expectations</div>
+<div class="text-sm text-gray-400 mt-2">Useful as an earlier compliance signal, not as a replacement for formal review and governance</div>
 </div>
 </div>
 
 <div class="mt-4 p-3 bg-gradient-to-r from-cyan-600/80 to-purple-600/80 rounded-lg text-center">
-<span class="text-white font-bold text-sm">Proven across industries: security, compliance, velocity, onboarding</span>
+<span class="text-white font-bold text-sm">These are example situations where Copilot Code Review can improve coverage, consistency, and review throughput when paired with human judgment.</span>
 </div>
 
 ---
 
 # 🔄 Decision Guide: When to Use What
 
-<div class="mt-4">
+<div class="grid grid-cols-3 gap-5 mt-6 text-left">
+<div class="p-5 bg-gradient-to-br from-cyan-900/35 to-blue-900/20 rounded-2xl border border-cyan-500/40 shadow-xl shadow-cyan-900/10">
+<div class="text-lg font-bold text-cyan-300 mb-4">Copilot Review</div>
+<div class="space-y-3 text-sm">
+<div>
+<div class="text-cyan-200 font-semibold">Best For</div>
+<div class="text-gray-300">Holistic quality</div>
+</div>
+<div>
+<div class="text-cyan-200 font-semibold">Speed</div>
+<div class="text-gray-300">1-2 min</div>
+</div>
+<div>
+<div class="text-cyan-200 font-semibold">Cost</div>
+<div class="text-gray-300">Included with Copilot</div>
+<div class="text-xs text-gray-400 mt-1">No additional CCR charge for users who already have a Copilot seat</div>
+</div>
+<div>
+<div class="text-cyan-200 font-semibold">Setup</div>
+<div class="text-gray-300">5-10 min</div>
+</div>
+</div>
+</div>
 
-| Aspect       |  Copilot Review  | GitHub Advanced Security | Manual Review  |
-| ------------ | :--------------: | :----------------------: | :------------: |
-| **Best For** | Holistic quality |  Deep security scanning  | Business logic |
-| **Speed**    |     1-2 min      |         5-10 min         | Hours to days  |
-| **Cost**     |   $39/user/mo    |       $49/user/mo        |    $150+/hr    |
-| **Setup**    |     5-10 min     |        1-2 hours         |      N/A       |
+<div class="p-5 bg-gradient-to-br from-amber-900/35 to-orange-900/20 rounded-2xl border border-amber-500/40 shadow-xl shadow-amber-900/10">
+<div class="text-lg font-bold text-amber-300 mb-4">GitHub Advanced Security</div>
+<div class="space-y-3 text-sm">
+<div>
+<div class="text-amber-200 font-semibold">Best For</div>
+<div class="text-gray-300">Deep security scanning</div>
+</div>
+<div>
+<div class="text-amber-200 font-semibold">Speed</div>
+<div class="text-gray-300">5-10 min</div>
+</div>
+<div>
+<div class="text-amber-200 font-semibold">Cost</div>
+<div class="text-gray-300">$49/user/mo</div>
+</div>
+<div>
+<div class="text-amber-200 font-semibold">Setup</div>
+<div class="text-gray-300">1-2 hours</div>
+</div>
+</div>
+</div>
 
+<div class="p-5 bg-gradient-to-br from-slate-800/60 to-slate-900/30 rounded-2xl border border-slate-500/40 shadow-xl shadow-slate-900/10">
+<div class="text-lg font-bold text-slate-200 mb-4">Manual Review</div>
+<div class="space-y-3 text-sm">
+<div>
+<div class="text-slate-100 font-semibold">Best For</div>
+<div class="text-gray-300">Sensitive, high-importance code</div>
+</div>
+<div>
+<div class="text-slate-100 font-semibold">Speed</div>
+<div class="text-gray-300">Hours to days</div>
+</div>
+<div>
+<div class="text-slate-100 font-semibold">Cost</div>
+<div class="text-gray-300">$150+/hr</div>
+</div>
+<div>
+<div class="text-slate-100 font-semibold">Setup</div>
+<div class="text-gray-300">N/A</div>
+</div>
+</div>
+</div>
 </div>
 
 <div class="mt-4 p-3 bg-gradient-to-r from-green-900/40 to-blue-900/40 rounded-lg text-center">
-<span class="text-white font-bold text-sm">✅ Use all three together: Copilot handles mechanical, GHAS handles CVEs, humans handle strategy</span>
+<span class="text-white font-bold text-sm">✅ Use all three together: Copilot handles mechanical review, GHAS handles CVEs, and humans stay focused on sensitive, high-consequence decisions. For existing Copilot users, CCR is already included.</span>
 </div>
 
 ---
@@ -555,7 +751,8 @@ Section 4 of 4 · Phased rollout, training, iteration
 <div class="text-sm font-bold text-purple-300 mb-2">📐 Half Day</div>
 <div class="text-xs text-gray-300 space-y-1">
 <div>• Build custom compliance rulesets</div>
-<div>• Deploy ROI tracking workflow</div>
+<div>• Run the ROI calculator with real PR data</div>
+<div>• Add workflow-based reporting only if needed</div>
 <div>• Org-wide rollout plan</div>
 </div>
 </div>
@@ -566,18 +763,70 @@ Section 4 of 4 · Phased rollout, training, iteration
 </div>
 
 ---
-layout: end
+
+# 📚 References
+
+<div class="grid grid-cols-2 gap-4 mt-6 text-left">
+<div class="p-4 bg-cyan-900/30 rounded-xl border border-cyan-500/30">
+<div class="text-sm font-bold text-cyan-300 mb-2">GitHub Docs</div>
+<div class="text-sm text-gray-200">Copilot Code Review overview</div>
+<div class="text-xs mt-2"><a href="https://docs.github.com/en/copilot/concepts/agents/code-review" class="text-cyan-300 underline">docs.github.com/en/copilot/concepts/agents/code-review</a></div>
+</div>
+<div class="p-4 bg-blue-900/30 rounded-xl border border-blue-500/30">
+<div class="text-sm font-bold text-blue-300 mb-2">GitHub Docs</div>
+<div class="text-sm text-gray-200">Configure automatic code review</div>
+<div class="text-xs mt-2"><a href="https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/configure-automatic-review" class="text-blue-300 underline">docs.github.com/.../configure-automatic-review</a></div>
+</div>
+<div class="p-4 bg-indigo-900/30 rounded-xl border border-indigo-500/30">
+<div class="text-sm font-bold text-indigo-300 mb-2">GitHub Docs</div>
+<div class="text-sm text-gray-200">Use Copilot code review in pull requests</div>
+<div class="text-xs mt-2"><a href="https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review" class="text-indigo-300 underline">docs.github.com/.../use-code-review</a></div>
+</div>
+<div class="p-4 bg-purple-900/30 rounded-xl border border-purple-500/30">
+<div class="text-sm font-bold text-purple-300 mb-2">Companion App</div>
+<div class="text-sm text-gray-200">Copilot Code Review Time Savings Calculator</div>
+<div class="text-xs mt-2"><a href="https://copilot-code-review--clee1211.github.app/" class="text-purple-300 underline">copilot-code-review--clee1211.github.app</a></div>
+</div>
+</div>
+
+<div class="mt-5 p-3 bg-gradient-to-r from-cyan-900/40 to-purple-900/40 rounded-lg text-center">
+<span class="text-white font-bold text-sm">These are the primary sources behind the setup guidance, review workflow, and calculator narrative in this deck.</span>
+</div>
+
+---
+class: text-center
 ---
 
-# Thank You
+<div class="h-full flex flex-col items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-cyan-900/20 via-blue-900/10 to-indigo-900/20"></div>
+<div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-indigo-500/20 rounded-full blur-3xl"></div>
 
-<div class="text-center">
-<div class="text-6xl mb-4">🔍</div>
-<div class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-Copilot Code Review
+<div class="relative z-10">
+<div class="absolute inset-0 blur-2xl opacity-50"><img src="./sdp-logo.png" class="w-48" alt="" /></div>
+<img src="./sdp-logo.png" class="w-48 relative" alt="SDP Logo" />
 </div>
-<div class="text-lg opacity-80 mt-2">Accelerating PR Velocity & Maximizing ROI</div>
-<div class="mt-6 text-sm opacity-60">
-Examples: tech-talks/copilot-code-review/examples/
+
+<h1 class="!text-5xl !font-bold !mt-6 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent relative z-10">Thank You!</h1>
+
+<div class="mt-4 relative z-10">
+<span class="px-6 py-2 bg-gradient-to-r from-cyan-600/80 to-blue-600/80 rounded-full text-white text-lg font-medium shadow-lg shadow-cyan-500/25">Copilot Code Review: Accelerating PR Velocity & Maximizing ROI</span>
 </div>
+
+<div class="mt-8 grid grid-cols-3 gap-4 text-sm max-w-3xl mx-auto relative z-10">
+<div class="p-3 bg-gradient-to-br from-cyan-900/30 to-cyan-800/20 rounded-lg border border-cyan-500/30">
+<div class="text-cyan-300 font-bold text-lg">Faster First Pass</div>
+<div class="text-gray-300 mt-2 text-xs">Automate mechanical review work so human attention goes where it matters most.</div>
+</div>
+<div class="p-3 bg-gradient-to-br from-blue-900/30 to-blue-800/20 rounded-lg border border-blue-500/30">
+<div class="text-blue-300 font-bold text-lg">Clearer ROI Story</div>
+<div class="text-gray-300 mt-2 text-xs">Use the calculator to turn PR analytics into an executive-ready value conversation.</div>
+</div>
+<div class="p-3 bg-gradient-to-br from-indigo-900/30 to-indigo-800/20 rounded-lg border border-indigo-500/30">
+<div class="text-indigo-300 font-bold text-lg">Better Human Focus</div>
+<div class="text-gray-300 mt-2 text-xs">Keep reviewers focused on sensitive, high-consequence decisions instead of repetitive checks.</div>
+</div>
+</div>
+
+<div class="mt-6 text-sm opacity-60 relative z-10">Questions? Let's discuss rollout strategy, review quality, and the ROI case for your teams.</div>
+<div class="mt-4 w-32 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent rounded-full relative z-10"></div>
 </div>

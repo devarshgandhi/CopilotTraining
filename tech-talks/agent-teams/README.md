@@ -50,38 +50,6 @@ references:
 
 ---
 
-## 📽️ Slide Generation Mapping
-
-### Slide Sequence (Generated Automatically)
-
-1. **Title/Logo Slide** ← H1 title + subtitle
-2. **Question/Objective Slide** ← "The Question This Talk Answers"
-3. **Table of Contents Slide** ← Auto-generated from 🎬 sections
-4. **Problem Slide** ← "The Problem"
-5. **Solution Overview** ← "The Solution"
-6. **Mental Model Shift** ← Move-Toward/Away/Against
-7. **When to Use: Unified Decision Tree** ← "When to Use This Pattern"
-8. **Subagents: The Building Block** ← 🎬 Section 1 (3-4 slides)
-9. **Agent Teams: Organized Specialists** ← 🎬 Section 2 (3-4 slides)
-10. **Autonomous Execution** ← 🎬 Section 3 (3-4 slides)
-11. **Multi-Model Deliberation: AgentCouncil** ← 🎬 Section 4 (2-3 slides)
-12. **Orchestration Patterns** ← 🎬 Section 5 (2-3 slides)
-13. **Use Cases** ← Real-World Use Cases (2-3 slides)
-14. **Actionable Outcomes** ← What You Can Do Today
-15. **Related Patterns** ← Related Patterns
-16. **End Slide** ← Auto-generated
-
-### Major Sections (TOC Entries)
-
-```markdown
-<!-- 🎬 MAJOR SECTION: Subagents: The Building Block -->
-<!-- 🎬 MAJOR SECTION: Agent Teams: Organized Specialists -->
-<!-- 🎬 MAJOR SECTION: Autonomous Execution: Background Agents + Worktrees -->
-<!-- 🎬 MAJOR SECTION: Multi-Model Deliberation: AgentCouncil -->
-<!-- 🎬 MAJOR SECTION: Orchestration Patterns -->
-```
-
----
 
 ## The Problem
 

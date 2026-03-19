@@ -47,41 +47,6 @@ references:
 
 ---
 
-## 📽️ Slide Generation Mapping
-
-### Slide Sequence (Generated Automatically)
-
-1. **Title/Logo Slide** ← H1 title + subtitle
-2. **Question/Objective Slide** ← "The Question This Talk Answers"
-3. **Table of Contents Slide** ← Auto-generated from 🎬 sections
-4. **Release Timeline** ← "Three Releases at a Glance"
-5. **🧠 The Shift (Preview)** ← Core Insight one-liner
-6. **[Agent Sessions & Orchestration] Divider** ← 🎬 Section 1
-7. **[Agent Sessions Content]** ← 3-4 slides
-8. **[Agent Customization] Divider** ← 🎬 Section 2
-9. **[Skills & Custom Agents Content]** ← 3-4 slides
-10. **[Claude & Anthropic] Divider** ← 🎬 Section 3
-11. **[Claude Content]** ← 2-3 slides
-12. **[Security & Trust] Divider** ← 🎬 Section 4
-13. **[Sandboxing Content]** ← 2-3 slides
-14. **[Chat UX & Productivity] Divider** ← 🎬 Section 5
-15. **[UX Improvements Content]** ← 2-3 slides
-16. **🧠 Mental Model Shift (Full)** ← Move-Toward/Away/Against grid
-17. **Actionable Outcomes** ← "What You Can Do Today"
-18. **📖 References** ← References section
-19. **End Slide** ← Auto-generated
-
-### Major Sections (TOC Entries)
-
-```markdown
-<!-- 🎬 MAJOR SECTION: Agent Sessions & Orchestration -->
-<!-- 🎬 MAJOR SECTION: Agent Customization -->
-<!-- 🎬 MAJOR SECTION: Claude & Anthropic Integration -->
-<!-- 🎬 MAJOR SECTION: Security & Trust -->
-<!-- 🎬 MAJOR SECTION: Chat UX & Productivity -->
-```
-
----
 
 ## Three Releases at a Glance
 

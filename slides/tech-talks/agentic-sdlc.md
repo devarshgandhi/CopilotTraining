@@ -1,6 +1,5 @@
 ---
 theme: default
-background: https://source.unsplash.com/collection/94734566/1920x1080
 class: text-center
 highlighter: shiki
 lineNumbers: false
@@ -12,558 +11,264 @@ drawings:
 transition: slide-left
 title: Agentic SDLC - Infrastructure for AI Velocity
 module: tech-talks/agentic-sdlc
-mdc: true
 status: active
-updated: 2026-02-01
+updated: 2026-03-19
+mdc: true
 ---
 
 <div class="h-full flex flex-col items-center justify-center relative overflow-hidden">
 <div class="absolute inset-0 bg-gradient-to-br from-cyan-900/20 via-blue-900/10 to-indigo-900/20"></div>
 <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-indigo-500/20 rounded-full blur-3xl"></div>
 <div class="relative z-10">
-<div class="absolute inset-0 blur-2xl opacity-50">
-<img src="./sdp-logo.png" class="w-64" alt="" />
-</div>
+<div class="absolute inset-0 blur-2xl opacity-50"><img src="./sdp-logo.png" class="w-64" alt="" /></div>
 <img src="./sdp-logo.png" class="w-64 relative" alt="SDP Logo" />
 </div>
-<h1 class="!text-5xl !font-bold !mt-8 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent relative z-10">
-Agentic SDLC
-</h1>
+<h1 class="!text-5xl !font-bold !mt-8 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent relative z-10">Agentic SDLC</h1>
 <div class="mt-4 relative z-10">
-<span class="px-6 py-2 bg-gradient-to-r from-cyan-600/80 to-blue-600/80 rounded-full text-white text-xl font-medium shadow-lg shadow-cyan-500/25">
-Infrastructure for AI Velocity
-</span>
+<span class="px-6 py-2 bg-gradient-to-r from-cyan-600/80 to-blue-600/80 rounded-full text-white text-xl font-medium shadow-lg shadow-cyan-500/25">Level 5 Infrastructure for AI Velocity</span>
 </div>
-<div class="mt-8 text-lg opacity-70 relative z-10">How to rewire repositories, PR workflows, and CI/CD for AI-as-labor delivery agents</div>
+<div class="mt-8 text-lg opacity-70 relative z-10">Progress from standardized engineering to autonomous delivery without losing trust</div>
 <div class="mt-6 w-32 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent rounded-full relative z-10"></div>
 </div>
+<div class="abs-br m-6 flex gap-2"><span class="text-sm opacity-50">Tech Talk · 90 minutes</span></div>
 
-<div class="abs-br m-6 flex gap-2">
-<span class="text-sm opacity-50">Tech Talk · 60 minutes</span>
+---
+layout: center
+---
+
+# 🎯 The Core Question
+
+<div class="p-6 bg-gradient-to-br from-cyan-900/30 to-blue-900/30 rounded-xl border-2 border-cyan-500/50 max-w-4xl mx-auto mt-6">
+<div class="text-2xl font-semibold text-cyan-300 mb-4">"How do I rewire repositories, PR workflows, and CI/CD to scale from 2-3 features/week to 10-15 features/day with AI agents?"</div>
+<div class="text-lg opacity-90">Not by making coding faster alone, but by making trust, review, and topology scale with machine-paced delivery.</div>
 </div>
 
+<div class="mt-8 grid grid-cols-4 gap-4 text-sm">
+<div class="p-3 bg-cyan-900/20 rounded-lg border border-cyan-500/20">
+<div class="text-cyan-400 font-semibold mb-1">Topology</div>
+<div class="opacity-80">Atomic changes in one workspace</div>
+</div>
+<div class="p-3 bg-blue-900/20 rounded-lg border border-blue-500/20">
+<div class="text-blue-400 font-semibold mb-1">Governance</div>
+<div class="opacity-80">Outcome review, not line review</div>
+</div>
+<div class="p-3 bg-indigo-900/20 rounded-lg border border-indigo-500/20">
+<div class="text-indigo-400 font-semibold mb-1">Trust Factory</div>
+<div class="opacity-80">Under 10 minute PR checks</div>
+</div>
+<div class="p-3 bg-purple-900/20 rounded-lg border border-purple-500/20">
+<div class="text-purple-400 font-semibold mb-1">Maturity</div>
+<div class="opacity-80">Level 1 to Level 5 progression</div>
+</div>
+</div>
+
+---
+layout: center
 ---
 
 # 📖 Table of Contents
 
-<div class="grid grid-cols-3 gap-6 mt-8">
-<a href="#part1" class="p-4 bg-cyan-900/40 rounded-lg border-2 border-cyan-500 hover:bg-cyan-900/60 transition-all no-underline">
-<div class="text-2xl mb-2">🏗️</div>
-<div class="text-lg font-bold text-cyan-300">Part 1</div>
+<div class="grid grid-cols-2 gap-6 mt-6">
+<div @click="$nav.go(5)" class="cursor-pointer group">
+<div class="p-5 bg-gradient-to-br from-cyan-900/40 to-blue-900/40 rounded-xl border-2 border-cyan-500/50 hover:border-cyan-400 hover:scale-105 transition-all duration-300 shadow-lg shadow-cyan-500/10">
+<div class="text-3xl mb-2">🏗️</div>
+<div class="text-lg font-bold bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">Part 1</div>
 <div class="text-sm text-gray-300 mt-1">Repository Topology</div>
-<div class="text-xs text-gray-400 mt-2">Rewiring repos for AI-native delivery</div>
-</a>
-
-<a href="#part2" class="p-4 bg-blue-900/40 rounded-lg border-2 border-blue-500 hover:bg-blue-900/60 transition-all no-underline">
-<div class="text-2xl mb-2">📋</div>
-<div class="text-lg font-bold text-blue-300">Part 2</div>
+<div class="text-xs text-cyan-400/70 mt-2">One workspace for atomic agent change</div>
+</div>
+</div>
+<div @click="$nav.go(9)" class="cursor-pointer group">
+<div class="p-5 bg-gradient-to-br from-blue-900/40 to-indigo-900/40 rounded-xl border-2 border-blue-500/50 hover:border-blue-400 hover:scale-105 transition-all duration-300 shadow-lg shadow-blue-500/10">
+<div class="text-3xl mb-2">📋</div>
+<div class="text-lg font-bold bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent">Part 2</div>
 <div class="text-sm text-gray-300 mt-1">PR Workflows</div>
-<div class="text-xs text-gray-400 mt-2">Feature-scale payloads governance</div>
-</a>
-
-<a href="#part3" class="p-4 bg-indigo-900/40 rounded-lg border-2 border-indigo-500 hover:bg-indigo-900/60 transition-all no-underline">
-<div class="text-2xl mb-2">🏭</div>
-<div class="text-lg font-bold text-indigo-300">Part 3</div>
+<div class="text-xs text-blue-400/70 mt-2">Level 5 volume breaks Level 3 review habits</div>
+</div>
+</div>
+<div @click="$nav.go(13)" class="cursor-pointer group">
+<div class="p-5 bg-gradient-to-br from-indigo-900/40 to-purple-900/40 rounded-xl border-2 border-indigo-500/50 hover:border-indigo-400 hover:scale-105 transition-all duration-300 shadow-lg shadow-indigo-500/10">
+<div class="text-3xl mb-2">🏭</div>
+<div class="text-lg font-bold bg-gradient-to-r from-indigo-300 to-purple-300 bg-clip-text text-transparent">Part 3</div>
 <div class="text-sm text-gray-300 mt-1">Trust Manufacturing</div>
-<div class="text-xs text-gray-400 mt-2">CI as trust factory</div>
-</a>
-</div>
-
-<div class="mt-8 p-4 bg-gradient-to-r from-cyan-900/30 to-blue-900/30 rounded-lg text-center">
-<span class="text-white font-bold">Each part is independent → Jump to what you need</span>
-</div>
-
----
-
-# Gen-4 SDLC: The Core Transformation
-
-<div class="grid grid-cols-2 gap-6">
-<div class="p-4 bg-red-900/30 rounded-lg border-l-4 border-red-500">
-<div class="text-lg font-bold text-red-300 mb-3">Gen-3 (Traditional)</div>
-<div class="text-sm text-gray-300 space-y-2">
-<div>• Humans produce code (10-50 lines/hour)</div>
-<div>• PRs as collaboration forums</div>
-<div>• Repos optimized for teams</div>
-<div>• CI as supporting infrastructure</div>
+<div class="text-xs text-indigo-400/70 mt-2">Fast, deterministic evidence at agent speed</div>
 </div>
 </div>
-
-<div class="p-4 bg-green-900/30 rounded-lg border-l-4 border-green-500">
-<div class="text-lg font-bold text-green-300 mb-3">Gen-4 (Agentic)</div>
-<div class="text-sm text-gray-300 space-y-2">
-<div>• Agents produce features (500-2000 lines/15min)</div>
-<div>• Humans govern safety & outcomes</div>
-<div>• Repos optimized for agents</div>
-<div>• CI becomes the trust factory</div>
+<div @click="$nav.go(17)" class="cursor-pointer group">
+<div class="p-5 bg-gradient-to-br from-purple-900/40 to-pink-900/40 rounded-xl border-2 border-purple-500/50 hover:border-purple-400 hover:scale-105 transition-all duration-300 shadow-lg shadow-purple-500/10">
+<div class="text-3xl mb-2">🚀</div>
+<div class="text-lg font-bold bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">Part 4</div>
+<div class="text-sm text-gray-300 mt-1">Implementation Roadmap</div>
+<div class="text-xs text-purple-400/70 mt-2">Standardized → Optimized → Autonomous</div>
 </div>
 </div>
 </div>
-
-<div class="mt-6 p-4 bg-gradient-to-r from-cyan-600/80 to-blue-600/80 rounded-lg text-center">
-<span class="text-white font-bold">💡 The Shift: Humans delegate coding, review outcomes</span>
-</div>
+<div class="mt-6 text-center text-sm opacity-60">Click any section to jump directly there</div>
 
 ---
 
-# The Four Generations
+# AgentRC Maturity Model: What Each Level Unlocks
 
-<div class="grid grid-cols-4 gap-3">
-<div class="p-3 bg-gray-800 rounded-lg">
-<div class="text-lg font-bold text-gray-300 mb-2">Gen-1</div>
-<div class="text-xs text-gray-400">Manual coding by individual developers</div>
+<div class="grid grid-cols-5 gap-3 mt-4 text-xs">
+<div class="p-3 bg-gray-900/50 rounded-lg border border-gray-700/50">
+<div class="text-lg font-bold text-gray-300 mb-1">1</div>
+<div class="font-semibold text-gray-200 mb-2">Functional</div>
+<div class="text-gray-400">Builds and tests run reliably</div>
+<div class="mt-2 text-cyan-400">Automation</div>
+<div class="text-gray-400">Basic scripts work</div>
+</div>
+<div class="p-3 bg-cyan-900/20 rounded-lg border border-cyan-500/30">
+<div class="text-lg font-bold text-cyan-300 mb-1">2</div>
+<div class="font-semibold text-cyan-200 mb-2">Documented</div>
+<div class="text-gray-300">Docs and instructions reduce guessing</div>
+<div class="mt-2 text-cyan-400">Speed</div>
+<div class="text-gray-400">Routine tasks accelerate</div>
+</div>
+<div class="p-3 bg-blue-900/20 rounded-lg border border-blue-500/30">
+<div class="text-lg font-bold text-blue-300 mb-1">3</div>
+<div class="font-semibold text-blue-200 mb-2">Standardized</div>
+<div class="text-gray-300">CI, policy, CODEOWNERS, observability</div>
+<div class="mt-2 text-blue-400">Safety</div>
+<div class="text-gray-400">Repeatable trust gates</div>
+</div>
+<div class="p-3 bg-indigo-900/20 rounded-lg border border-indigo-500/30">
+<div class="text-lg font-bold text-indigo-300 mb-1">4</div>
+<div class="font-semibold text-indigo-200 mb-2">Optimized</div>
+<div class="text-gray-300">MCP, custom agents, AI skills</div>
+<div class="mt-2 text-indigo-400">Flow</div>
+<div class="text-gray-400">Tool-aware multi-step work</div>
+</div>
+<div class="p-3 bg-green-900/30 rounded-lg border-2 border-green-500/50">
+<div class="text-lg font-bold text-green-300 mb-1">5</div>
+<div class="font-semibold text-green-200 mb-2">Autonomous</div>
+<div class="text-gray-200">Agents are primary producers</div>
+<div class="mt-2 text-green-400">Outcome</div>
+<div class="text-gray-300">Machine-paced delivery with minimal oversight</div>
+</div>
 </div>
 
-<div class="p-3 bg-gray-800 rounded-lg">
-<div class="text-lg font-bold text-gray-300 mb-2">Gen-2</div>
-<div class="text-xs text-gray-400">Team workflows with PRs and CI/CD</div>
+<div class="mt-6 p-4 bg-gradient-to-r from-amber-500/10 to-red-500/10 rounded-xl border border-amber-500/30 text-center">
+<div class="text-lg font-semibold text-amber-300">What many teams call “Gen-4 SDLC” maps most closely to <span class="text-green-300">Level 5: Autonomous</span>.</div>
+<div class="text-sm opacity-80 mt-1">The real lesson: Level 5 only works when Levels 1-4 are already doing their job.</div>
 </div>
-
-<div class="p-3 bg-gray-800 rounded-lg">
-<div class="text-lg font-bold text-gray-300 mb-2">Gen-3</div>
-<div class="text-xs text-gray-400">AI assistance (autocomplete) with humans as authors</div>
-</div>
-
-<div class="p-3 bg-green-900/40 rounded-lg border-2 border-green-500">
-<div class="text-lg font-bold text-green-300 mb-2">Gen-4</div>
-<div class="text-xs text-gray-300">AI agents as primary producers from intent</div>
-</div>
-</div>
-
-<div class="mt-8 p-4 bg-red-900/30 rounded-lg border-l-4 border-red-500">
-<div class="text-white font-bold">⚠️ The Breakpoint</div>
-<div class="text-sm text-gray-300 mt-2">When AI-generated code volume surpasses human review capacity</div>
-</div>
-
-<div class="mt-4 text-center text-lg font-bold text-cyan-400">This is happening right now.</div>
 
 ---
 layout: center
 name: part1
 ---
 
-# Part 1
-
-<div class="text-5xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-Repository Topology
+<div class="text-center mb-6">
+<div class="text-5xl mb-4">🏗️</div>
+<h1 class="!text-4xl bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Part 1: Repository Topology</h1>
+<p class="text-xl opacity-80 mt-2">Give agents one atomic workspace for the feature</p>
 </div>
-
-<div class="mt-6 text-xl opacity-80">
-Rewiring repositories for AI-native delivery
-</div>
-
-<div class="mt-8 text-sm text-gray-400">
-🏗️ From human collaboration to agent autonomy
+<div class="p-5 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-xl border border-cyan-500/30 mb-5 text-center max-w-3xl mx-auto">
+<div class="text-lg">If a single feature spans three repos, you pay coordination tax three times before you ship once.</div>
 </div>
 
 ---
 
-# The Problem
+# Monorepo by Default for Product Code
 
-<div class="text-center mt-12">
-<div class="text-3xl font-bold text-red-400 mb-6">
-Our repo structure was designed for humans<br/>collaborating on quarterly releases.
-</div>
-
-<div class="text-2xl text-gray-300 mb-8">
-Now we're running agents that ship features daily.
-</div>
-
-<div class="p-6 bg-gradient-to-r from-red-900/40 to-gray-800 rounded-lg">
-<span class="text-white font-bold text-xl">
-⚠️ This is like running a Formula 1 car on roads designed for horses.
-</span>
-</div>
-
-<div class="mt-6 text-lg text-gray-400 italic">
-The car is fast. The road wasn't built for that speed.<br/>Something breaks.
+<div class="grid grid-cols-2 gap-6 mt-4 text-sm">
+<div class="p-4 bg-red-900/20 rounded-xl border border-red-500/30">
+<div class="font-bold text-red-300 mb-3">Multi-repo at agent scale</div>
+<div class="space-y-2 text-gray-300">
+<div>• 3 PRs for one feature</div>
+<div>• staggered reviews and deploy order</div>
+<div>• contract drift between repos</div>
+<div>• debugging across boundaries becomes normal</div>
 </div>
 </div>
-
----
-
-# Repository Topology: TL;DR
-
-<div class="space-y-4">
-<div class="p-4 bg-blue-900/30 rounded-lg border-l-4 border-blue-500">
-<span class="text-blue-300 font-bold">Default:</span>
-<span class="text-gray-300"> Agent-native product monorepo with enforced module boundaries</span>
+<div class="p-4 bg-green-900/20 rounded-xl border border-green-500/30">
+<div class="font-bold text-green-300 mb-3">Agent-native product monorepo</div>
+<div class="space-y-2 text-gray-300">
+<div>• one PR for the whole change</div>
+<div>• one CI graph with affected analysis</div>
+<div>• one review conversation around the outcome</div>
+<div>• one deploy path and one rollback path</div>
+</div>
+</div>
 </div>
 
-<div class="p-4 bg-purple-900/30 rounded-lg border-l-4 border-purple-500">
-<span class="text-purple-300 font-bold">Pair with:</span>
-<span class="text-gray-300"> Separate control-plane repo for policies and golden workflows</span>
+<div class="mt-6 grid grid-cols-3 gap-4 text-xs">
+<div class="p-3 bg-cyan-900/20 rounded border border-cyan-500/20">
+<div class="text-cyan-300 font-semibold">Boundary enforcement</div>
+<div class="opacity-80">Nx, Bazel, or similar tools turn architecture into code</div>
 </div>
-
-<div class="p-4 bg-green-900/30 rounded-lg border-l-4 border-green-500">
-<span class="text-green-300 font-bold">Optimize for:</span>
-<span class="text-gray-300"> Deterministic signal (hermetic builds, affected CI, caching)</span>
+<div class="p-3 bg-blue-900/20 rounded border border-blue-500/20">
+<div class="text-blue-300 font-semibold">Affected analysis</div>
+<div class="opacity-80">Only test what changed and downstream dependents</div>
 </div>
-
-<div class="p-4 bg-cyan-900/30 rounded-lg border-l-4 border-cyan-500">
-<span class="text-cyan-300 font-bold">Treat PRs as:</span>
-<span class="text-gray-300"> Governance evidence bundles (intent → diff → checks → attestations)</span>
+<div class="p-3 bg-indigo-900/20 rounded border border-indigo-500/20">
+<div class="text-indigo-300 font-semibold">Hermetic builds</div>
+<div class="opacity-80">Deterministic signals matter more when agents produce constantly</div>
 </div>
 </div>
 
 ---
 
-# Goal: Max Throughput Without Losing Trust
+# Enforced Boundaries Beat Suggested Boundaries
 
-<div class="text-center mt-8 mb-8">
-<div class="text-2xl font-bold text-cyan-400">
-Agent velocity × Human confidence = Sustainable delivery at scale
+<div class="grid grid-cols-2 gap-6 mt-4 text-sm">
+<div class="p-4 bg-amber-900/20 rounded-xl border border-amber-500/30">
+<div class="font-bold text-amber-300 mb-2">Suggested boundary</div>
+<pre class="text-xs bg-black/30 p-3 rounded text-left whitespace-pre-wrap">// @internal - do not import from payment into marketing</pre>
+<div class="mt-3 text-gray-300">Humans may remember. Agents will simply attempt the import and keep going until something enforces reality.</div>
 </div>
-</div>
-
-<div class="grid grid-cols-2 gap-6">
-<div class="space-y-3">
-<div class="p-3 bg-gray-800 rounded-lg">
-<div class="text-sm font-bold text-orange-400">Minimize coordination</div>
-<div class="text-xs text-gray-300">6 repos × 3 teams = 18 handoffs</div>
-<div class="text-xs text-cyan-400">→ 1 repo × atomic merge = 0 handoffs</div>
-</div>
-
-<div class="p-3 bg-gray-800 rounded-lg">
-<div class="text-sm font-bold text-orange-400">Maximize agent awareness</div>
-<div class="text-xs text-gray-300">"Where's auth code?"</div>
-<div class="text-xs text-cyan-400">→ 3 grep results, not 3 repo searches</div>
+<div class="p-4 bg-emerald-900/20 rounded-xl border border-emerald-500/30">
+<div class="font-bold text-emerald-300 mb-2">Enforced boundary</div>
+<pre class="text-xs bg-black/30 p-3 rounded text-left whitespace-pre-wrap">{
+  "sourceTag": "scope:payment",
+  "onlyDependOnLibsWithTags": ["scope:shared", "scope:payment"]
+}</pre>
+<div class="mt-3 text-gray-300">Now the build rejects invalid imports immediately. Agents learn by constraint, not by reading comments.</div>
 </div>
 </div>
 
-<div class="space-y-3">
-<div class="p-3 bg-gray-800 rounded-lg">
-<div class="text-sm font-bold text-orange-400">Make verification fast</div>
-<div class="text-xs text-gray-300">4-hour CI runs</div>
-<div class="text-xs text-cyan-400">→ 8-minute affected tests with caching</div>
-</div>
-
-<div class="p-3 bg-gray-800 rounded-lg">
-<div class="text-sm font-bold text-orange-400">Scale governance</div>
-<div class="text-xs text-gray-300">22 manual approval gates</div>
-<div class="text-xs text-cyan-400">→ 4 human checkpoints + automated</div>
-</div>
-</div>
+<div class="mt-6 p-4 bg-gradient-to-r from-cyan-500/10 to-emerald-500/10 rounded-xl border border-cyan-500/30 text-center">
+<div class="text-lg font-semibold text-cyan-300">Architecture that is not executable becomes optional under agent pressure.</div>
 </div>
 
 ---
 
-# War Story: The 6-Hour Feature
+# The Coordination Tax: One Realistic Before / After
 
-<div class="p-4 bg-red-900/20 rounded-lg border-2 border-red-500 mb-6">
-<div class="text-lg font-bold text-red-300 mb-3">⚠️ 18 Microservice Repos</div>
-<div class="text-sm text-gray-300 space-y-2">
-<div><span class="font-bold text-red-400">Day 1:</span> Open PR in repo A, wait for CI (45 min), wait for review (4 hours)</div>
-<div><span class="font-bold text-red-400">Day 2:</span> Open PR in repo B, discover contract mismatch, go back to repo A</div>
-<div><span class="font-bold text-red-400">Day 3:</span> Coordinate deploy order, staging fails, debug across repos</div>
+<div class="grid grid-cols-2 gap-6 mt-4 text-sm">
+<div class="p-4 bg-red-900/20 rounded-xl border border-red-500/30">
+<div class="font-bold text-red-300 mb-3">Before</div>
+<div class="space-y-2 text-gray-300">
+<div>Feature touches 3 repos</div>
+<div>45 minute CI in each repo</div>
+<div>Review in sequence, not in parallel</div>
+<div>Contract mismatch discovered late</div>
+<div>Deploy ordering becomes a coordination meeting</div>
 </div>
 </div>
-
-<div class="grid grid-cols-2 gap-4">
-<div class="p-4 bg-red-900/30 rounded-lg">
-<div class="text-sm font-bold text-red-300">Before: Multi-repo</div>
-<div class="text-xs text-gray-400 mt-2">6 hours agent work, 3 days coordination, 2 rollbacks</div>
-</div>
-
-<div class="p-4 bg-green-900/30 rounded-lg">
-<div class="text-sm font-bold text-green-300">After: Monorepo</div>
-<div class="text-xs text-gray-400 mt-2">45 minutes, 1 atomic PR, 0 coordination overhead</div>
-</div>
-</div>
-
----
-
-# Monorepo vs Multi-Repo
-
-<div class="grid grid-cols-2 gap-6">
-<div class="p-4 bg-green-900/30 rounded-lg">
-<div class="text-lg font-bold text-green-300 mb-3">✅ Monorepo (Default)</div>
-<div class="text-sm text-gray-300 space-y-2">
-<div>• Atomic cross-module changes</div>
-<div>• Shared patterns are local</div>
-<div>• Agent navigation is grep</div>
-<div>• One CI pipeline</div>
-</div>
-<div class="mt-3 text-xs text-green-400 font-bold">Use for 80% of product teams</div>
-</div>
-
-<div class="p-4 bg-orange-900/30 rounded-lg">
-<div class="text-lg font-bold text-orange-300 mb-3">⚡ Multi-Repo (When Needed)</div>
-<div class="text-sm text-gray-300 space-y-2">
-<div>• Hard access boundaries (PCI)</div>
-<div>• Truly independent products</div>
-<div>• Regulatory mandates</div>
-<div>• Organizational constraints</div>
-</div>
-<div class="mt-3 text-xs text-orange-400 font-bold">Only for specific use cases</div>
-</div>
-</div>
-
-<div class="mt-6 p-4 bg-gradient-to-r from-cyan-600/80 to-blue-600/80 rounded-lg text-center">
-<span class="text-white font-bold">🎯 Decision Rule: If agents touch >1 repo for >30% of features → monorepo</span>
-</div>
-
----
-
-# Agent-Native Monorepo Structure
-
-<div class="grid grid-cols-2 gap-4 text-xs">
-<div>
-
-```
-product-monorepo/
-├── .github/
-│   ├── agents/
-│   │   ├── feature-builder.agent.md
-│   │   └── review-enforcer.agent.md
-│   ├── workflows/
-│   │   ├── pr-checks.yml (<10min)
-│   │   └── deploy-prod.yml
-│   └── policies/
-│       ├── CODEOWNERS
-│       └── security-scanning.yml
-├── apps/
-│   ├── web/
-│   ├── api/
-│   └── admin/
-```
-
-</div>
-<div>
-
-```
-├── libs/
-│   ├── auth/
-│   ├── data-access/
-│   ├── ui-components/
-│   └── validation/
-├── tools/
-│   ├── generators/
-│   └── scripts/
-├── nx.json
-├── package.json
-└── tsconfig.base.json
-```
-
-</div>
-</div>
-
-<div class="mt-4 grid grid-cols-4 gap-2 text-xs">
-<div class="p-2 bg-blue-900/40 rounded">
-<div class="font-bold text-blue-300">apps/</div>
-<div class="text-gray-400">Deployable units</div>
-</div>
-<div class="p-2 bg-green-900/40 rounded">
-<div class="font-bold text-green-300">libs/</div>
-<div class="text-gray-400">Shared code</div>
-</div>
-<div class="p-2 bg-purple-900/40 rounded">
-<div class="font-bold text-purple-300">tools/</div>
-<div class="text-gray-400">Build/dev tooling</div>
-</div>
-<div class="p-2 bg-orange-900/40 rounded">
-<div class="font-bold text-orange-300">.github/</div>
-<div class="text-gray-400">Agents & policies</div>
-</div>
-</div>
-
----
-
-# Control-Plane Repo (Separate)
-
-<div class="grid grid-cols-2 gap-6">
-<div class="text-xs">
-
-```
-enterprise-control-plane/
-├── templates/
-│   ├── agent-workflows/
-│   │   ├── feature-flow.md
-│   │   ├── refactor-flow.md
-│   │   └── security-review-flow.md
-│   └── scaffolds/
-│       ├── new-service/
-│       └── new-feature/
-├── policies/
-│   ├── security-requirements.md
-│   ├── compliance-checklist.md
-│   └── architectural-standards.md
-└── agents/
-    ├── global-reviewer.agent.md
-    └── compliance-validator.agent.md
-```
-
-</div>
-<div>
-<div class="space-y-3">
-<div class="p-3 bg-cyan-900/40 rounded-lg">
-<div class="text-sm font-bold text-cyan-300">Security</div>
-<div class="text-xs text-gray-400">Policies don't live in product code</div>
-</div>
-
-<div class="p-3 bg-blue-900/40 rounded-lg">
-<div class="text-sm font-bold text-blue-300">Consistency</div>
-<div class="text-xs text-gray-400">One source of truth for standards</div>
-</div>
-
-<div class="p-3 bg-purple-900/40 rounded-lg">
-<div class="text-sm font-bold text-purple-300">Auditability</div>
-<div class="text-xs text-gray-400">Clear governance trail</div>
-</div>
-
-<div class="p-3 bg-green-900/40 rounded-lg">
-<div class="text-sm font-bold text-green-300">Updates</div>
-<div class="text-xs text-gray-400">Change policies without product deploys</div>
-</div>
+<div class="p-4 bg-green-900/20 rounded-xl border border-green-500/30">
+<div class="font-bold text-green-300 mb-3">After</div>
+<div class="space-y-2 text-gray-300">
+<div>One atomic PR across all modules</div>
+<div>8 minute affected-only CI</div>
+<div>20 minute outcome review</div>
+<div>One deployment path</div>
+<div>Rollback is a single motion</div>
 </div>
 </div>
 </div>
 
----
-
-# Module Boundaries: Enforced vs Suggested
-
-<div class="grid grid-cols-2 gap-6">
-<div class="p-4 bg-red-900/30 rounded-lg border-l-4 border-red-500">
-<div class="text-lg font-bold text-red-300 mb-3">❌ Suggested (Fails Gen-4)</div>
-<div class="text-xs font-mono text-gray-300 bg-gray-900/50 p-2 rounded">
-// Hope developers notice<br/>
-// @internal - Don't import!<br/>
-export class PaymentProcessor {}
+<div class="mt-6 grid grid-cols-3 gap-4 text-center">
+<div class="p-3 bg-gradient-to-br from-cyan-900/30 to-cyan-800/20 rounded-lg border border-cyan-500/30">
+<div class="text-cyan-400 font-bold text-xl">3-5 days → 4-6 hours</div>
+<div class="text-xs opacity-80">Time to production</div>
 </div>
-<div class="text-xs text-gray-400 mt-3">Agents don't read comments</div>
+<div class="p-3 bg-gradient-to-br from-blue-900/30 to-blue-800/20 rounded-lg border border-blue-500/30">
+<div class="text-blue-400 font-bold text-xl">60 min → 8 min</div>
+<div class="text-xs opacity-80">CI on affected paths</div>
 </div>
-
-<div class="p-4 bg-green-900/30 rounded-lg border-l-4 border-green-500">
-<div class="text-lg font-bold text-green-300 mb-3">✅ Enforced (Works Gen-4)</div>
-<div class="text-xs font-mono text-gray-300 bg-gray-900/50 p-2 rounded">
-// nx.json boundary rule<br/>
-{<br/>
-  "sourceTag": "scope:payment",<br/>
-  "onlyDependOnLibsWithTags": [<br/>
-    "scope:shared"<br/>
-  ]<br/>
-}
+<div class="p-3 bg-gradient-to-br from-indigo-900/30 to-indigo-800/20 rounded-lg border border-indigo-500/30">
+<div class="text-indigo-400 font-bold text-xl">40% → 5%</div>
+<div class="text-xs opacity-80">Developer coordination time</div>
 </div>
-<div class="text-xs text-gray-400 mt-3">Build-time failures prevent issues</div>
-</div>
-</div>
-
-<div class="mt-4 p-3 bg-gradient-to-r from-cyan-600/80 to-blue-600/80 rounded-lg text-center">
-<span class="text-white font-bold">💡 Pattern: Use Nx, Lerna, or Bazel to enforce at build time</span>
-</div>
-
----
-
-# Deterministic Builds: Hermetic
-
-<div class="grid grid-cols-2 gap-6">
-<div class="p-4 bg-red-900/30 rounded-lg">
-<div class="text-lg font-bold text-red-300 mb-3">❌ Non-Hermetic</div>
-<div class="text-xs font-mono text-gray-300 bg-gray-900/50 p-2 rounded mb-2">
-RUN npm install<br/>
-# Uses latest today
-</div>
-<div class="text-xs font-mono text-gray-300 bg-gray-900/50 p-2 rounded">
-RUN apt-get update<br/>
-# Gets latest from internet
-</div>
-</div>
-
-<div class="p-4 bg-green-900/30 rounded-lg">
-<div class="text-lg font-bold text-green-300 mb-3">✅ Hermetic</div>
-<div class="text-xs font-mono text-gray-300 bg-gray-900/50 p-2 rounded mb-2">
-COPY package-lock.json ./<br/>
-RUN npm ci  # Exact versions
-</div>
-<div class="text-xs font-mono text-gray-300 bg-gray-900/50 p-2 rounded">
-RUN apt-get install<br/>
-  curl=7.74.0-1.3+deb11u7
-</div>
-</div>
-</div>
-
-<div class="mt-4 space-y-2">
-<div class="p-2 bg-gray-800 rounded text-sm text-gray-300">
-<span class="text-cyan-400">✓ Reproducible failures</span> — Debug because build is identical
-</div>
-<div class="p-2 bg-gray-800 rounded text-sm text-gray-300">
-<span class="text-green-400">✓ Cacheable artifacts</span> — Same inputs = same outputs
-</div>
-<div class="p-2 bg-gray-800 rounded text-sm text-gray-300">
-<span class="text-blue-400">✓ Trust in green builds</span> — Green means safe, not "worked on this machine"
-</div>
-</div>
-
----
-
-# Affected Analysis: Fast Feedback
-
-<div class="grid grid-cols-2 gap-6">
-<div class="p-4 bg-red-900/30 rounded-lg">
-<div class="text-lg font-bold text-red-300 mb-3">❌ Test Everything</div>
-<div class="text-xs font-mono text-gray-300 space-y-1">
-<div>npm test        # 45 minutes</div>
-<div>npm run lint    # 12 minutes</div>
-<div>npm run build   # 23 minutes</div>
-</div>
-<div class="mt-3 text-sm font-bold text-red-400">Total: 80 minutes</div>
-</div>
-
-<div class="p-4 bg-green-900/30 rounded-lg">
-<div class="text-lg font-bold text-green-300 mb-3">✅ Test What Changed</div>
-<div class="text-xs font-mono text-gray-300 space-y-1">
-<div>nx affected:test   # 4 minutes</div>
-<div>nx affected:lint   # 1 minute</div>
-<div>nx affected:build  # 3 minutes</div>
-</div>
-<div class="mt-3 text-sm font-bold text-green-400">Total: 8 minutes</div>
-</div>
-</div>
-
-<div class="mt-6 p-4 bg-gradient-to-r from-green-600/80 to-blue-600/80 rounded-lg text-center">
-<span class="text-white font-bold">⚡ Impact: 10x faster → Agents ship 10-15 features/day instead of 2-3</span>
-</div>
-
----
-
-# Repository Topology: Key Takeaways
-
-<div class="grid grid-cols-5 gap-3 text-xs">
-<div class="p-3 bg-cyan-900/40 rounded-lg">
-<div class="text-2xl mb-2">🏗️</div>
-<div class="font-bold text-cyan-300">Monorepo Default</div>
-<div class="text-gray-400 mt-1">Multi-repo only for hard boundaries</div>
-</div>
-
-<div class="p-3 bg-blue-900/40 rounded-lg">
-<div class="text-2xl mb-2">🔒</div>
-<div class="font-bold text-blue-300">Enforced Boundaries</div>
-<div class="text-gray-400 mt-1">Build-time failures, not comments</div>
-</div>
-
-<div class="p-3 bg-purple-900/40 rounded-lg">
-<div class="text-2xl mb-2">🎯</div>
-<div class="font-bold text-purple-300">Hermetic Builds</div>
-<div class="text-gray-400 mt-1">Deterministic, reproducible, cacheable</div>
-</div>
-
-<div class="p-3 bg-green-900/40 rounded-lg">
-<div class="text-2xl mb-2">⚡</div>
-<div class="font-bold text-green-300">Affected Analysis</div>
-<div class="text-gray-400 mt-1">Test what changed, cache the rest</div>
-</div>
-
-<div class="p-3 bg-orange-900/40 rounded-lg">
-<div class="text-2xl mb-2">🔐</div>
-<div class="font-bold text-orange-300">Control Plane</div>
-<div class="text-gray-400 mt-1">Policies outside product code</div>
-</div>
-</div>
-
-<div class="mt-6 text-center">
-<a href="#part2" class="inline-block px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg text-white font-bold hover:from-blue-500 hover:to-indigo-500 transition-all no-underline">
-Continue to Part 2: PR Workflows →
-</a>
 </div>
 
 ---
@@ -571,331 +276,129 @@ layout: center
 name: part2
 ---
 
-# Part 2
-
-<div class="text-5xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-PR Workflows
+<div class="text-center mb-6">
+<div class="text-5xl mb-4">📋</div>
+<h1 class="!text-4xl bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Part 2: PR Workflows</h1>
+<p class="text-xl opacity-80 mt-2">Governance has to move up-stack</p>
 </div>
-
-<div class="mt-6 text-xl opacity-80">
-Why traditional pull requests collapse at feature-scale payloads
-</div>
-
-<div class="mt-8 text-sm text-gray-400">
-📋 From collaboration forums to governance gates
+<div class="p-5 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 rounded-xl border border-blue-500/30 mb-5 text-center max-w-3xl mx-auto">
+<div class="text-lg">Level 5 volume fails when teams keep using Level 3 review habits.</div>
 </div>
 
 ---
 
-# The Problem: PRs at Machine Scale
+# The Breakpoint: Level 5 Volume vs. Level 3 Review Habits
 
-<div class="text-center mt-8">
-<div class="text-2xl font-bold text-red-400 mb-6">
-Traditional PRs designed for 50-line human changes
-</div>
-
-<div class="text-xl text-gray-300 mb-8">
-AI agents generate 500-2000 line feature diffs in 15 minutes
-</div>
-
-<div class="p-6 bg-gradient-to-r from-red-900/40 to-gray-800 rounded-lg">
-<span class="text-white font-bold text-xl">
-⚠️ Human reviewers can't keep up.<br/>
-The bottleneck isn't coding—it's governance.
-</span>
+<div class="grid grid-cols-2 gap-6 mt-4 text-sm">
+<div class="p-4 bg-blue-900/20 rounded-xl border border-blue-500/30">
+<div class="font-bold text-blue-300 mb-3">Level 3 review assumptions</div>
+<div class="space-y-2 text-gray-300">
+<div>• 50-200 line changes</div>
+<div>• line-by-line scrutiny</div>
+<div>• synchronous back-and-forth</div>
+<div>• trust through detailed inspection</div>
 </div>
 </div>
-
----
-
-# Why Traditional PRs Fail in Gen-4
-
-<div class="grid grid-cols-2 gap-6">
-<div class="p-4 bg-red-900/30 rounded-lg border-l-4 border-red-500">
-<div class="text-lg font-bold text-red-300 mb-3">Gen-3 PR Assumptions</div>
-<div class="text-sm text-gray-300 space-y-2">
-<div>• Small changes (50-200 lines)</div>
-<div>• Line-by-line review</div>
-<div>• Synchronous collaboration</div>
-<div>• Trust through scrutiny</div>
-</div>
-</div>
-
-<div class="p-4 bg-orange-900/30 rounded-lg border-l-4 border-orange-500">
-<div class="text-lg font-bold text-orange-300 mb-3">Gen-4 Agent Reality</div>
-<div class="text-sm text-gray-300 space-y-2">
-<div>• Feature payloads (500-2000 lines)</div>
-<div>• Intent-driven generation</div>
-<div>• Machine velocity (15 min/feature)</div>
-<div>• Volume explosion (10-15/day)</div>
+<div class="p-4 bg-indigo-900/20 rounded-xl border border-indigo-500/30">
+<div class="font-bold text-indigo-300 mb-3">Level 5 reality</div>
+<div class="space-y-2 text-gray-300">
+<div>• 500-2000 line feature payloads</div>
+<div>• 15 minutes from intent to PR</div>
+<div>• 10-15 PRs/day is realistic</div>
+<div>• humans govern outcomes, not every line</div>
 </div>
 </div>
 </div>
 
-<div class="mt-6 p-4 bg-gradient-to-r from-red-900/40 to-gray-800 rounded-lg text-center">
-<span class="text-white font-bold">⚠️ Humans can't review 15,000 lines/day at Gen-3 detail level</span>
+<div class="mt-6 grid grid-cols-3 gap-4 text-center">
+<div class="p-3 bg-red-900/20 rounded-lg border border-red-500/30">
+<div class="text-red-400 font-bold text-xl">300 lines/day</div>
+<div class="text-xs opacity-80">Human review training</div>
 </div>
-
----
-
-# Where Code Is No Longer Scarce, Trust Is
-
-<div class="grid grid-cols-2 gap-6 mt-8">
-<div class="space-y-4">
-<div class="p-4 bg-gray-800 rounded-lg">
-<div class="text-lg font-bold text-gray-300 mb-2">Gen-3 Economics</div>
-<div class="text-sm text-gray-400 space-y-1">
-<div><span class="text-red-400">Bottleneck:</span> Writing code</div>
-<div><span class="text-orange-400">Solution:</span> Hire more developers</div>
-<div><span class="text-blue-400">Control:</span> Code reviews catch bugs</div>
+<div class="p-3 bg-amber-900/20 rounded-lg border border-amber-500/30">
+<div class="text-amber-400 font-bold text-xl">15,000 lines/day</div>
+<div class="text-xs opacity-80">Potential agent output</div>
 </div>
-</div>
-</div>
-
-<div class="space-y-4">
-<div class="p-4 bg-green-900/30 rounded-lg border-2 border-green-500">
-<div class="text-lg font-bold text-green-300 mb-2">Gen-4 Economics</div>
-<div class="text-sm text-gray-300 space-y-1">
-<div><span class="text-cyan-400">Bottleneck:</span> Trusting code</div>
-<div><span class="text-blue-400">Solution:</span> Automate trust manufacturing</div>
-<div><span class="text-purple-400">Control:</span> Policy enforcement + validation</div>
-</div>
-</div>
-</div>
-</div>
-
-<div class="mt-6 p-4 bg-gradient-to-r from-cyan-600/80 to-blue-600/80 rounded-lg text-center">
-<span class="text-white font-bold">💡 From "can we write it fast?" to "can we trust it at this velocity?"</span>
-</div>
-
----
-
-# Gen-4 Control Surfaces
-
-<div class="grid grid-cols-3 gap-4">
-<div class="p-4 bg-blue-900/40 rounded-lg border-2 border-blue-500">
-<div class="text-lg font-bold text-blue-300 mb-3">1️⃣ Intent Specification</div>
-<div class="text-xs text-gray-300 space-y-1">
-<div>• Feature goals</div>
-<div>• Constraints</div>
-<div>• Acceptance criteria</div>
-<div>• Non-functional requirements</div>
-</div>
-<div class="mt-2 text-xs text-blue-400 font-bold">What humans provide</div>
-</div>
-
-<div class="p-4 bg-green-900/40 rounded-lg border-2 border-green-500">
-<div class="text-lg font-bold text-green-300 mb-3">2️⃣ Policy Enforcement</div>
-<div class="text-xs text-gray-300 space-y-1">
-<div>• Security scans (SAST)</div>
-<div>• Architecture compliance</div>
-<div>• Compliance validation (GDPR, PCI)</div>
-<div>• Quality gates (coverage, perf)</div>
-</div>
-<div class="mt-2 text-xs text-green-400 font-bold">Automated checks</div>
-</div>
-
-<div class="p-4 bg-purple-900/40 rounded-lg border-2 border-purple-500">
-<div class="text-lg font-bold text-purple-300 mb-3">3️⃣ Outcome Validation</div>
-<div class="text-xs text-gray-300 space-y-1">
-<div>• Matches intent?</div>
-<div>• Edge cases handled?</div>
-<div>• Integration correct?</div>
-<div>• Non-functional met?</div>
-</div>
-<div class="mt-2 text-xs text-purple-400 font-bold">Human review focus</div>
+<div class="p-3 bg-green-900/20 rounded-lg border border-green-500/30">
+<div class="text-green-400 font-bold text-xl">50x</div>
+<div class="text-xs opacity-80">Why the bottleneck becomes governance</div>
 </div>
 </div>
 
 ---
 
-# The Gen-4 SDLC Loop
+# Intent-Based PRs: Humans Review the Contract
 
-<div class="flex flex-col items-center gap-4 mt-8">
-<div class="p-4 bg-blue-900/60 rounded-lg w-96 border-2 border-blue-400">
-<div class="text-center text-white font-bold">1. Human specifies INTENT</div>
+<div class="grid grid-cols-2 gap-6 mt-4 text-xs">
+<div class="p-4 bg-gradient-to-br from-blue-900/30 to-indigo-900/30 rounded-xl border border-blue-500/30">
+<div class="font-bold text-blue-300 mb-3">Intent packet</div>
+<div class="text-left bg-black/30 p-3 rounded space-y-3">
+<div>
+<div class="text-blue-200 font-semibold uppercase tracking-wide text-[11px] mb-1">Feature Intent</div>
+<div class="text-gray-200">• Add password reset flow</div>
+<div class="text-gray-200">• Email link expires in 1 hour</div>
+<div class="text-gray-200">• Rate limit: 3 attempts/hour</div>
+<div class="text-gray-200">• Audit every reset request</div>
 </div>
-
-<div class="text-3xl text-gray-400">↓</div>
-
-<div class="p-4 bg-green-900/60 rounded-lg w-96 border-2 border-green-400">
-<div class="text-center text-white font-bold">2. Agent generates IMPLEMENTATION</div>
+<div>
+<div class="text-blue-200 font-semibold uppercase tracking-wide text-[11px] mb-1">Constraints</div>
+<div class="text-gray-200">• Use existing email service</div>
+<div class="text-gray-200">• Follow OWASP guidance</div>
+<div class="text-gray-200">• No auth middleware rewrite</div>
 </div>
-
-<div class="text-3xl text-gray-400">↓</div>
-
-<div class="p-4 bg-yellow-900/60 rounded-lg w-96 border-2 border-yellow-400">
-<div class="text-center text-white font-bold">3. Automated POLICY CHECKS</div>
-</div>
-
-<div class="text-3xl text-gray-400">↓</div>
-
-<div class="p-4 bg-purple-900/60 rounded-lg w-96 border-2 border-purple-400">
-<div class="text-center text-white font-bold">4. Human validates OUTCOMES</div>
-</div>
-
-<div class="text-3xl text-gray-400">↓</div>
-
-<div class="flex gap-4">
-<div class="p-3 bg-green-900/60 rounded-lg border-2 border-green-400">
-<div class="text-white font-bold">Ship ✅</div>
-</div>
-<div class="p-3 bg-orange-900/60 rounded-lg border-2 border-orange-400">
-<div class="text-white font-bold">Iterate 🔄</div>
+<div>
+<div class="text-blue-200 font-semibold uppercase tracking-wide text-[11px] mb-1">Acceptance Criteria</div>
+<div class="text-gray-200">• Email within 2 minutes</div>
+<div class="text-gray-200">• Link expires correctly</div>
+<div class="text-gray-200">• Rate limiting enforced</div>
+<div class="text-gray-200">• Audit trail exists</div>
 </div>
 </div>
 </div>
-
-<div class="mt-6 text-center text-sm text-cyan-400 font-bold">Cycle time: 2-4 hours (vs. 2-4 days in Gen-3)</div>
-
----
-
-# Three PR Models That Survive Gen-4
-
-<div class="space-y-4">
-<div class="p-4 bg-cyan-900/40 rounded-lg border-l-4 border-cyan-500">
-<div class="font-bold text-cyan-300 mb-2">Model 1: Intent-Based PRs</div>
-<div class="text-xs text-gray-300">Intent specification + AI-generated implementation + acceptance validation</div>
+<div class="p-4 bg-gradient-to-br from-indigo-900/30 to-purple-900/30 rounded-xl border border-indigo-500/30">
+<div class="font-bold text-indigo-300 mb-3">What humans now review</div>
+<div class="space-y-2 text-gray-300 text-sm">
+<div>• does the implementation match intent?</div>
+<div>• are edge cases covered?</div>
+<div>• do the policy checks and evidence bundle clear?</div>
+<div>• should we approve, or should intent be clarified?</div>
 </div>
-
-<div class="p-4 bg-blue-900/40 rounded-lg border-l-4 border-blue-500">
-<div class="font-bold text-blue-300 mb-2">Model 2: Evidence-Bundle PRs</div>
-<div class="text-xs text-gray-300">Required artifacts proving checks passed (intent, diff, tests, security, compliance)</div>
-</div>
-
-<div class="p-4 bg-purple-900/40 rounded-lg border-l-4 border-purple-500">
-<div class="font-bold text-purple-300 mb-2">Model 3: Policy-Gated PRs</div>
-<div class="text-xs text-gray-300">Automated gates must pass before human review (security, coverage, performance, architecture)</div>
-</div>
-</div>
-
-<div class="mt-6 p-3 bg-gradient-to-r from-cyan-600/80 to-blue-600/80 rounded-lg text-center">
-<span class="text-white font-bold">Review Question: "Do we have sufficient evidence to trust this change?"</span>
-</div>
-
----
-
-# Enterprise Governance at Scale
-
-<div class="grid grid-cols-2 gap-6">
-<div class="p-4 bg-red-900/30 rounded-lg">
-<div class="text-lg font-bold text-red-300 mb-3">❌ Traditional (Doesn't Scale)</div>
-<div class="text-sm text-gray-300 space-y-2">
-<div>• 22 manual approval gates per feature</div>
-<div>• Architect reviews every decision</div>
-<div>• Security reviews every auth change</div>
-<div>• Compliance officer reviews every data change</div>
-</div>
-<div class="mt-3 text-sm font-bold text-red-400">Result: 4-7 days from PR to merge</div>
-</div>
-
-<div class="p-4 bg-green-900/30 rounded-lg">
-<div class="text-lg font-bold text-green-300 mb-3">✅ Gen-4 (Scales to 10-15/day)</div>
-<div class="text-sm text-gray-300 space-y-2">
-<div>• 4 human checkpoints</div>
-<div>• 90% automated enforcement</div>
-<div>• Architect reviews violations only</div>
-<div>• Security/compliance automated</div>
-</div>
-<div class="mt-3 text-sm font-bold text-green-400">Result: 2-4 hours from PR to merge</div>
-</div>
-</div>
-
----
-
-# The Governance Pyramid
-
-<div class="flex flex-col items-center gap-3 mt-8">
-<div class="p-4 bg-purple-900/60 rounded-lg w-96 border-2 border-purple-400">
-<div class="text-center text-white font-bold">Human Governance (10%)</div>
-<div class="text-xs text-center text-gray-300 mt-1">Strategic decisions · High-risk changes</div>
-</div>
-
-<div class="text-3xl text-gray-400">↓ ↓ ↓</div>
-
-<div class="p-6 bg-green-900/60 rounded-lg w-full border-2 border-green-400">
-<div class="text-center text-white font-bold mb-3">Automated Governance (90%)</div>
-<div class="grid grid-cols-3 gap-2 text-xs text-gray-300">
-<div>• Security scanning</div>
-<div>• Test coverage</div>
-<div>• Performance benchmarks</div>
-<div>• Architecture rules</div>
-<div>• Compliance checks</div>
-<div>• Dependency audits</div>
+<div class="mt-4 p-3 bg-green-900/20 rounded border border-green-500/20">
+<div class="text-green-300 font-semibold">20 minutes vs. 3 hours</div>
+<div class="text-xs opacity-80">Read intent, inspect evidence, validate outcomes</div>
 </div>
 </div>
 </div>
 
 ---
 
-# The Human Role Shifts
+# Governance Pyramid: 90% Automated, 10% Human Judgment
 
-<div class="grid grid-cols-2 gap-6 mt-8">
-<div class="p-4 bg-red-900/30 rounded-lg">
-<div class="text-lg font-bold text-red-300 mb-3">Gen-3 PR Review</div>
-<div class="text-sm text-gray-300 space-y-2">
-<div>❌ "Why did you use a Map here?"</div>
-<div>❌ "Can you extract this function?"</div>
-<div>❌ "Add more comments"</div>
-<div>❌ "LGTM 🚀"</div>
+<div class="grid grid-cols-2 gap-6 mt-4 text-sm">
+<div class="p-4 bg-gradient-to-br from-indigo-900/30 to-purple-900/30 rounded-xl border border-indigo-500/30">
+<div class="font-bold text-indigo-300 mb-3">Automated governance</div>
+<div class="space-y-2 text-gray-300">
+<div>• security scanning</div>
+<div>• dependency audit</div>
+<div>• architecture boundaries</div>
+<div>• coverage and performance budgets</div>
+<div>• compliance rules and attestations</div>
 </div>
 </div>
-
-<div class="p-4 bg-green-900/30 rounded-lg">
-<div class="text-lg font-bold text-green-300 mb-3">Gen-4 PR Review</div>
-<div class="text-sm text-gray-300 space-y-2">
-<div>✅ "Does this meet the intent?"</div>
-<div>✅ "Are edge cases handled?"</div>
-<div>✅ "Is this compliant?"</div>
-<div>✅ "Evidence bundle complete?"</div>
+<div class="p-4 bg-gradient-to-br from-purple-900/30 to-pink-900/30 rounded-xl border border-purple-500/30">
+<div class="font-bold text-purple-300 mb-3">Human governance</div>
+<div class="space-y-2 text-gray-300">
+<div>• intent validation</div>
+<div>• exception handling</div>
+<div>• high-risk security decisions</div>
+<div>• architectural fit and novelty</div>
 </div>
-</div>
-</div>
-
-<div class="mt-6 p-4 bg-gradient-to-r from-cyan-600/80 to-blue-600/80 rounded-lg text-center">
-<span class="text-white font-bold">PRs don't go away—they move up-stack to outcome-level review</span>
-</div>
-
----
-
-# PR Workflows: Key Takeaways
-
-<div class="grid grid-cols-5 gap-3 text-xs">
-<div class="p-3 bg-cyan-900/40 rounded-lg">
-<div class="text-2xl mb-2">🎯</div>
-<div class="font-bold text-cyan-300">Intent-First</div>
-<div class="text-gray-400 mt-1">Specify goals, not implementation</div>
-</div>
-
-<div class="p-3 bg-blue-900/40 rounded-lg">
-<div class="text-2xl mb-2">📊</div>
-<div class="font-bold text-blue-300">Evidence-Based</div>
-<div class="text-gray-400 mt-1">Trust through automated checks</div>
-</div>
-
-<div class="p-3 bg-purple-900/40 rounded-lg">
-<div class="text-2xl mb-2">✅</div>
-<div class="font-bold text-purple-300">Outcome-Focused</div>
-<div class="text-gray-400 mt-1">Does it meet requirements?</div>
-</div>
-
-<div class="p-3 bg-green-900/40 rounded-lg">
-<div class="text-2xl mb-2">🚪</div>
-<div class="font-bold text-green-300">Policy-Gated</div>
-<div class="text-gray-400 mt-1">90% automated, 10% human</div>
-</div>
-
-<div class="p-3 bg-orange-900/40 rounded-lg">
-<div class="text-2xl mb-2">⬆️</div>
-<div class="font-bold text-orange-300">Move Up-Stack</div>
-<div class="text-gray-400 mt-1">Review outcomes, not lines</div>
 </div>
 </div>
 
-<div class="mt-6 text-center">
-<a href="#part3" class="inline-block px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg text-white font-bold hover:from-blue-500 hover:to-indigo-500 transition-all no-underline">
-Continue to Part 3: Trust Manufacturing →
-</a>
+<div class="mt-6 p-4 bg-gradient-to-r from-blue-600/30 to-purple-600/30 rounded-xl border border-blue-500/30 text-center">
+<div class="text-lg font-semibold text-white">Scarcity moves from writing code to manufacturing trust.</div>
+<div class="text-sm opacity-80 mt-1">That is the economic shift behind Level 5 delivery.</div>
 </div>
 
 ---
@@ -903,649 +406,246 @@ layout: center
 name: part3
 ---
 
-# Part 3
-
-<div class="text-5xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-Trust Manufacturing
+<div class="text-center mb-6">
+<div class="text-5xl mb-4">🏭</div>
+<h1 class="!text-4xl bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Part 3: Trust Manufacturing</h1>
+<p class="text-xl opacity-80 mt-2">CI becomes the factory that produces ship confidence</p>
 </div>
-
-<div class="mt-6 text-xl opacity-80">
-How AI agents transform CI from quality gate to trust factory
-</div>
-
-<div class="mt-8 text-sm text-gray-400">
-🏭 CI as trust manufacturing at scale
+<div class="p-5 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 rounded-xl border border-indigo-500/30 mb-5 text-center max-w-3xl mx-auto">
+<div class="text-lg">The point of CI is no longer “did tests pass?” It is “do we have enough evidence to trust this change?”</div>
 </div>
 
 ---
 
-# The Problem: Trust at Agent Velocity
+# The 10-Minute Rule
 
-<div class="text-center mt-12">
-<div class="text-3xl font-bold text-red-400 mb-6">
-We're shipping 10-15 features per day with AI agents
-</div>
-
-<div class="text-2xl text-gray-300 mb-8">
-But our CI is still optimized for 2-3 features per week
-</div>
-
-<div class="p-6 bg-gradient-to-r from-red-900/40 to-gray-800 rounded-lg">
-<span class="text-white font-bold text-xl">
-⚠️ The bottleneck isn't agent velocity—it's trust production.
-</span>
-</div>
-
-<div class="mt-6 text-lg text-gray-400 italic">
-Agents can write code faster than CI can prove it's safe.
+<div class="grid grid-cols-2 gap-6 mt-4 text-sm">
+<div class="p-4 bg-red-900/20 rounded-xl border border-red-500/30">
+<div class="font-bold text-red-300 mb-3">Slow CI</div>
+<div class="space-y-2 text-gray-300">
+<div>• 30-60 minute PR checks</div>
+<div>• agents sit idle waiting for signals</div>
+<div>• queues stack when volume rises</div>
+<div>• teams start ignoring failed feedback loops</div>
 </div>
 </div>
-
----
-
-# The Core Insight: CI Is a Factory
-
-<div class="grid grid-cols-2 gap-6">
-<div class="p-4 bg-red-900/30 rounded-lg">
-<div class="text-lg font-bold text-red-300 mb-3">❌ Traditional CI (Quality Gate)</div>
-<div class="text-xs font-mono text-gray-300 mb-3">
-Write code → Run tests → Fix → Review → Deploy
-</div>
-<div class="text-sm text-gray-400 space-y-1">
-<div><span class="text-orange-400">Purpose:</span> Catch bugs</div>
-<div><span class="text-orange-400">Optimized for:</span> Infrequent changes, manual intervention</div>
-</div>
-</div>
-
-<div class="p-4 bg-green-900/30 rounded-lg">
-<div class="text-lg font-bold text-green-300 mb-3">✅ Agentic CI (Trust Factory)</div>
-<div class="text-xs font-mono text-gray-300 mb-3">
-Agent writes → CI manufactures trust → Validate → Auto-deploy
-</div>
-<div class="text-sm text-gray-300 space-y-1">
-<div><span class="text-cyan-400">Purpose:</span> Manufacture trust evidence</div>
-<div><span class="text-cyan-400">Optimized for:</span> 10-15 changes/day, automated validation</div>
+<div class="p-4 bg-green-900/20 rounded-xl border border-green-500/30">
+<div class="font-bold text-green-300 mb-3">Fast CI</div>
+<div class="space-y-2 text-gray-300">
+<div>• less than 10 minute PR checks</div>
+<div>• affected-only execution</div>
+<div>• fast retries with deterministic cache hits</div>
+<div>• agents stay productive instead of blocked</div>
 </div>
 </div>
 </div>
 
-<div class="mt-6 p-4 bg-gradient-to-r from-cyan-600/80 to-blue-600/80 rounded-lg text-center">
-<span class="text-white font-bold">🏭 From "did tests pass?" to "do we have sufficient evidence to trust?"</span>
+<div class="mt-6 grid grid-cols-3 gap-4 text-center">
+<div class="p-3 bg-indigo-900/20 rounded-lg border border-indigo-500/30">
+<div class="text-indigo-400 font-bold text-xl">80 min → 8 min</div>
+<div class="text-xs opacity-80">Average CI time</div>
 </div>
-
----
-
-# Manufacturing Principles Applied to CI
-
-<div class="grid grid-cols-3 gap-3 text-xs">
-<div class="p-3 bg-gray-800 rounded-lg">
-<div class="text-lg mb-1">🔄</div>
-<div class="font-bold text-cyan-300">Repeatable Processes</div>
-<div class="text-gray-400 mt-1">Same checks, same order, every time</div>
+<div class="p-3 bg-purple-900/20 rounded-lg border border-purple-500/30">
+<div class="text-purple-400 font-bold text-xl">50% → 95%</div>
+<div class="text-xs opacity-80">Agent productive time</div>
 </div>
-
-<div class="p-3 bg-gray-800 rounded-lg">
-<div class="text-lg mb-1">🚪</div>
-<div class="font-bold text-blue-300">Quality Gates</div>
-<div class="text-gray-400 mt-1">Can't proceed without passing</div>
-</div>
-
-<div class="p-3 bg-gray-800 rounded-lg">
-<div class="text-lg mb-1">🤖</div>
-<div class="font-bold text-purple-300">Automated Inspection</div>
-<div class="text-gray-400 mt-1">327 tests in 8 minutes</div>
-</div>
-
-<div class="p-3 bg-gray-800 rounded-lg">
-<div class="text-lg mb-1">📜</div>
-<div class="font-bold text-green-300">Evidence Trails</div>
-<div class="text-gray-400 mt-1">Auditable, reproducible attestations</div>
-</div>
-
-<div class="p-3 bg-gray-800 rounded-lg">
-<div class="text-lg mb-1">📈</div>
-<div class="font-bold text-orange-300">Continuous Improvement</div>
-<div class="text-gray-400 mt-1">Flake rate <2%, optimized monthly</div>
-</div>
-
-<div class="p-3 bg-gray-800 rounded-lg">
-<div class="text-lg mb-1">💰</div>
-<div class="font-bold text-yellow-300">Scale Economics</div>
-<div class="text-gray-400 mt-1">15th feature: 2 min (cached)</div>
-</div>
-</div>
-
-<div class="mt-4 p-3 bg-gradient-to-r from-cyan-600/80 to-blue-600/80 rounded-lg text-center">
-<span class="text-white font-bold">🎯 Trust scales linearly with agent output, not quadratically with review time</span>
-</div>
-
----
-
-# Agent Advantage: Context-Aware Validation
-
-<div class="grid grid-cols-2 gap-6">
-<div class="p-4 bg-red-900/30 rounded-lg">
-<div class="text-lg font-bold text-red-300 mb-3">❌ Deterministic Rules</div>
-<div class="text-xs font-mono text-gray-300 bg-gray-900/50 p-2 rounded mb-2">
-patterns:<br/>
-  - regex: "email"<br/>
-    severity: high
-</div>
-<div class="text-sm text-gray-400 space-y-1">
-<div>• 847 warnings</div>
-<div>• 803 false positives</div>
-<div>• Developers ignore warnings</div>
-<div>• Real violations ship</div>
-</div>
-</div>
-
-<div class="p-4 bg-green-900/30 rounded-lg">
-<div class="text-lg font-bold text-green-300 mb-3">✅ Context-Aware Agent</div>
-<div class="text-xs text-gray-300 mb-2">
-Agent reads context to understand if email is in test fixtures, documentation, or production code handling real user data
-</div>
-<div class="text-sm text-gray-300 space-y-1">
-<div>• 44 warnings (real issues)</div>
-<div>• 2 false positives</div>
-<div>• Developers trust signal</div>
-<div>• Violations caught before merge</div>
-</div>
+<div class="p-3 bg-pink-900/20 rounded-lg border border-pink-500/30">
+<div class="text-pink-400 font-bold text-xl">2-3 → 10-15</div>
+<div class="text-xs opacity-80">Features/day per agent</div>
 </div>
 </div>
 
 ---
 
-# Fast Feedback: The 10-Minute Rule
+# How to Build a Trust Factory
 
-<div class="grid grid-cols-2 gap-6">
-<div class="p-4 bg-red-900/30 rounded-lg">
-<div class="text-lg font-bold text-red-300 mb-3">❌ Slow CI (60 minutes)</div>
-<div class="text-sm text-gray-300 space-y-2">
-<div>4 iterations = 4 hours</div>
-<div>Agent idle 80% of time</div>
-<div>Effective velocity: 2-3 features/day</div>
-</div>
-</div>
-
-<div class="p-4 bg-green-900/30 rounded-lg">
-<div class="text-lg font-bold text-green-300 mb-3">✅ Fast CI (8 minutes)</div>
-<div class="text-sm text-gray-300 space-y-2">
-<div>4 iterations = 52 minutes</div>
-<div>Agent productive 95% of time</div>
-<div>Effective velocity: 10-15 features/day</div>
-</div>
-</div>
-</div>
-
-<div class="mt-6 space-y-2 text-sm">
-<div class="p-3 bg-gray-800 rounded-lg">
-<span class="text-cyan-400 font-bold">1. Affected analysis</span> — Test only changed modules
-</div>
-<div class="p-3 bg-gray-800 rounded-lg">
-<span class="text-blue-400 font-bold">2. Distributed execution</span> — Parallelize across runners
-</div>
-<div class="p-3 bg-gray-800 rounded-lg">
-<span class="text-purple-400 font-bold">3. Aggressive caching</span> — Cache dependencies, builds, tests
-</div>
-</div>
-
----
-
-# The Trust Pipeline (3 Stages)
-
-<div class="flex flex-col gap-4">
-<div class="p-4 bg-green-900/40 rounded-lg border-l-4 border-green-500">
-<div class="flex items-center justify-between">
-<div>
-<div class="font-bold text-green-300 text-lg">Stage 1: Fast Feedback</div>
-<div class="text-xs text-gray-400 mt-1">Build, unit tests, lint, basic security</div>
-</div>
-<div class="text-green-400 font-bold text-xl">&lt; 10 min</div>
-</div>
-<div class="text-xs text-gray-300 mt-2">On failure: Block PR, fast feedback to agent</div>
-</div>
-
-<div class="p-4 bg-blue-900/40 rounded-lg border-l-4 border-blue-500">
-<div class="flex items-center justify-between">
-<div>
-<div class="font-bold text-blue-300 text-lg">Stage 2: Comprehensive Validation</div>
-<div class="text-xs text-gray-400 mt-1">Full test suite, deep security, performance, compliance</div>
-</div>
-<div class="text-blue-400 font-bold text-xl">&lt; 30 min</div>
-</div>
-<div class="text-xs text-gray-300 mt-2">On failure: Block merge, detailed report for human</div>
-</div>
-
-<div class="p-4 bg-purple-900/40 rounded-lg border-l-4 border-purple-500">
-<div class="flex items-center justify-between">
-<div>
-<div class="font-bold text-purple-300 text-lg">Stage 3: Pre-Production</div>
-<div class="text-xs text-gray-400 mt-1">Staging deploy, smoke tests, migrations, load testing</div>
-</div>
-<div class="text-purple-400 font-bold text-xl">&lt; 60 min</div>
-</div>
-<div class="text-xs text-gray-300 mt-2">On failure: Block production deploy, page on-call</div>
-</div>
-</div>
-
----
-
-# Evidence Attestations
-
-<div class="grid grid-cols-2 gap-6">
-<div class="text-xs">
-<div class="text-lg font-bold text-cyan-300 mb-3">What Are Attestations?</div>
-<div class="text-gray-300 mb-3">Machine-readable artifacts proving checks ran and passed</div>
-
-```json
-{
-  "predicate": {
-    "builder": "GitHub Actions",
-    "materials": [
-      {"uri": "pkg:npm/@types/node@18"}
-    ],
-    "metadata": {
-      "completeness": true,
-      "reproducible": true
-    }
-  }
-}
-```
-
-</div>
-<div>
-<div class="text-lg font-bold text-blue-300 mb-3">Why They Matter</div>
+<div class="grid grid-cols-2 gap-6 mt-4 text-sm">
 <div class="space-y-3">
-<div class="p-3 bg-gray-800 rounded-lg">
-<div class="text-sm font-bold text-cyan-400">Auditability</div>
-<div class="text-xs text-gray-400">"Prove this was compliant"</div>
+<div class="p-3 bg-indigo-900/20 rounded-lg border border-indigo-500/20">
+<div class="font-bold text-indigo-300">1. Affected analysis</div>
+<div class="text-gray-300">Test only the changed area and downstream dependents.</div>
 </div>
-<div class="p-3 bg-gray-800 rounded-lg">
-<div class="text-sm font-bold text-blue-400">Supply Chain Security</div>
-<div class="text-xs text-gray-400">SLSA compliance</div>
+<div class="p-3 bg-purple-900/20 rounded-lg border border-purple-500/20">
+<div class="font-bold text-purple-300">2. Caching that actually hits</div>
+<div class="text-gray-300">Dependency, build, and test cache keys must match your invalidation story.</div>
 </div>
-<div class="p-3 bg-gray-800 rounded-lg">
-<div class="text-sm font-bold text-purple-400">Regulatory</div>
-<div class="text-xs text-gray-400">SOC 2, ISO 27001</div>
-</div>
-<div class="p-3 bg-gray-800 rounded-lg">
-<div class="text-sm font-bold text-green-400">Reproducibility</div>
-<div class="text-xs text-gray-400">Re-run identical checks</div>
+<div class="p-3 bg-pink-900/20 rounded-lg border border-pink-500/20">
+<div class="font-bold text-pink-300">3. Parallel checks</div>
+<div class="text-gray-300">Security, quality, performance, and compliance should not queue behind each other.</div>
 </div>
 </div>
+<div class="space-y-3">
+<div class="p-3 bg-blue-900/20 rounded-lg border border-blue-500/20">
+<div class="font-bold text-blue-300">4. Context-aware validation</div>
+<div class="text-gray-300">Use agents for judgment-heavy checks where regexes are not enough.</div>
 </div>
+<div class="p-3 bg-cyan-900/20 rounded-lg border border-cyan-500/20">
+<div class="font-bold text-cyan-300">5. Attestations</div>
+<div class="text-gray-300">Produce auditable, replayable evidence for regulated environments.</div>
 </div>
-
----
-
-# Flake Management: Zero Tolerance
-
-<div class="grid grid-cols-2 gap-6">
-<div class="p-4 bg-red-900/30 rounded-lg">
-<div class="text-lg font-bold text-red-300 mb-3">❌ The Problem</div>
-<div class="text-sm text-gray-300 space-y-2">
-<div>Single flaky test (5% failure rate):</div>
-<div>• 20 PRs/day × 5% = 1 spurious failure/day</div>
-<div>• 10 flaky tests = 10 failures/day</div>
-<div>• Developers lose trust in CI</div>
-<div>• "Just rerun it" becomes default</div>
-</div>
-</div>
-
-<div class="p-4 bg-green-900/30 rounded-lg">
-<div class="text-lg font-bold text-green-300 mb-3">✅ Zero Tolerance Policy</div>
-<div class="text-sm text-gray-300 space-y-2">
-<div>• Quarantine on first flake</div>
-<div>• Fix within 2 days</div>
-<div>• After 2 days: Auto-disabled</div>
-<div>• Track flake rate: &lt;2% target</div>
-<div>• Measure weekly, optimize monthly</div>
-</div>
-</div>
-</div>
-
-<div class="mt-4 p-3 bg-gradient-to-r from-cyan-600/80 to-blue-600/80 rounded-lg text-center">
-<span class="text-white font-bold">🎯 Goal: Zero flaky tests in critical path (PR checks)</span>
-</div>
-
----
-
-# Caching Strategies
-
-<div class="grid grid-cols-3 gap-4 text-xs">
-<div class="p-4 bg-cyan-900/40 rounded-lg">
-<div class="text-lg font-bold text-cyan-300 mb-2">Dependencies</div>
-<div class="font-mono text-gray-300 text-xs">
-path: ~/.npm<br/>
-key: ${{hashFiles('**/package-lock.json')}}
-</div>
-<div class="text-gray-400 mt-2">Invalidate on lockfile change</div>
-</div>
-
-<div class="p-4 bg-blue-900/40 rounded-lg">
-<div class="text-lg font-bold text-blue-300 mb-2">Build Artifacts</div>
-<div class="font-mono text-gray-300 text-xs">
-path: ./dist<br/>
-key: ${{github.sha}}
-</div>
-<div class="text-gray-400 mt-2">Invalidate on source change</div>
-</div>
-
-<div class="p-4 bg-purple-900/40 rounded-lg">
-<div class="text-lg font-bold text-purple-300 mb-2">Test Results</div>
-<div class="font-mono text-gray-300 text-xs">
-path: ./.test-cache<br/>
-key: ${{hashFiles('**/src/**')}}
-</div>
-<div class="text-gray-400 mt-2">Invalidate on test/source change</div>
-</div>
-</div>
-
-<div class="mt-6 p-4 bg-gradient-to-r from-green-600/80 to-blue-600/80 rounded-lg text-center">
-<span class="text-white font-bold">Impact: First build 23 min → Cached build 3 min (7.6x speedup)</span>
-</div>
-
----
-
-# Continuous Improvement Metrics
-
-<div class="text-xs">
-
-| Metric | Target | Action |
-|--------|--------|--------|
-| PR check time | &lt; 10 min | Optimize if > 10 min |
-| Full pipeline | &lt; 30 min | Optimize if > 30 min |
-| Flake rate | &lt; 2% | Quarantine if > 2% |
-| Cache hit rate | &gt; 80% | Investigate if < 80% |
-| False positive rate | &lt; 5% | Tune rules if > 5% |
-| Throughput | 10-15 PRs/day | Scale infrastructure |
-
-</div>
-
-<div class="mt-6 grid grid-cols-2 gap-4">
-<div class="p-3 bg-gray-800 rounded-lg">
-<div class="text-sm font-bold text-cyan-400">Weekly Reviews</div>
-<div class="text-xs text-gray-400 mt-1">Slowest checks, flaky tests, cache efficiency</div>
-</div>
-
-<div class="p-3 bg-gray-800 rounded-lg">
-<div class="text-sm font-bold text-blue-400">Monthly Reviews</div>
-<div class="text-xs text-gray-400 mt-1">Parallelize, fix/delete, tune strategies</div>
-</div>
-</div>
-
----
-
-# Trust Manufacturing: Key Takeaways
-
-<div class="grid grid-cols-6 gap-2 text-xs">
-<div class="p-2 bg-cyan-900/40 rounded-lg">
-<div class="text-xl mb-1">🏭</div>
-<div class="font-bold text-cyan-300">CI Factory</div>
-<div class="text-gray-400">Manufacturing trust at agent velocity</div>
-</div>
-
-<div class="p-2 bg-blue-900/40 rounded-lg">
-<div class="text-xl mb-1">⚡</div>
-<div class="font-bold text-blue-300">Fast Feedback</div>
-<div class="text-gray-400">&lt;10 min PR checks</div>
-</div>
-
-<div class="p-2 bg-purple-900/40 rounded-lg">
-<div class="text-xl mb-1">🚫</div>
-<div class="font-bold text-purple-300">Zero Flakes</div>
-<div class="text-gray-400">Quarantine, fix in 2 days</div>
-</div>
-
-<div class="p-2 bg-green-900/40 rounded-lg">
-<div class="text-xl mb-1">🤖</div>
-<div class="font-bold text-green-300">Context-Aware</div>
-<div class="text-gray-400">Agents for compliance</div>
-</div>
-
-<div class="p-2 bg-orange-900/40 rounded-lg">
-<div class="text-xl mb-1">📜</div>
-<div class="font-bold text-orange-300">Evidence</div>
-<div class="text-gray-400">Attestations for audit</div>
-</div>
-
-<div class="p-2 bg-yellow-900/40 rounded-lg">
-<div class="text-xl mb-1">📈</div>
-<div class="font-bold text-yellow-300">Improve</div>
-<div class="text-gray-400">Track, optimize weekly</div>
-</div>
-</div>
-
-<div class="mt-6 text-center">
-<a href="#summary" class="inline-block px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg text-white font-bold hover:from-blue-500 hover:to-indigo-500 transition-all no-underline">
-See Complete System Summary →
-</a>
-</div>
-
----
-name: summary
----
-
-# The Complete Gen-4 System
-
-<div class="text-center mt-6 mb-6">
-<div class="text-xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-Three interconnected transformations
-</div>
-</div>
-
-<div class="flex flex-col items-center gap-3">
-<div class="p-4 bg-cyan-900/40 rounded-lg w-full border-l-4 border-cyan-500">
-<div class="font-bold text-cyan-300 text-lg">🏗️ Repository Topology</div>
-<div class="text-xs text-gray-300 mt-1">Agent-native monorepo · Enforced boundaries · Hermetic builds · Affected analysis</div>
-</div>
-
-<div class="text-2xl text-gray-400">↓ Enables ↓</div>
-
-<div class="p-4 bg-blue-900/40 rounded-lg w-full border-l-4 border-blue-500">
-<div class="font-bold text-blue-300 text-lg">📋 PR Workflows</div>
-<div class="text-xs text-gray-300 mt-1">Intent-first specs · Evidence bundles · Policy gates · Outcome review</div>
-</div>
-
-<div class="text-2xl text-gray-400">↓ Validated by ↓</div>
-
-<div class="p-4 bg-indigo-900/40 rounded-lg w-full border-l-4 border-indigo-500">
-<div class="font-bold text-indigo-300 text-lg">🏭 Trust Manufacturing</div>
-<div class="text-xs text-gray-300 mt-1">Fast feedback &lt;10 min · Context-aware validation · Evidence attestations · Zero flakes</div>
-</div>
-
-<div class="text-2xl text-gray-400">=</div>
-
-<div class="p-4 bg-gradient-to-r from-green-600/80 to-blue-600/80 rounded-lg w-full text-center">
-<span class="text-white font-bold text-lg">Sustainable 10-15 features/day with confidence</span>
-</div>
-</div>
-
----
-
-# Success Metrics
-
-<div class="grid grid-cols-3 gap-4 text-xs">
-<div>
-<div class="text-lg font-bold text-cyan-300 mb-3">Engineering Velocity</div>
-<div class="space-y-2">
-<div class="p-2 bg-gray-800 rounded">
-<div class="text-gray-400">Features/week</div>
-<div class="text-white font-bold">2-3 → 50-75 (15-20x)</div>
-</div>
-<div class="p-2 bg-gray-800 rounded">
-<div class="text-gray-400">PR-to-merge</div>
-<div class="text-white font-bold">4-7 days → 2-4 hours (20-40x)</div>
-</div>
-<div class="p-2 bg-gray-800 rounded">
-<div class="text-gray-400">CI time</div>
-<div class="text-white font-bold">80 min → 8 min (10x)</div>
-</div>
-</div>
-</div>
-
-<div>
-<div class="text-lg font-bold text-blue-300 mb-3">Trust & Quality</div>
-<div class="space-y-2">
-<div class="p-2 bg-gray-800 rounded">
-<div class="text-gray-400">Manual gates</div>
-<div class="text-white font-bold">22 → 4 (80% reduction)</div>
-</div>
-<div class="p-2 bg-gray-800 rounded">
-<div class="text-gray-400">Flaky tests</div>
-<div class="text-white font-bold">15% → &lt;2% (7x improvement)</div>
-</div>
-<div class="p-2 bg-gray-800 rounded">
-<div class="text-gray-400">False positives</div>
-<div class="text-white font-bold">803 → 2 (400x accuracy)</div>
-</div>
-</div>
-</div>
-
-<div>
-<div class="text-lg font-bold text-purple-300 mb-3">Human Experience</div>
-<div class="space-y-2">
-<div class="p-2 bg-gray-800 rounded">
-<div class="text-gray-400">Review focus</div>
-<div class="text-white font-bold">Lines → Outcomes</div>
-</div>
-<div class="p-2 bg-gray-800 rounded">
-<div class="text-gray-400">Time/PR</div>
-<div class="text-white font-bold">4 hours → 20 min (12x)</div>
-</div>
-<div class="p-2 bg-gray-800 rounded">
-<div class="text-gray-400">Coordination</div>
-<div class="text-white font-bold">90% reduction</div>
-</div>
+<div class="p-3 bg-emerald-900/20 rounded-lg border border-emerald-500/20">
+<div class="font-bold text-emerald-300">6. Rollback readiness</div>
+<div class="text-gray-300">Trust rises when recovery is fast, rehearsed, and boring.</div>
 </div>
 </div>
 </div>
 
 ---
 
-# Common Pitfalls
+# Zero-Flake Tolerance Restores Trust
 
-<div class="grid grid-cols-2 gap-4 text-xs">
-<div class="space-y-2">
-<div class="p-3 bg-red-900/30 rounded-lg border-l-4 border-red-500">
-<div class="font-bold text-red-300 mb-1">❌ Human-Scale Processes</div>
-<div class="text-gray-400">Reviewing 15K lines/day at Gen-3 detail</div>
-</div>
-
-<div class="p-3 bg-red-900/30 rounded-lg border-l-4 border-red-500">
-<div class="font-bold text-red-300 mb-1">❌ Tolerating Flaky CI</div>
-<div class="text-gray-400">"Just rerun it until it passes"</div>
-</div>
-
-<div class="p-3 bg-red-900/30 rounded-lg border-l-4 border-red-500">
-<div class="font-bold text-red-300 mb-1">❌ Multi-Repo Without Reason</div>
-<div class="text-gray-400">"We've always had separate repos"</div>
+<div class="grid grid-cols-2 gap-6 mt-4 text-sm">
+<div class="p-4 bg-red-900/20 rounded-xl border border-red-500/30">
+<div class="font-bold text-red-300 mb-3">When teams tolerate flakes</div>
+<div class="space-y-2 text-gray-300">
+<div>• green builds stop meaning “safe”</div>
+<div>• reruns become routine</div>
+<div>• humans distrust automation</div>
+<div>• agent throughput is throttled by uncertainty</div>
 </div>
 </div>
-
-<div class="space-y-2">
-<div class="p-3 bg-green-900/30 rounded-lg border-l-4 border-green-500">
-<div class="font-bold text-green-300 mb-1">✅ Intent & Outcome Validation</div>
-<div class="text-gray-400">Move up-stack, review outcomes not lines</div>
-</div>
-
-<div class="p-3 bg-green-900/30 rounded-lg border-l-4 border-green-500">
-<div class="font-bold text-green-300 mb-1">✅ Quarantine & Fix Fast</div>
-<div class="text-gray-400">Quarantine on first flake, fix within 2 days</div>
-</div>
-
-<div class="p-3 bg-green-900/30 rounded-lg border-l-4 border-green-500">
-<div class="font-bold text-green-300 mb-1">✅ Monorepo for Agent Velocity</div>
-<div class="text-gray-400">If agents touch >1 repo >30% → consolidate</div>
+<div class="p-4 bg-green-900/20 rounded-xl border border-green-500/30">
+<div class="font-bold text-green-300 mb-3">When teams quarantine flakes fast</div>
+<div class="space-y-2 text-gray-300">
+<div>• first flake triggers action</div>
+<div>• fix or delete within days</div>
+<div>• green builds regain credibility</div>
+<div>• policy gates become dependable</div>
 </div>
 </div>
 </div>
 
----
-
-# The Strategic Imperative
-
-<div class="text-center mt-8 mb-8">
-<div class="text-2xl font-bold text-red-400 mb-4">
-⚠️ The window is narrowing
+<div class="mt-6 grid grid-cols-3 gap-4 text-center">
+<div class="p-3 bg-gradient-to-br from-red-900/30 to-red-800/20 rounded-lg border border-red-500/30">
+<div class="text-red-400 font-bold text-xl">18% → 1.2%</div>
+<div class="text-xs opacity-80">Flake rate</div>
 </div>
-<div class="text-lg text-gray-300">
-Organizations using Gen-4 practices are shipping 10-15x faster
+<div class="p-3 bg-gradient-to-br from-indigo-900/30 to-indigo-800/20 rounded-lg border border-indigo-500/30">
+<div class="text-indigo-400 font-bold text-xl">35% → 8%</div>
+<div class="text-xs opacity-80">Agent idle time</div>
 </div>
-</div>
-
-<div class="grid grid-cols-2 gap-6">
-<div class="p-6 bg-red-900/30 rounded-lg border-2 border-red-500">
-<div class="text-lg font-bold text-red-300 mb-3">Gen-3 Velocity</div>
-<div class="text-3xl font-bold text-white mb-2">150</div>
-<div class="text-sm text-gray-400">features/year/team</div>
-<div class="text-xs text-gray-500 mt-3">(2-3 features/week)</div>
-</div>
-
-<div class="p-6 bg-green-900/30 rounded-lg border-2 border-green-500">
-<div class="text-lg font-bold text-green-300 mb-3">Gen-4 Velocity</div>
-<div class="text-3xl font-bold text-white mb-2">3,600</div>
-<div class="text-sm text-gray-400">features/year/team</div>
-<div class="text-xs text-gray-500 mt-3">(10-15 features/day)</div>
-</div>
-</div>
-
-<div class="mt-6 p-4 bg-gradient-to-r from-cyan-600/80 to-blue-600/80 rounded-lg text-center">
-<span class="text-white font-bold text-xl">100x annual output difference</span>
-</div>
-
----
-
-# What Success Looks Like
-
-<div class="flex flex-col gap-4">
-<div class="p-4 bg-cyan-900/40 rounded-lg border-l-4 border-cyan-500">
-<div class="font-bold text-cyan-300 text-lg mb-2">In 6 Months</div>
-<div class="text-sm text-gray-300 space-y-1">
-<div>• Shipping 10-15 features/day with confidence</div>
-<div>• Human reviewers focused on strategic decisions</div>
-<div>• CI manufacturing trust at agent velocity</div>
-<div>• Compliance and security automated</div>
-</div>
-</div>
-
-<div class="p-4 bg-blue-900/40 rounded-lg border-l-4 border-blue-500">
-<div class="font-bold text-blue-300 text-lg mb-2">In 12 Months</div>
-<div class="text-sm text-gray-300 space-y-1">
-<div>• Gen-4 SDLC is muscle memory</div>
-<div>• Agents handle 90% of feature implementation</div>
-<div>• Humans govern outcomes and set direction</div>
-<div>• Organization achieves sustainable AI velocity</div>
-</div>
+<div class="p-3 bg-gradient-to-br from-emerald-900/30 to-emerald-800/20 rounded-lg border border-emerald-500/30">
+<div class="text-emerald-400 font-bold text-xl">45/week → 2/week</div>
+<div class="text-xs opacity-80">Manual PR reruns</div>
 </div>
 </div>
 
 ---
-layout: end
+layout: center
+name: part4
 ---
 
-# Building infrastructure for sustainable AI velocity
-
-<div class="mt-12 p-6 bg-gradient-to-r from-cyan-900/30 to-blue-900/30 rounded-lg">
-<div class="text-center text-xl text-gray-300 mb-4">
-Three transformations working together
+<div class="text-center mb-6">
+<div class="text-5xl mb-4">🚀</div>
+<h1 class="!text-4xl bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Part 4: Implementation Roadmap</h1>
+<p class="text-xl opacity-80 mt-2">Progress through the maturity model on purpose</p>
 </div>
-<div class="grid grid-cols-3 gap-4 text-sm">
-<div class="text-center">
-<div class="text-3xl mb-2">🏗️</div>
-<div class="font-bold text-cyan-400">Repository Topology</div>
-</div>
-<div class="text-center">
-<div class="text-3xl mb-2">📋</div>
-<div class="font-bold text-blue-400">PR Workflows</div>
-</div>
-<div class="text-center">
-<div class="text-3xl mb-2">🏭</div>
-<div class="font-bold text-indigo-400">Trust Manufacturing</div>
-</div>
-</div>
+<div class="p-5 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl border border-purple-500/30 mb-5 text-center max-w-3xl mx-auto">
+<div class="text-lg">Do not jump straight to autonomy. Standardize first, optimize second, operate autonomously third.</div>
 </div>
 
-<div class="mt-8 text-center text-sm text-gray-400">
-Barton Mathis · CopilotTraining Tech Talk
+---
+
+# A Practical Progression: Level 3 → Level 4 → Level 5
+
+<div class="grid grid-cols-3 gap-4 mt-4 text-sm">
+<div class="p-4 bg-blue-900/20 rounded-xl border border-blue-500/30">
+<div class="text-blue-300 font-bold text-lg mb-2">Phase 1</div>
+<div class="font-semibold mb-3">Reach Level 3: Standardized</div>
+<div class="space-y-2 text-gray-300 text-xs">
+<div>• set up CI/CD and branch protection</div>
+<div>• establish boundary enforcement</div>
+<div>• measure PR check time and flake rate</div>
+<div>• create auditable review paths</div>
+</div>
+</div>
+<div class="p-4 bg-indigo-900/20 rounded-xl border border-indigo-500/30">
+<div class="text-indigo-300 font-bold text-lg mb-2">Phase 2</div>
+<div class="font-semibold mb-3">Reach Level 4: Optimized</div>
+<div class="space-y-2 text-gray-300 text-xs">
+<div>• add MCP servers, custom agents, skills</div>
+<div>• automate 80-90% of routine checks</div>
+<div>• adopt evidence-bundle workflows</div>
+<div>• use agent validation where rules alone fail</div>
+</div>
+</div>
+<div class="p-4 bg-green-900/20 rounded-xl border border-green-500/30">
+<div class="text-green-300 font-bold text-lg mb-2">Phase 3</div>
+<div class="font-semibold mb-3">Operate at Level 5: Autonomous</div>
+<div class="space-y-2 text-gray-300 text-xs">
+<div>• target 10-15 features/day safely</div>
+<div>• keep PR checks under 10 minutes</div>
+<div>• train reviewers for outcome validation</div>
+<div>• use humans for exceptions and strategic judgment</div>
+</div>
+</div>
+</div>
+
+<div class="mt-6 p-4 bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-xl border border-green-500/30 text-center">
+<div class="text-lg font-semibold text-green-300">Autonomous delivery is not a shortcut around maturity. It is the compounding result of maturity.</div>
+</div>
+
+---
+
+# 📚 References
+
+<div class="grid grid-cols-2 gap-4 mt-6 text-sm">
+<div class="p-4 bg-gradient-to-br from-cyan-900/30 to-blue-900/30 rounded-lg border border-cyan-500/30">
+<div class="font-semibold mb-2">AgentRC</div>
+<a href="https://github.com/microsoft/agentrc" class="text-cyan-400 opacity-80 hover:opacity-100 break-all">github.com/microsoft/agentrc</a>
+<div class="text-gray-400 mt-2 text-xs">Measure, generate, and maintain repository AI readiness</div>
+</div>
+<div class="p-4 bg-gradient-to-br from-blue-900/30 to-indigo-900/30 rounded-lg border border-blue-500/30">
+<div class="font-semibold mb-2">AgentRC Concepts</div>
+<a href="https://github.com/microsoft/agentrc/blob/main/docs/concepts.md" class="text-blue-400 opacity-80 hover:opacity-100 break-all">github.com/microsoft/agentrc/.../docs/concepts.md</a>
+<div class="text-gray-400 mt-2 text-xs">Level 1-5 maturity model and readiness pillars</div>
+</div>
+<div class="p-4 bg-gradient-to-br from-indigo-900/30 to-purple-900/30 rounded-lg border border-indigo-500/30">
+<div class="font-semibold mb-2">GitHub Actions</div>
+<a href="https://docs.github.com/en/actions" class="text-indigo-400 opacity-80 hover:opacity-100 break-all">docs.github.com/en/actions</a>
+<div class="text-gray-400 mt-2 text-xs">Workflow automation, caching, and CI orchestration</div>
+</div>
+<div class="p-4 bg-gradient-to-br from-purple-900/30 to-pink-900/30 rounded-lg border border-purple-500/30">
+<div class="font-semibold mb-2">Nx</div>
+<a href="https://nx.dev/" class="text-purple-400 opacity-80 hover:opacity-100 break-all">nx.dev</a>
+<div class="text-gray-400 mt-2 text-xs">Monorepo boundaries, affected analysis, and caching</div>
+</div>
+<div class="p-4 bg-gradient-to-br from-pink-900/30 to-rose-900/30 rounded-lg border border-pink-500/30 col-span-2">
+<div class="font-semibold mb-2">SLSA</div>
+<a href="https://slsa.dev/" class="text-pink-400 opacity-80 hover:opacity-100 break-all">slsa.dev</a>
+<div class="text-gray-400 mt-2 text-xs">Supply chain attestation and trust evidence patterns for regulated delivery</div>
+</div>
+</div>
+
+---
+class: text-center
+---
+
+<div class="h-full flex flex-col items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-cyan-900/20 via-blue-900/10 to-indigo-900/20"></div>
+<div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-indigo-500/20 rounded-full blur-3xl"></div>
+<div class="relative z-10">
+<div class="absolute inset-0 blur-2xl opacity-50"><img src="./sdp-logo.png" class="w-48" alt="" /></div>
+<img src="./sdp-logo.png" class="w-48 relative" alt="SDP Logo" />
+</div>
+<h1 class="!text-5xl !font-bold !mt-6 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent relative z-10">Thank You!</h1>
+<div class="mt-4 relative z-10">
+<span class="px-6 py-2 bg-gradient-to-r from-cyan-600/80 to-blue-600/80 rounded-full text-white text-lg font-medium shadow-lg shadow-cyan-500/25">Agentic SDLC: Level 5 Infrastructure for AI Velocity</span>
+</div>
+<div class="mt-8 grid grid-cols-3 gap-4 text-sm max-w-3xl mx-auto relative z-10">
+<div class="p-3 bg-gradient-to-br from-cyan-900/30 to-cyan-800/20 rounded-lg border border-cyan-500/30">
+<div class="text-cyan-400 font-bold text-lg">Levels 1-5</div>
+<div class="opacity-80 text-xs">A maturity model for automation, speed, and safety</div>
+</div>
+<div class="p-3 bg-gradient-to-br from-blue-900/30 to-blue-800/20 rounded-lg border border-blue-500/30">
+<div class="text-blue-400 font-bold text-lg">&lt;10 min</div>
+<div class="opacity-80 text-xs">PR checks keep agents productive and trust current</div>
+</div>
+<div class="p-3 bg-gradient-to-br from-indigo-900/30 to-indigo-800/20 rounded-lg border border-indigo-500/30">
+<div class="text-indigo-400 font-bold text-lg">10-15/day</div>
+<div class="opacity-80 text-xs">The throughput target when the system is truly ready</div>
+</div>
+</div>
+<div class="mt-6 text-sm opacity-60 relative z-10">Questions? Let's discuss the path from standardized engineering to autonomous delivery.</div>
+<div class="mt-4 w-32 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent rounded-full relative z-10"></div>
 </div>

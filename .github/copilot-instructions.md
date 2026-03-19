@@ -116,6 +116,8 @@ When creating Slidev presentations, follow these principles:
 - **Extract content from source README** — Preserve persona quotes, metrics, and exercise objectives
 - **Visual hierarchy** — Use emoji vocabulary consistently (🎯, ⏰, 📊, etc.)
 - **Beautiful, polished design** — Dark cockpit-style with Tailwind CSS, never use Mermaid diagrams
+- **Balanced HTML for Slidev** — When a slide uses raw HTML, keep wrapper tags strictly balanced. Prefer one obvious outer container for section-opener slides, and verify every opened `<div>` is closed before the `---` slide separator.
+- **Ending slide quality** — Decks should include a polished references slide before the final slide and a designed thank-you slide, not plain closing text.
 
 ### Slide Frontmatter Requirements
 

@@ -24,6 +24,10 @@ Use the **Slide Generator** agent to create slides:
 - ✅ Updates the slides index
 - ✅ Reports completion with slide count and path
 
+For tech talks, the source `tech-talks/{topic}/README.md` stays the reader-first deep dive. The slide generator adapts it into a presentation deck and should not require visible slide-planning sections inside the README.
+
+For fast iteration on a single tech talk, edit `tech-talks/{topic}/deck.recipe.yml` and then rerun the slide generator for that one topic. The recipe is the per-talk slide adaptation artifact; the README remains the source of content.
+
 ---
 
 ## 👀 Viewing Slides
@@ -102,6 +106,13 @@ npx slidev workshop/03-custom-prompts.md
 ```
 1. Edit the module README
 2. @slide-generator workshop/module-name
+3. Preview and commit both files together
+```
+
+**Update one tech-talk deck without redesigning the README:**
+```
+1. Edit tech-talks/topic-name/deck.recipe.yml
+2. @slide-generator tech-talks/topic-name
 3. Preview and commit both files together
 ```
 

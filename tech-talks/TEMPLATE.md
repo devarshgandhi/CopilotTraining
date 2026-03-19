@@ -36,56 +36,34 @@ Use this rubric during content creation. If any category is 🔴 or 🟡, revise
 
 ---
 
-## 📽️ Slide Generation Mapping
+## Reader-First README Contract
 
-This template is structured to generate Slidev slides automatically. Understanding the mapping helps you write slide-friendly content.
+This template produces the **canonical, human-readable tech talk**. Keep visible content focused on practitioners reading the README. Slides are generated later as a separate artifact.
 
-### Slide Sequence (Generated Automatically)
+### What belongs in the README
 
-1. **Title/Logo Slide** ← Generated from H1 title + subtitle
-2. **Question/Objective Slide** ← "The Question This Talk Answers" section
-3. **Table of Contents Slide** ← Auto-generated from major sections (marked below with 🎬)
-4. **Problem Slide** ← "The Problem" section
-5. **Solution Overview** ← "The Solution" section
-6. **Key Artifacts** ← "Key Artifacts" section (navigation/inventory)
-7. **🧠 The Shift (Preview)** ← Core Insight one-liner only. Plants the thesis before evidence.
-8. **When to Use Decision Tree** ← "When to Use This Pattern" section
-9. **[Major Section 1] Divider** ← First 🎬 marked section (for TOC jumping)
-10. **[Major Section 1 Content]** ← 2-4 slides from deep-dive content
-11. **[Major Section 2] Divider** ← Second 🎬 marked section
-12. **[Major Section 2 Content]** ← 2-4 slides from deep-dive content
-13. **Use Cases** ← "Real-World Use Cases" section (1-2 slides)
-14. **🧠 Mental Model Shift (Full)** ← Full Move-Toward/Away/Against grid. Reinforces the thesis with evidence.
-15. **Actionable Outcomes** ← "What You Can Do Today" checklist
-16. **Related Patterns** ← "Related Patterns" section
-17. **📖 References** ← "� References" section (REQUIRED — always 2nd to last)
-18. **Thank You** ← "🎉 Thank You" section (REQUIRED — always last); uses logo + gradient heading + 3 action cards pattern
+- The question this talk answers
+- The opportunity, mechanics, artifacts, decision criteria, and references
+- 3-6 major deep-dive sections with concrete examples
+- A clear mental model with a standalone core insight
 
-### Mental Model: Thesis → Evidence → Reinforcement
+### What does not belong in the README
 
-The mental model appears **twice** in every presentation:
+- Slide sequence tables
+- Speaker notes or presentation choreography
+- Visible "this becomes a slide" explanations
+- Any section whose primary audience is a generator rather than a human reader
 
-| Position | Slide | Content | Purpose |
-|----------|-------|---------|---------|
-| Early (#7) | **🧠 The Shift** | Core Insight one-liner + simple from/to visual | Plant the lens the audience watches through |
-| Late (#14) | **🧠 Mental Model Shift** | Full ✅ Move Toward / ⚠️ Away From / 🛑 Against grid | Reinforce with authority after seeing the evidence |
+### Invisible structure hints
 
-This mirrors classic rhetoric: state your thesis early, prove it in the body, then restate it with weight.
-
-### Major Sections (TOC Entries)
-
-Mark major sections that should appear in the TOC with 🎬 marker in a comment:
+If helpful, mark major sections with a comment before the H2 heading:
 
 ```markdown
 <!-- 🎬 MAJOR SECTION: [Short Name for TOC Card] -->
 ## [Full Section Heading]
 ```
 
-**Guidelines:**
-- Use 3-6 major sections (fits 2×2 or 2×3 grid in TOC)
-- Each major section = 2-5 content slides
-- Major sections should be "deep dive" technical content, not front matter
-- Examples: "Core Architecture", "Implementation Patterns", "Advanced Features"
+These comments stay invisible to readers while giving downstream tooling lightweight structural hints.
 
 ---
 
@@ -215,7 +193,7 @@ tech-talks/
 
 > **The Core Insight:** [One-liner capturing the new mental model — what becomes natural with this approach]
 
-*This Core Insight line is used twice in slides: once as an early preview ("The Shift" slide) to plant the thesis, and again here as the anchor for the full reinforcement slide near the end. Write it to work standalone as a compelling one-liner.*
+*Write this as a compelling standalone thesis for the README. It should make sense even if no slides are ever generated.*
 
 ### Move Toward (Embrace These Patterns)
 
@@ -286,7 +264,7 @@ Q: [Top-level question about use case fit]
 <!-- 🎬 MAJOR SECTION: [Short Name for TOC] -->
 ## [Major Section 1: Deep Dive Topic]
 
-[This section provides technical depth on a specific aspect of the feature. Structure it with clear subheadings, code examples, and explanations. This will become 2-4 slides.]
+[This section provides technical depth on a specific aspect of the feature. Use clear subheadings, concrete examples, and explanations that work well in a long-form technical write-up.]
 
 ### [Subsection 1.1]
 
@@ -330,7 +308,7 @@ Q: [Top-level question about use case fit]
 <!-- 🎬 MAJOR SECTION: [Short Name for TOC] -->
 ## [Major Section 3: Deep Dive Topic]
 
-[Third major section if needed. Generally aim for 3-5 major sections for good TOC balance.]
+[Third major section if needed. Generally aim for 3-5 major sections for a balanced deep dive.]
 
 ---
 
@@ -373,108 +351,9 @@ Q: [Top-level question about use case fit]
 
 ---
 
-## 📎 References
-
-> **Note for authors:** This section becomes the **second-to-last slide** (References). List the most important official docs only — 4 per column maximum. Always include a live URL. The slide generator renders these as clickable cards with two columns: left for core docs (cyan), right for guides/announcements (blue).
-
-### Core Documentation
-
-- 📖 **[Doc Title 1](https://docs.github.com/en/copilot/...)** — [One-line description]
-- 📖 **[Doc Title 2](https://docs.github.com/en/copilot/...)** — [One-line description]
-- 📖 **[Doc Title 3](https://docs.github.com/en/copilot/...)** — [One-line description]
-- 🔧 **[Command/API Reference](https://docs.github.com/en/copilot/...)** — [One-line description]
-
-### Guides & Announcements
-
-- 🎓 **[Best Practices Guide](https://docs.github.com/en/copilot/...)** — [One-line description]
-- 🎓 **[How-To: Key Workflow](https://docs.github.com/en/copilot/...)** — [One-line description]
-- 📋 **[GitHub Blog: Feature Announcement](https://github.blog/changelog/...)** — [One-line description]
-- 🚀 **[Advanced Feature Docs](https://docs.github.com/en/copilot/...)** — [One-line description]
-
----
-
-## 🎉 Thank You
-
-> **Note for authors:** This section becomes the **last slide** (Thank You). The slide generator uses the pattern from `slides/tech-talks/agent-teams.md` — logo with blur double, gradient heading, pill subtitle with the talk title, three action cards with the most important takeaways, and a fading rule. Fill in the three action cards with the key commands or callouts from this talk.
-
-**Subtitle:** [Full talk title — same as H1 subtitle]
-
-**Action Card 1 (cyan):**
-- Label: `[install command or first action]`
-- Subtext: [e.g., "Get started in 2 minutes"]
-
-**Action Card 2 (blue):**
-- Label: `[key shortcut or command]`
-- Subtext: [e.g., "Activate the key feature"]
-
-**Action Card 3 (indigo):**
-- Label: `[key command or concept]`
-- Subtext: [e.g., "Primary value proposition]
-
-**Closing line:** Questions? Let's discuss [topic].
-```
-
-**What You Get:** [Concrete outcome]
-
----
-
-### Use Case 3: [Descriptive Title]
-
-[Follow same pattern. Aim for 3-5 use cases total.]
-
----
-
-## ✅ What You Can Do Today
-
-**Immediate Actions (15 minutes):**
-- [ ] [First quick action - e.g., "Install the CLI: \`npm install -g @github/copilot\`"]
-- [ ] [Second quick action - e.g., "Try interactive mode: \`copilot\` and ask about your project"]
-- [ ] [Third quick action - e.g., "Review the [cheat sheet](link) for common commands"]
-
-**Short-Term Implementation (1 hour):**
-- [ ] [Action requiring more setup - e.g., "Set up Plan Mode in your primary project"]
-- [ ] [Integration action - e.g., "Add to your CI/CD pipeline following [this guide](link)"]
-- [ ] [Practice action - e.g., "Use [feature] for your next [specific task]"]
-
-**Advanced Exploration (2-4 hours):**
-- [ ] [Complex implementation - e.g., "Build a custom agent using [this reference](link)"]
-- [ ] [Optimization - e.g., "Configure advanced settings for [specific workflow]"]
-- [ ] [Extension - e.g., "Integrate with [related system] using [pattern]"]
-
-**Next Steps After Completion:**
-1. ✅ Complete the immediate actions above
-2. 📖 Review related talk: [Link to complementary tech-talk]
-3. 💬 Share your experience: [Link to discussion or feedback channel]
-4. 🚀 Explore advanced pattern: [Link to next-level content]
-
----
-
-## Related Patterns
-
-### Complementary Features
-
-- **[Related Tech-Talk 1](../folder/)** — [When to use this alongside current feature]
-- **[Related Tech-Talk 2](../folder/)** — [When this solves a different but adjacent problem]
-- **[Related Tech-Talk 3](../folder/)** — [When you need both features together]
-
-### Decision Flow
-
-**If this talk doesn't fit your needs:**
-
-```
-Q: What's your actual goal?
-├─ [Goal A] → See: [Other Tech-Talk](link)
-├─ [Goal B] → See: [Other Tech-Talk](link)
-└─ [Goal C] → Combine: [This talk] + [Other talk](link)
-```
-
-See [DECISION-GUIDE.md](../DECISION-GUIDE.md) for complete navigation help.
-
----
-
 ## � References
 
-Numbered references cited inline throughout the content using `[^n]` footnote syntax. These appear as footnotes on slides and as a dedicated References slide.
+Numbered references cited inline throughout the content using `[^n]` footnote syntax. Collect them here so readers can trace the sources behind major claims, examples, and architecture details.
 
 ### Official Documentation
 
@@ -541,15 +420,12 @@ Before marking this talk as complete:
 - [ ] **References throughout**: 8-15 numbered `[^n]` references with inline citations
 - [ ] **Links are current**: All documentation and related talk links work
 - [ ] **Code examples run**: All code has been tested and works
-- [ ] **Slides will generate cleanly**: Content follows structure for slide-generator.agent
+### Structure-Friendly Writing Tips
 
-### Slide-Friendly Writing Tips
-
-- **Keep bullet points to 5 or fewer** per section (slides will split if more)
 - **Use comparison tables** instead of long paragraphs where possible
 - **Break long code examples** into separate subsections
-- **Mark major sections** with 🎬 comment so TOC generates correctly
-- **Front-load key points** in each section (becomes slide title/summary)
+- **Mark major sections** with 🎬 comments when it helps clarify the deep-dive structure
+- **Front-load key points** in each section so the main idea is obvious on first read
 - **Use concrete metrics** in outcomes ("3x faster" not "much faster")
 
 ### Voice and Tone

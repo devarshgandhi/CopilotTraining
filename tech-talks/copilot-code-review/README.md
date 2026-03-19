@@ -1,6 +1,6 @@
 ---
 status: active
-updated: 2026-02-17
+updated: 2026-03-19
 section: "Copilot Tools"
 references:
   - url: https://docs.github.com/en/copilot/concepts/agents/code-review
@@ -12,6 +12,9 @@ references:
   - url: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review
     label: "Use Copilot code review in PRs"
     verified: 2026-02-17
+  - url: https://copilot-code-review--clee1211.github.app/
+    label: "Copilot Code Review Time Savings Calculator"
+    verified: 2026-03-19
 ---
 
 # GitHub Copilot Code Review: Accelerating PR Velocity and Maximizing ROI
@@ -94,6 +97,7 @@ This hybrid approach delivers the best of both worlds: the deterministic accurac
 - 25-35% increase in PR acceptance rate on first submission
 - 90%+ reduction in security-related production incidents[^12]
 - 30-50% faster developer onboarding[^6]
+- Interactive time-savings calculator that turns PR analytics and customer assumptions into an executive-ready savings summary[^16]
 - Measurable cost savings: $150/hr developer time saved vs. $39/month license cost
 
 **Official Documentation:**
@@ -111,10 +115,11 @@ This hybrid approach delivers the best of both worlds: the deterministic accurac
 
 *These are shown inline with detailed explanation in the major sections below*
 
+- **Interactive CCR time-savings calculator** — Guided app experience for combining PR analytics and customer-specific review assumptions into a shareable executive summary[^16]
 - **`copilot-review.yml`** — Basic configuration for automatic code reviews with triggers and focus areas
 - **`compliance-rules.yml`** — Organization-wide custom compliance ruleset for regulatory enforcement
-- **`copilot-review-metrics.yml`** — GitHub Actions workflow for automated ROI tracking and metrics
-- **`roi-calculation.sql`** — SQL query for calculating comprehensive ROI metrics
+- **`copilot-review-metrics.yml`** — Optional GitHub Actions workflow for teams that want recurring internal ROI reporting beyond the calculator
+- **`roi-calculation.sql`** — Optional validation query for warehouse-backed reporting when the interactive calculator is not enough
 - **`pr-workflow-guide.md`** — Team workflow documentation for using Copilot reviews effectively
 
 ### Supporting Files
@@ -122,6 +127,9 @@ This hybrid approach delivers the best of both worlds: the deterministic accurac
 *Available in repository for download/reference*
 
 - **[`/examples/`](examples/)** — Complete working examples you can copy
+- **[`images/roi-path-shift.svg`](images/roi-path-shift.svg)** — Visual contrast between the old ROI-explanation path and the new calculator-led path
+- **[`images/calculator-workflow.svg`](images/calculator-workflow.svg)** — Visual summary of how the calculator turns PR inputs into savings outputs
+- **[`images/calculator-summary.svg`](images/calculator-summary.svg)** — Visual representation of the executive-summary output shape
 - All primary artifacts are available as copy-paste ready files in the examples directory
 
 **Guidance for Authors:**
@@ -478,51 +486,69 @@ This data demonstrates proactive security controls and reduces audit preparation
 <!-- 🎬 MAJOR SECTION: ROI Metrics -->
 ## Measuring ROI and Business Impact
 
-"Is this worth the investment?" is the question every engineering leader asks when evaluating new tools. Copilot Code Review provides concrete, measurable ROI through time savings, quality improvements, and risk reduction[^9]. We'll show you how to track these metrics, calculate cost-benefit ratios, and build the business case for expansion or optimization.
+"Is this worth the investment?" is the question every engineering leader asks when evaluating new tools. Copilot Code Review provides concrete, measurable ROI through time savings, quality improvements, and risk reduction[^9]. The key update is that the live calculator now carries the main ROI story directly, while YAML workflows and SQL queries are better treated as optional follow-on instrumentation.
 
-### Time Savings Calculation
+### Interactive Time-Savings Calculator Workflow
 
-The primary ROI driver is reduction in PR review cycle time—the hours between PR creation and merge[^5]. To calculate your savings:
+The live Copilot Code Review Time Savings Calculator turns this ROI discussion into a guided customer conversation instead of a spreadsheet exercise[^16]. The workflow is deliberately simple:
 
-**Baseline measurement (before Copilot):**
-```sql
-SELECT
-  AVG(TIMESTAMPDIFF(HOUR, created_at, merged_at)) as avg_pr_duration_hours,
-  COUNT(*) as total_prs
-FROM pull_requests
-WHERE created_at BETWEEN DATE_SUB(NOW(), INTERVAL 180 DAY)
-                     AND DATE_SUB(NOW(), INTERVAL 90 DAY)
-  AND status = 'merged';
-```
+1. **Input customer PR data** from an operational PR analytics source for a specific month or quarter.
+2. **Define model parameters** with the customer, especially baseline review minutes, estimated review minutes with Copilot Code Review, annual developer cost, and work hours per year.
+3. **Review generated results** for cycle-time improvement, adoption, hours saved, and cost savings.
+4. **Copy the executive summary** to reuse the analysis in stakeholder follow-up.
 
-**Current measurement (after Copilot):**
-```sql
-SELECT
-  AVG(TIMESTAMPDIFF(HOUR, created_at, merged_at)) as avg_pr_duration_hours,
-  COUNT(*) as total_prs
-FROM pull_requests
-WHERE created_at >= DATE_SUB(NOW(), INTERVAL 90 DAY)
-  AND status = 'merged';
-```
+![Illustrated workflow for the Copilot Code Review time-savings calculator](images/calculator-workflow.svg)
 
-**ROI formula:**
-```
-Hours saved per PR = Baseline avg - Current avg
-Total hours saved = Hours saved per PR × PRs per month
-Labor cost savings = Total hours saved × $150/hr (avg developer rate)
-Copilot cost = $39/month × Number of developers
-ROI ratio = Labor cost savings ÷ Copilot cost
-```
+The calculator separates two ideas that are often conflated in code review conversations:
 
-For a team of 10 developers submitting 100 PRs/month:
-- Baseline: 76 hours average PR duration (3.2 days)
-- With Copilot: 30 hours average (1.25 days, 60% reduction[^5])
-- Hours saved: 46 hours × 100 PRs = 4,600 hours/month
-- Labor cost savings: 4,600 hours × $150/hr = $690,000/month
-- Copilot cost: $39 × 10 = $390/month
-- **ROI ratio: 1,769x** (return $1,769 for every $1 spent)
+- **PR cycle time**: days a PR stays open
+- **Review effort**: minutes humans spend reviewing each PR
 
-This is the story you present to your CFO.
+That distinction matters. The app explicitly notes that the labor-savings model is based on review effort, not on PR open duration alone. This makes the savings claim more defensible when you present it to engineering leadership or finance.
+
+### What the Calculator Captures
+
+The app uses two input groups and one output narrative:
+
+- **Customer PR data**: month/year, PR cycle time with and without Copilot Code Review, and PR counts with and without Copilot Code Review
+- **Model parameters**: baseline review minutes, review minutes with Copilot Code Review, fully loaded annual developer cost, work hours per year, and monthly versus yearly view
+- **Executive summary**: a prewritten summary of cycle-time improvement, current adoption, total hours saved, and incremental upside
+
+In the live March 2026 example shown in the app, the calculator reports[^16]:
+
+- **19.0 days without CCR vs. 4.0 days with CCR**
+- **15.0 days faster**, a **78.9% improvement**
+- **32,196 total PRs** with **15.3% CCR adoption**
+- **1,229 current hours saved** for the observed month
+- **6,821 hours of incremental opportunity** if adoption expands to all PRs
+- **$88,594 current savings** and **$491,863 incremental upside** for that same monthly view
+
+Those numbers should not be treated as universal benchmarks. What the calculator does well is make the assumptions visible, editable, and easy to defend in a customer conversation.
+
+### What Changes When You Use the Calculator
+
+The calculator removes the need to make manual ROI math the centerpiece of the talk. Instead of walking an audience through formulas, SQL, and hand-built spreadsheets, you can show a short operating model:
+
+- real PR analytics go in,
+- customer-specific review assumptions go in,
+- cycle-time and labor-savings outputs come out,
+- and the app packages the result as an executive-ready summary.
+
+That means the YAML files in this talk should be framed narrowly:
+
+- **`copilot-review.yml`** configures review behavior,
+- **custom compliance YAML** encodes policy,
+- but neither file is the main mechanism for proving ROI.
+
+Likewise, the SQL and GitHub Actions artifacts are no longer the default answer for "how do we explain value?" They are optional when you need one of these advanced cases:
+
+- recurring internal reporting without opening the app,
+- validation against a warehouse or BI model,
+- or a persistent dashboard that tracks adoption trends month over month.
+
+![Visual contrast between the old ROI path and the calculator-led ROI path](images/roi-path-shift.svg)
+
+![Illustrated executive-summary output from the calculator](images/calculator-summary.svg)
 
 ### Quality Metrics
 
@@ -560,96 +586,32 @@ With Copilot onboarding: 3-4 weeks (50% faster[^6])
 Savings per new hire: 4 weeks × 40 hours × $100/hr = $16,000
 ```
 
-### Complete ROI Calculation Query
+### Translating Raw Metrics into an Executive Summary
 
-Here's a production-ready SQL query that calculates comprehensive ROI metrics:
+One of the most useful patterns from the calculator is not the math itself, but the output shape. Rather than leaving teams with disconnected metrics, it produces a short narrative that summarizes:
 
-```sql
--- Query to calculate Copilot Code Review ROI metrics
--- Assumes PR data is synced to analytics database
+- cycle-time improvement for PRs using Copilot Code Review,
+- current adoption rate,
+- current realized savings,
+- and the remaining upside if adoption expands.
 
-WITH baseline_metrics AS (
-  -- Period before Copilot Code Review (e.g., 90 days before implementation)
-  SELECT
-    COUNT(*) as total_prs,
-    AVG(TIMESTAMPDIFF(HOUR, created_at, merged_at)) as avg_pr_duration_hours,
-    AVG(commits_count) as avg_commits_per_pr,
-    AVG(review_comments_count) as avg_review_comments,
-    SUM(CASE WHEN reverted THEN 1 ELSE 0 END) / COUNT(*) as revert_rate
-  FROM pull_requests
-  WHERE created_at BETWEEN DATE_SUB(NOW(), INTERVAL 180 DAY)
-                       AND DATE_SUB(NOW(), INTERVAL 90 DAY)
-    AND status = 'merged'
-),
+That structure is worth copying even if you never use the app directly. It turns analytics into a message that revenue, engineering leadership, and platform teams can all reuse without rebuilding the story from scratch.
 
-copilot_metrics AS (
-  -- Period after Copilot Code Review implementation
-  SELECT
-    COUNT(*) as total_prs,
-    AVG(TIMESTAMPDIFF(HOUR, created_at, merged_at)) as avg_pr_duration_hours,
-    AVG(commits_count) as avg_commits_per_pr,
-    AVG(review_comments_count) as avg_review_comments,
-    SUM(CASE WHEN reverted THEN 1 ELSE 0 END) / COUNT(*) as revert_rate,
-    AVG(copilot_findings_total) as avg_copilot_findings,
-    AVG(copilot_findings_critical) as avg_critical_findings
-  FROM pull_requests
-  WHERE created_at >= DATE_SUB(NOW(), INTERVAL 90 DAY)
-    AND status = 'merged'
-),
+### Appendix: Optional Reporting Automation
 
-cost_analysis AS (
-  SELECT
-    -- Average developer hourly cost (adjust for your org)
-    150 as developer_hourly_rate,
+There is still a place for `roi-calculation.sql` and `copilot-review-metrics.yml`, but it is narrower than the rest of this talk originally implied.
 
-    -- Copilot Enterprise cost per seat per month
-    39 as copilot_monthly_cost,
+Use them when you need to operationalize the calculator's thinking at scale:
 
-    -- Number of active developers
-    (SELECT COUNT(DISTINCT author) FROM pull_requests
-     WHERE created_at >= DATE_SUB(NOW(), INTERVAL 90 DAY)) as active_developers
-)
+- **Monthly internal dashboards** for platform or engineering-ops teams
+- **Warehouse validation** when finance or analytics wants to reproduce the numbers independently
+- **Trend reporting** for adoption, revert rate, findings volume, or incident reduction over time
 
-SELECT
-  -- Time Savings
-  b.avg_pr_duration_hours - c.avg_pr_duration_hours as hours_saved_per_pr,
-  (b.avg_pr_duration_hours - c.avg_pr_duration_hours) * c.total_prs as total_hours_saved,
+In other words: the app is the best path for a live value conversation, while SQL and workflow automation are the best path for repeatable internal reporting[^9].
 
-  -- Quality Improvements
-  (b.revert_rate - c.revert_rate) * 100 as revert_rate_improvement_pct,
-  b.avg_commits_per_pr - c.avg_commits_per_pr as commits_reduced_per_pr,
+### Optional Automated Tracking with GitHub Actions
 
-  -- ROI Calculation
-  ((b.avg_pr_duration_hours - c.avg_pr_duration_hours) * c.total_prs * ca.developer_hourly_rate)
-    as labor_cost_savings,
-  (ca.copilot_monthly_cost * ca.active_developers * 3) as copilot_cost_3_months,
-
-  ((b.avg_pr_duration_hours - c.avg_pr_duration_hours) * c.total_prs * ca.developer_hourly_rate)
-    / (ca.copilot_monthly_cost * ca.active_developers * 3) as roi_ratio,
-
-  -- Engagement Metrics
-  c.avg_copilot_findings as avg_findings_per_pr,
-  c.avg_critical_findings as avg_critical_per_pr,
-
-  -- Recommendations
-  CASE
-    WHEN ((b.avg_pr_duration_hours - c.avg_pr_duration_hours) * c.total_prs * ca.developer_hourly_rate)
-         / (ca.copilot_monthly_cost * ca.active_developers * 3) > 3
-    THEN 'Strong ROI - Expand usage'
-    WHEN ((b.avg_pr_duration_hours - c.avg_pr_duration_hours) * c.total_prs * ca.developer_hourly_rate)
-         / (ca.copilot_monthly_cost * ca.active_developers * 3) > 1
-    THEN 'Positive ROI - Continue monitoring'
-    ELSE 'Review configuration and adoption'
-  END as recommendation
-
-FROM baseline_metrics b, copilot_metrics c, cost_analysis ca;
-```
-
-Run this query monthly to track ROI trends and justify continued investment or expansion to additional teams[^9].
-
-### Automated Tracking with GitHub Actions
-
-Set up automated metrics collection using a GitHub Actions workflow that runs on every PR:
+If you want a persistent internal reporting loop, set up automated metrics collection with a GitHub Actions workflow that runs on every PR:
 
 ```yaml
 name: Copilot Review Metrics
@@ -706,21 +668,7 @@ jobs:
 
 See [copilot-review-metrics.yml](examples/copilot-review-metrics.yml) for the complete workflow with analytics export.
 
-### Building Executive Dashboards
-
-Create visual dashboards showing:
-- **PR cycle time trend** (before/after comparison)
-- **Cost savings cumulative** (running total of labor hours saved)
-- **Quality metrics** (revert rate, incident rate, vulnerability rate)
-- **Adoption metrics** (PRs reviewed, findings per category, resolution time)
-
-Use tools like Grafana, Tableau, or custom React dashboards pulling from the GitHub API[^14]. Update quarterly for executive reviews and annual planning.
-
-**Expected outcomes to highlight in your presentation:**
-- 40-60% reduction in PR review cycle time[^5]
-- $15,000+ monthly savings for 10-person team (time saved vs. cost)
-- 90%+ reduction in critical security issues reaching production[^12]
-- ROI ratio of 5-10x within first quarter (conservative estimate)
+For dashboards, focus on four recurring views only: PR cycle time trend, cumulative savings, quality outcomes, and adoption rate. Use your existing BI stack if you need this layer[^14].
 
 ---
 
@@ -1066,6 +1014,7 @@ rules:
 **Advanced Exploration (Half day):**
 - [ ] Build custom compliance ruleset for your organization's specific requirements (PCI, HIPAA, SOC2) using compliance-rules.yml as template[^4]
 - [ ] Implement GitHub Actions workflow for automated ROI tracking and metrics dashboarding[^14]
+- [ ] Run an ROI workshop using the time-savings calculator with real PR analytics and customer-supplied review-time assumptions[^16]
 - [ ] Deploy organization-wide configuration with standardized rules across all repositories
 - [ ] Calculate and present ROI metrics to leadership using provided roi-calculation.sql query template[^9]
 
@@ -1145,6 +1094,10 @@ See [DECISION-GUIDE.md](../DECISION-GUIDE.md) for complete navigation help.
 ### Thought Leadership
 
 [^15]: **Martin Fowler: Continuous Code Review** — https://martinfowler.com/articles/continuous-code-review.html — Theoretical foundation for automated continuous feedback, treating review as part of development process rather than gate
+
+### Interactive Tools
+
+[^16]: **GitHub Copilot Code Review Time Savings Calculator** — https://copilot-code-review--clee1211.github.app/ — Interactive calculator that combines PR analytics, review-time assumptions, and developer cost inputs into cycle-time, labor-savings, cost-savings, and executive-summary outputs
 
 ---
 

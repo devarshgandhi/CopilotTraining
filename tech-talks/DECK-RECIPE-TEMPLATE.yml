@@ -1,0 +1,49 @@
+# deck.recipe.yml — per-talk slide-generation recipe
+#
+# Copy this file into a talk folder as `deck.recipe.yml` and adjust only the
+# fields you need. The README stays the source of content; this recipe controls
+# how that content is adapted into slides for this one talk.
+
+version: 1
+
+# Path to the source README that drives the deck
+source: tech-talks/example-topic/README.md
+
+deck:
+  # Title slide text
+  title: Example Talk Title
+  subtitle: Example Subtitle
+  tagline: Example one-line promise for the deck
+
+  # How the opening slides should frame the talk
+  intro:
+    mode: core-question # core-question | opportunity
+
+  # TOC behavior
+  toc:
+    enabled: true
+
+  # Ordered major sections from README `<!-- 🎬 MAJOR SECTION: ... -->` markers
+  sectionOrder:
+    - Section One
+    - Section Two
+    - Section Three
+
+  # Optional per-section emphasis hints for the slide generator
+  sectionModes:
+    Section One: deep-dive # deep-dive | balanced | compact
+    Section Two: balanced
+    Section Three: compact
+
+  # Optional named moments to feature prominently
+  highlightMoments:
+    - Single surprising capability or metric
+
+  # Closing / supporting slides
+  references:
+    enabled: true
+    mode: standard # standard | compact
+
+  thankYou:
+    enabled: true
+    variant: standard # standard | discussion

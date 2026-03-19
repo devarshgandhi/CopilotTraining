@@ -41,42 +41,6 @@ references:
 
 ---
 
-## 📽️ Slide Generation Mapping
-
-### Slide Sequence (Generated Automatically)
-
-1. **Title/Logo Slide** ← H1 title + subtitle
-2. **Question/Objective Slide** ← "The Question This Talk Answers"
-3. **Table of Contents Slide** ← Auto-generated from 🎬 sections
-4. **Problem Slide** ← "The Problem"
-5. **Solution Overview** ← "The Solution"
-6. **Key Artifacts** ← N/A (no workflows/configs—web interface)
-7. **Mental Model Shift** ← Move-Toward/Away/Against
-8. **When to Use Decision Tree** ← "When to Use This Pattern"
-9. **Web-Specific Capabilities** ← 🎬 Section 1 (2-3 slides)
-10. **Repository Customization Portability** ← 🎬 Section 2 (2-3 slides)
-11. **Mobile Workflows** ← 🎬 Section 3 (2-3 slides)
-12. **GitHub Spark Prototyping** ← 🎬 Section 4 (2-3 slides)
-13. **Coding Agent Delegation** ← 🎬 Section 5 (2-3 slides)
-14. **Multi-Model Selection** ← 🎬 Section 6 (2-3 slides)
-15. **Use Cases** ← Real-World Use Cases (1-2 slides)
-16. **Actionable Outcomes** ← What You Can Do Today
-17. **Related Patterns** ← Related Patterns
-18. **Official Documentation** ← 📚 section
-19. **End Slide** ← Auto-generated
-
-### Major Sections (TOC Entries)
-
-```markdown
-<!-- 🎬 MAJOR SECTION: Web-Specific Capabilities -->
-<!-- 🎬 MAJOR SECTION: Repository Customization Portability -->
-<!-- 🎬 MAJOR SECTION: Mobile Workflows -->
-<!-- 🎬 MAJOR SECTION: GitHub Spark Prototyping -->
-<!-- 🎬 MAJOR SECTION: Coding Agent Delegation -->
-<!-- 🎬 MAJOR SECTION: Multi-Model Selection -->
-```
-
----
 
 ## The Problem
 

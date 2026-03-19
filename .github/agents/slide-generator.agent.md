@@ -20,10 +20,13 @@ Transform module README files into beautiful, concise Slidev presentations for C
 2. **Not Archived** — Read the source README frontmatter. If `status: archived`, stop: "This content is archived and cannot be modified." Also refuse to modify an existing slide file with `status: archived`.
 3. **Read Template** — Read `slides/TEMPLATE.md` for all visual patterns before writing a single slide.
 4. **Read Sections** — Read `slides/SECTIONS.md` for the authoritative section→icon→container mapping before updating the index.
+5. **Read Deck Recipe for Tech Talks** — If the source is under `tech-talks/`, look for `deck.recipe.yml` in the same folder as the README. If it exists, use it as the per-talk adaptation recipe. If it does not exist, synthesize an initial recipe from the README and save it before generating slides.
 
 ### 1. Parse the README
 
 **Be selective — target 15-20 slides, not exhaustive coverage.**
+
+Tech-talk READMEs are reader-first documents, not slide outlines. Do **not** expect a `## 📽️ Slide Generation Mapping` section in new talks. If an older README still has one, treat it as legacy material and derive the deck from the semantic content instead. For tech talks, prefer `deck.recipe.yml` as the per-talk editorial recipe for how the README should become slides.
 
 Extract:
 
@@ -40,8 +43,9 @@ Extract:
 
 For tech talks, also extract:
 
-- `<!-- 🎬 MAJOR SECTION: [Name] -->` markers (become TOC entries)
+- `<!-- 🎬 MAJOR SECTION: [Name] -->` markers (structural hints for TOC entries and dividers)
 - Core Insight one-liner from Mental Model Shift
+- `deck.recipe.yml` settings when present: title/subtitle/tagline, intro mode, section order, section emphasis, highlight moments, references mode, and thank-you variant
 
 ### 1a. Editorial Curation (tech talks and exec talks only)
 
@@ -70,12 +74,33 @@ For each use case, feature, or major section, score it on three axes:
 3. Which content is well-known or expected? → Compress or skip
 4. What's the single "I didn't know it could do that" moment in this README? → Make it the centerpiece
 
+### 1b. Deck Recipe (tech talks)
+
+For `tech-talks/{topic}/README.md`, use `tech-talks/{topic}/deck.recipe.yml` as the first-class per-talk adaptation artifact.
+
+**If the recipe exists:**
+
+- Follow it for title/subtitle/tagline choices
+- Respect `deck.intro.mode` when choosing the opening framing slide
+- Use `deck.sectionOrder` to order section dividers and content emphasis
+- Use `deck.sectionModes` and `deck.highlightMoments` to decide which sections get deeper treatment
+- Respect `deck.references` and `deck.thankYou` settings for the closing slides
+
+**If the recipe is missing:**
+
+- Synthesize an initial `deck.recipe.yml` before generating slides
+- Use `tech-talks/DECK-RECIPE-TEMPLATE.yml` as the schema reference
+- Derive the initial recipe from the README's `🎬` markers, core question, core insight, strongest use cases, and best metrics
+- Save the recipe next to the README so future single-talk regenerations can be faster and more predictable
+
+Do **not** overwrite an existing recipe unless the user explicitly asks to refresh or redesign it.
+
 ### 2. Generate Slide Structure
 
 Standard sequence (12-20 slides):
 
 1. **Title** — beautified title slide from TEMPLATE.md (category color scheme)
-2. **Context** — The Opportunity or "Why We're Here"
+2. **Context** — The Opportunity or the core question, depending on the recipe
 3. **TOC** — clickable section navigation (see TOC rules below)
 4. **Objectives** — top 3-5 goals
 5. **Personas** — 1-3 persona cards
@@ -155,6 +180,8 @@ Run `node slides/scripts/sync-index-dates.mjs` after creating or updating any sl
 
 **Exclude:** step-by-step exercise instructions, complete code listings, prerequisites, official doc links (those belong in the README).
 
+For tech talks, also include the per-talk recipe decisions: the deck should reflect `deck.recipe.yml`, not just whatever ordering seems convenient in the moment.
+
 ## Quality Checklist
 
 ### Content
@@ -183,6 +210,7 @@ Run `node slides/scripts/sync-index-dates.mjs` after creating or updating any sl
 - [ ] SDP logo included with glow effect (`./sdp-logo.png`)
 - [ ] `module` field in frontmatter with correct path
 - [ ] `status: active` and `updated: <today>` in frontmatter
+- [ ] `deck.recipe.yml` was used for tech talks, or created if missing
 - [ ] `index-custom.html` updated with correct card entry
 - [ ] `sync-index-dates.mjs` run after changes
 

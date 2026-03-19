@@ -1,20 +1,26 @@
 ---
 status: active
-updated: 2026-02-01
+updated: 2026-03-19
 section: "Agentic SDLC"
 references:
+  - url: https://github.com/microsoft/agentrc
+    label: "Microsoft AgentRC repository"
+    verified: 2026-03-19
+  - url: https://github.com/microsoft/agentrc/blob/main/docs/concepts.md
+    label: "AgentRC concepts and maturity model"
+    verified: 2026-03-19
   - url: https://docs.github.com/en/actions
     label: "GitHub Actions documentation"
-    verified: 2026-02-01
+    verified: 2026-03-19
   - url: https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows
     label: "GitHub Actions caching guide"
-    verified: 2026-02-01
+    verified: 2026-03-19
   - url: https://nx.dev/
     label: "Nx monorepo tools"
-    verified: 2026-02-01
+    verified: 2026-03-19
   - url: https://slsa.dev/
     label: "SLSA supply chain security framework"
-    verified: 2026-02-01
+    verified: 2026-03-19
 ---
 
 # Agentic SDLC: Infrastructure for AI Velocity
@@ -38,38 +44,6 @@ references:
 
 ---
 
-## 📽️ Slide Generation Mapping
-
-### Slide Sequence (Generated Automatically)
-
-1. **Title/Logo Slide** ← H1 title + subtitle
-2. **Question/Objective Slide** ← "The Question This Talk Answers"
-3. **Table of Contents Slide** ← Auto-generated from 🎬 sections
-4. **Problem Slide** ← "The Problem"
-5. **Solution Overview** ← "The Solution"
-6. **Key Artifacts** ← "Key Artifacts" inventory
-7. **Mental Model Shift** ← Move-Toward/Away/Against
-8. **When to Use Decision Tree** ← "When to Use This Pattern"
-9. **Repository Topology** ← 🎬 Section 1 (5-6 slides)
-10. **PR Workflows** ← 🎬 Section 2 (5-6 slides)
-11. **Trust Manufacturing** ← 🎬 Section 3 (6-7 slides)
-12. **Implementation Roadmap** ← 🎬 Section 4 (2-3 slides)
-13. **Use Cases** ← Real-World Use Cases (2 slides)
-14. **Actionable Outcomes** ← What You Can Do Today
-15. **Related Patterns** ← Related Patterns
-16. **Official Documentation** ← 📚 section
-17. **End Slide** ← Auto-generated
-
-### Major Sections (TOC Entries)
-
-```markdown
-<!-- 🎬 MAJOR SECTION: Repository Topology -->
-<!-- 🎬 MAJOR SECTION: PR Workflows -->
-<!-- 🎬 MAJOR SECTION: Trust Manufacturing -->
-<!-- 🎬 MAJOR SECTION: Implementation Roadmap -->
-```
-
----
 
 ## The Problem
 
@@ -93,28 +67,40 @@ Your organization just adopted GitHub Copilot agents. Within weeks, agents are g
 
 Then reality hits. The repository structure forces agents to coordinate changes across 3-5 repos for a single feature. PRs pile up because reviewers can't keep pace — line-by-line review of 15,000 lines/day is impossible. CI queues grow to 60-90 minutes because the pipeline was designed for 3 builds/day, not 30. Test flakiness that was "annoying but tolerable" at 5% failure rate becomes catastrophic when it blocks 15 PRs/day. Security and compliance checks that took 4 hours with manual sign-offs can't scale to agent velocity.
 
-The infrastructure designed for Gen-3 SDLC (humans assisted by AI autocomplete) collapses under Gen-4 pressure (AI agents as primary producers). Your agents can write code faster than your infrastructure can prove it's safe to ship.
+The infrastructure designed for human-paced or partially assisted delivery collapses under **Level 5 / Autonomous** pressure. In AgentRC terms, what many teams casually call a "Gen-4 SDLC" maps more closely to **Level 5: Autonomous** — the point where agents become primary producers and the surrounding system must support end-to-end automation with minimal oversight.
 
 This talk provides the architectural blueprint to rewire your SDLC for AI velocity: repository topology that minimizes coordination, PR workflows that scale to feature-scale payloads, and CI pipelines that manufacture trust at 10-15 features/day.
 
 ---
 
-## The Solution: Gen-4 SDLC Architecture
+## The Solution: Level 5 SDLC Architecture
 
 ### What It Does
 
-The Gen-4 SDLC architecture transforms three critical infrastructure layers — repositories, pull request workflows, and continuous integration — from human-optimized collaboration tools into agent-native delivery infrastructure capable of sustainable 10-15 features/day throughput.
+The **Level 5 / Autonomous SDLC** architecture transforms three critical infrastructure layers — repositories, pull request workflows, and continuous integration — from human-optimized collaboration tools into agent-native delivery infrastructure capable of sustainable 10-15 features/day throughput.
 
 ### Key Capabilities
 
 - **Agent-Native Repository Topology**: Monorepo with enforced module boundaries, hermetic builds, and affected analysis — agents navigate via grep, not GitHub search
 - **Outcome-Focused PR Workflows**: Intent-based specifications, evidence-bundle reviews, and policy-gated merges — humans validate outcomes, not implementation details
 - **CI as Trust Factory**: Fast feedback (<10 min), context-aware validation with agents, zero-flake tolerance, and attestation generation — manufacturing trust at agent velocity
-- **100x Throughput Scaling**: From 150 features/year (Gen-3) to 3,600 features/year (Gen-4) with maintained or improved quality and compliance
+- **100x Throughput Scaling**: From Level 3-style standardized delivery to Level 5 autonomous delivery with maintained or improved quality and compliance
 
 ### Architecture Overview
 
-The Gen-4 transformation operates at three layers that stack and reinforce each other:
+AgentRC's maturity model is a helpful lens here because each level unlocks a different ceiling for **automation, speed, and safety**:
+
+| AgentRC Level | Name | What It Enables for Automation | What It Enables for Speed | What It Enables for Safety |
+|---------------|------|--------------------------------|----------------------------|----------------------------|
+| **1** | **Functional** | Basic scripts can run reliably | Local automation stops failing immediately | Baseline build/test signals exist, but weak guardrails |
+| **2** | **Documented** | Agents can follow documented conventions instead of guessing | Routine tasks accelerate because context is explicit | Fewer unforced errors, but safety is still mostly human review |
+| **3** | **Standardized** | CI/CD, security policies, CODEOWNERS, and observability make automation repeatable | Teams stop losing time to inconsistent workflows and missing checks | Stronger policy enforcement and auditable review paths |
+| **4** | **Optimized** | MCP servers, custom agents, and AI skills let agents chain multi-step work with tools | Tool-aware workflows reduce handoffs and shrink cycle time | More context-aware validation and narrower operational risk |
+| **5** | **Autonomous** | End-to-end feature delivery with minimal oversight becomes realistic | Machine-paced delivery is possible because the system absorbs the volume | Trust is manufactured continuously through policy, evidence, and fast rollback paths |
+
+This talk is about the **Level 5 target state**, but the path only works if Levels 1-4 are already doing their job. Autonomous delivery is not a shortcut around maturity; it is the compounding result of it.
+
+The Level 5 transformation operates at three layers that stack and reinforce each other:
 
 **Layer 1 (Foundation): Repository Topology** reorganizes code boundaries so agents can find everything they need in a single atomic workspace. This eliminates the coordination tax — when agents must touch 3 repos to implement a feature, you pay 3x merge + 3x deploy + N handoffs in overhead. Monorepo structure with tools like Nx provides module boundary enforcement (not suggestions), hermetic builds (deterministic CI signals), and affected analysis (test only what changed).
 
@@ -122,9 +108,11 @@ The Gen-4 transformation operates at three layers that stack and reinforce each 
 
 **Layer 3 (Trust Manufacturing): CI Pipeline** transforms from quality gate to trust factory. Speed matters — 60-minute CI means agents idle 80% of the time. The target is <10 minutes for PR checks via parallelization, caching, and affected analysis. Context-aware validation uses agents to apply judgment (not just pattern matching) for compliance. Zero-flake tolerance makes green builds trustworthy again. Attestations provide audit trails for regulated environments.
 
-These three layers compound: fast CI enables high PR velocity, which requires streamlined review, which depends on atomic repo changes. Miss any layer and the system bottlenecks.
+These three layers compound: fast CI enables high PR velocity, which requires streamlined review, which depends on atomic repo changes. Miss any layer and the system bottlenecks — and the repo stalls somewhere between Level 3 and Level 4 instead of reaching Level 5.
 
 **Official Documentation:**
+- 📖 [AgentRC Concepts](https://github.com/microsoft/agentrc/blob/main/docs/concepts.md) — Maturity levels, readiness pillars, and how autonomy is staged
+- 📖 [AgentRC Repository](https://github.com/microsoft/agentrc) — Measure, generate, and maintain loop for repository AI readiness
 - 📖 [Nx Monorepo Tools](https://nx.dev/) — Build orchestration, module boundaries, and affected analysis
 - 📖 [GitHub Actions Documentation](https://docs.github.com/en/actions) — CI/CD workflow automation
 - 📖 [SLSA Framework](https://slsa.dev/) — Supply chain security and attestation standards
@@ -152,13 +140,13 @@ These three layers compound: fast CI enables high PR velocity, which requires st
 - **Evidence-bundle PR template** — Required artifacts for outcome-based review
 - **Attestation generation workflow** — SLSA compliance and audit trails
 
-**Guidance:** Primary artifacts demonstrate the "what" (actual configs). Supporting patterns show the "how" (organizational implementation). Together they form a complete Gen-4 SDLC blueprint.
+**Guidance:** Primary artifacts demonstrate the "what" (actual configs). Supporting patterns show the "how" (organizational implementation). Together they form a complete **Level 5 / Autonomous SDLC** blueprint.
 
 ---
 
 ## 🎯 Mental Model Shift
 
-> **The Core Insight:** From "infrastructure supports human collaboration" to "infrastructure enables agent velocity while humans govern outcomes"
+> **The Core Insight:** From "infrastructure supports human collaboration" to "each maturity level unlocks more automation, speed, and safety until infrastructure can sustain autonomous delivery while humans govern outcomes"
 
 ### Move Toward (Embrace These Patterns)
 
@@ -191,7 +179,7 @@ These three layers compound: fast CI enables high PR velocity, which requires st
 ```
 Q: What's your current agent throughput vs. target?
 ├─ "2-3 features/week, want 10-15/day"
-│  → Use: Full Gen-4 SDLC (this talk)
+│  → Use: Full Level 5 / Autonomous SDLC (this talk)
 │  └─ Best for: Platform transformation, sustainable AI velocity
 │
 ├─ "Haven't started with agents yet"
@@ -250,13 +238,13 @@ When agents cross repo boundaries frequently, you pay exponential coordination c
 
 ### Why Traditional Structures Fail
 
-**Traditional (Gen-3) Assumptions:**
+**Level 3-4 Assumptions:**
 - **Humans produce code** — 10-50 lines/hour, context-switching every 23 minutes
 - **PRs are collaboration forums** — "Can you explain this?" "Why did you...?" "LGTM 🚀"
 - **Repo structure optimized for teams** — "Frontend in one repo, backend in another"
 - **Boundaries are social contracts** — Comments, conventions, and code review
 
-**Agentic (Gen-4) Reality:**
+**Level 5 / Autonomous Reality:**
 - **Agents produce feature-scale payloads** — 500-2000 lines in 15 minutes, zero context switching
 - **Humans govern safety and outcomes** — "Ship the feature" or "Roll it back" (not line-level review)
 - **Repo structure optimized for agents** — "Everything this agent needs is in one atomic boundary"
@@ -269,8 +257,8 @@ When agents cross repo boundaries frequently, you pay exponential coordination c
 
 **What We're Optimizing For:**
 
-| Traditional Metric | Gen-4 Metric | Target |
-|--------------------|--------------|--------|
+| Traditional Metric | Level 5 Metric | Target |
+|--------------------|----------------|--------|
 | Lines of code written | Features shipped | 10-15/day |
 | Code review depth | Outcome validation speed | <20 min/PR |
 | Manual quality gates | Automated trust evidence | 90% automated |
@@ -398,7 +386,7 @@ enterprise-control-plane/
 
 ### Enforced Module Boundaries
 
-#### Suggested Boundaries (Fail in Gen-4)
+#### Suggested Boundaries (Fail at Level 5)
 
 ```typescript
 // Hope developers notice the comment
@@ -408,7 +396,7 @@ export class PaymentProcessor {}
 
 **Problem:** Agents don't read comments. They follow import patterns they observe in the codebase.
 
-#### Enforced Boundaries (Work in Gen-4)
+#### Enforced Boundaries (Work at Level 5)
 
 ```json
 // nx.json module boundary configuration
@@ -473,7 +461,7 @@ Violating import:
 
 ### Hermetic Builds for Deterministic Trust
 
-#### Non-Hermetic (Breaks in Gen-4)
+#### Non-Hermetic (Breaks at Level 5)
 
 ```dockerfile
 # Dockerfile - DON'T DO THIS
@@ -486,7 +474,7 @@ RUN npm run build
 
 **Problem:** Same git commit produces different builds on different days. CI becomes unreliable signal.
 
-#### Hermetic (Works in Gen-4)
+#### Hermetic (Works at Level 5)
 
 ```dockerfile
 # Dockerfile - DO THIS
@@ -586,28 +574,29 @@ libs/data-access
 
 Traditional PRs were designed for humans collaborating on 50-200 line changes with line-by-line review and synchronous discussion. AI agents generate 500-2000 line feature diffs in 15 minutes. **Human reviewers can't keep up — the bottleneck isn't coding, it's governance.**
 
-### The Four Generations Context
+### The AgentRC Maturity Context
 
-Understanding the shift from Gen-3 to Gen-4 explains why PR workflows must transform:
+AgentRC provides a cleaner way to talk about the transition than the older "Gen-3 / Gen-4" shorthand:
 
-| Generation | Primary Producer | Review Mode | PR Characteristics |
-|------------|------------------|-------------|-------------------|
-| **Gen-1** | Individual devs | Manual testing | Waterfall, no PRs |
-| **Gen-2** | Team collaboration | Code review | 50-200 lines, discussion |
-| **Gen-3** | Human + AI assist | Line-by-line | 100-400 lines, still readable |
-| **Gen-4** | AI agents | Outcome validation | 500-2000 lines, feature-complete |
+| Level | Name | Primary Producer Pattern | Review / Governance Mode | What It Unlocks |
+|-------|------|--------------------------|--------------------------|-----------------|
+| **1** | **Functional** | Humans working against basic tooling | Manual verification | Basic scripts and tests run reliably |
+| **2** | **Documented** | Humans and assistants using shared docs/instructions | Human review with better context | Faster onboarding and fewer guess-driven mistakes |
+| **3** | **Standardized** | Teams operating through CI/CD, policy, and observability | Repeatable gates and approval paths | Safe scaling of automation across teams |
+| **4** | **Optimized** | Tool-using agents with MCP servers, custom agents, and skills | Context-aware automation plus human exception handling | Faster multi-step workflows with better local decisions |
+| **5** | **Autonomous** | Agents as primary producers for feature-scale changes | Outcome validation backed by policy and evidence | Sustainable machine-paced delivery with minimal oversight |
 
-**The Breakpoint:** When AI-generated code volume exceeds human review capacity (happening now).
+**The Breakpoint:** Most PR systems feel fine through Levels 1-4, then break when teams try to operate at **Level 5 volume** using **Level 3 review habits**.
 
 ### Why Traditional PR Practices Fail
 
-**Gen-3 Design Assumptions:**
+**Level 3 Design Assumptions:**
 - **Small, incremental changes** — 50-200 lines, human-comprehensible in 30-minute review
 - **Line-by-line scrutiny** — "Can you explain line 47?" "Why this approach?" "Move function to utils"
 - **Synchronous collaboration** — Back-and-forth discussion until consensus reached
 - **Trust through detailed inspection** — Read every line, understand every decision
 
-**Gen-4 Reality:**
+**Level 5 Reality:**
 - **Feature-scale payloads** — 500-2000 lines, 5-15 files, entire features atomically
 - **Intent-driven generation** — Specified at goal level ("add OAuth"), not implementation level
 - **Machine velocity** — 15 minutes from intent to PR, 15 PRs/day, 24/7 availability
@@ -619,8 +608,8 @@ Understanding the shift from Gen-3 to Gen-4 explains why PR workflows must trans
 
 #### Where Scarcity Moves
 
-| Gen-3 Scarcity | Gen-4 Scarcity |
-|----------------|----------------|
+| Level 3 Scarcity | Level 5 Scarcity |
+|------------------|------------------|
 | Developer time to write code | Governance capacity to review |
 | Code quality (bugs in implementation) | Trust at scale (can we ship this velocity?) |
 | Implementation speed | Architectural coherence |
@@ -633,7 +622,7 @@ Solution: Hire more developers
 Control: Code reviews catch bugs
 ```
 
-**Gen-4 Economics:**
+**Level 5 Economics:**
 ```
 Bottleneck: Trusting code
 Solution: Automate trust manufacturing
@@ -642,7 +631,7 @@ Control: Policy enforcement + outcome validation
 
 > 💡 **The Shift:** From "can we write it fast enough?" to "can we trust it at this velocity?"
 
-### Gen-4 Control Surfaces
+### Level 5 Control Surfaces
 
 #### 1. Intent Specification (What Humans Provide)
 
@@ -845,7 +834,7 @@ human_review:
 - Compliance officer reviews every data change
 - **Result:** 4-7 days from PR to merge
 
-#### Gen-4 Governance (Scales to 10-15 Features/Day)
+#### Level 5 Governance (Scales to 10-15 Features/Day)
 
 - 4 human checkpoints: intent validation, security risk assessment, architectural fit, outcome validation
 - Automated enforcement: 90% of checks
@@ -873,8 +862,8 @@ Automated Governance (90%)
 
 #### From Code-Level to Outcome-Level
 
-| Gen-3 PR Review | Gen-4 PR Review |
-|-----------------|-----------------|
+| Level 3 PR Review | Level 5 PR Review |
+|-------------------|-------------------|
 | "Why did you use a Map here?" | "Does this meet the intent?" |
 | "Can you extract this function?" | "Are edge cases handled?" |
 | "Add more comments" | "Is this compliant and secure?" |
@@ -1196,9 +1185,9 @@ Machine-readable artifacts proving checks ran and passed:
 <!-- 🎬 MAJOR SECTION: Implementation Roadmap -->
 ## Part 4: Implementation Roadmap
 
-*Phased approach to Gen-4 SDLC transformation*
+*Phased approach to progressing from standardized engineering to autonomous delivery*
 
-### Phase 1: Foundation (Weeks 1-4)
+### Phase 1: Reach Level 3 (Standardized)
 
 **Repository:**
 - [ ] Audit current repos: how often do agents touch 2+ repos?
@@ -1213,7 +1202,7 @@ Machine-readable artifacts proving checks ran and passed:
 - [ ] Add caching for dependencies and builds
 - [ ] Target: <10 min PR checks
 
-### Phase 2: Automation (Weeks 5-8)
+### Phase 2: Reach Level 4 (Optimized)
 
 **Governance:**
 - [ ] Create intent templates for common feature types
@@ -1227,7 +1216,7 @@ Machine-readable artifacts proving checks ran and passed:
 - [ ] Add agent-based compliance validation
 - [ ] Target: <2% flake rate
 
-### Phase 3: Optimization (Weeks 9-12)
+### Phase 3: Operate at Level 5 (Autonomous)
 
 **Velocity:**
 - [ ] Measure agent throughput
@@ -1296,7 +1285,7 @@ Machine-readable artifacts proving checks ran and passed:
 - [ ] Train team on outcome-based review vs. line-by-line
 
 **Next Steps After Completion:**
-1. ✅ Complete Phase 1 (foundation) and measure baseline metrics
+1. ✅ Complete Phase 1 (Level 3 standardization) and measure baseline metrics
 2. 📖 Review [Agentic Journey](../agentic-journey/) if you need quick wins before full transformation
 3. 📊 Build ROI dashboard tracking: time-to-merge, agent velocity, flake rate, review capacity
 4. 🚀 Present transformation plan using [Agentic Delivery](../../exec-talks/agentic-delivery/) executive framing
@@ -1332,6 +1321,8 @@ See [DECISION-GUIDE.md](../DECISION-GUIDE.md) for complete navigation help.
 ## 📚 Official Documentation
 
 **Primary Documentation:**
+- 📖 **[AgentRC](https://github.com/microsoft/agentrc)** — Repository AI-readiness workflow built around measure, generate, and maintain
+- 📖 **[AgentRC Concepts](https://github.com/microsoft/agentrc/blob/main/docs/concepts.md)** — The 5-level maturity model and readiness pillars used in this talk
 - 📖 **[Nx Monorepo Tools](https://nx.dev/)** — Build orchestration, module boundaries, affected analysis, and caching
 - 📖 **[GitHub Actions Documentation](https://docs.github.com/en/actions)** — CI/CD workflow automation, caching, and parallelization
 - 📖 **[SLSA Framework](https://slsa.dev/)** — Supply chain security levels and attestation standards

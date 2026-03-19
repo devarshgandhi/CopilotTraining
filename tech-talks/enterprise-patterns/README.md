@@ -35,40 +35,6 @@ references:
 
 ---
 
-## 📽️ Slide Generation Mapping
-
-### Slide Sequence (Generated Automatically)
-
-1. **Title/Logo Slide** ← H1 title + subtitle
-2. **Question/Objective Slide** ← "The Question This Talk Answers"
-3. **Table of Contents Slide** ← Auto-generated from 🎬 sections
-4. **Problem Slide** ← "The Problem"
-5. **Solution Overview** ← "The Solution"
-6. **Key Artifacts** ← "Key Artifacts" inventory
-7. **Mental Model Shift** ← Move-Toward/Away/Against
-8. **When to Use Decision Tree** ← "When to Use This Pattern"
-9. **Organization-Wide Standards** ← 🎬 Section 1 (3-4 slides)
-10. **Organizational Skills & Knowledge Bases** ← 🎬 Section 2 (3-4 slides)
-11. **Governance & Licensing** ← 🎬 Section 3 (2-3 slides)
-12. **Adoption & Enablement** ← 🎬 Section 4 (3-4 slides)
-13. **Multi-Team Coordination** ← 🎬 Section 5 (2-3 slides)
-14. **Use Cases** ← Real-World Use Cases (1-2 slides)
-15. **Actionable Outcomes** ← What You Can Do Today
-16. **Related Patterns** ← Related Patterns
-17. **Official Documentation** ← 📚 section
-18. **End Slide** ← Auto-generated
-
-### Major Sections (TOC Entries)
-
-```markdown
-<!-- 🎬 MAJOR SECTION: Organization-Wide Standards -->
-<!-- 🎬 MAJOR SECTION: Organizational Skills & Knowledge Bases -->
-<!-- 🎬 MAJOR SECTION: Governance & Licensing -->
-<!-- 🎬 MAJOR SECTION: Adoption & Enablement -->
-<!-- 🎬 MAJOR SECTION: Multi-Team Coordination -->
-```
-
----
 
 ## The Problem
 

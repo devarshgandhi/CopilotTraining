@@ -47,39 +47,6 @@ references:
 
 ---
 
-## 📽️ Slide Generation Mapping
-
-### Slide Sequence (Generated Automatically)
-
-1. **Title/Logo Slide** ← H1 title + subtitle
-2. **Question/Objective Slide** ← "The Question This Talk Answers"
-3. **Table of Contents Slide** ← Auto-generated from 🎬 sections
-4. **Problem Slide** ← "The Problem"
-5. **Solution Overview** ← "The Solution"
-6. **Key Artifacts** ← Primary artifacts inventory
-7. **🧠 The Shift (Preview)** ← Core Insight one-liner
-8. **When to Use Decision Tree** ← "When to Use This Pattern"
-9. **Protocol Architecture** ← 🎬 Section 1 (3-4 slides)
-10. **Getting Started** ← 🎬 Section 2 (3-4 slides)
-11. **SDK Ecosystem** ← 🎬 Section 3 (2-3 slides)
-12. **Permissions & Security** ← 🎬 Section 4 (2-3 slides)
-13. **Use Cases** ← Real-World Use Cases (2 slides)
-14. **🧠 Mental Model Shift (Full)** ← Move Toward/Away/Against grid
-15. **Actionable Outcomes** ← What You Can Do Today
-16. **Related Patterns** ← Related Patterns
-17. **📖 References** ← References section
-18. **End Slide** ← Auto-generated
-
-### Major Sections (TOC Entries)
-
-```markdown
-<!-- 🎬 MAJOR SECTION: Protocol Architecture -->
-<!-- 🎬 MAJOR SECTION: Getting Started -->
-<!-- 🎬 MAJOR SECTION: SDK Ecosystem -->
-<!-- 🎬 MAJOR SECTION: Permissions & Security -->
-```
-
----
 
 ## The Problem
 

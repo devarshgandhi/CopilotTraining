@@ -38,40 +38,6 @@ references:
 
 ---
 
-## 📽️ Slide Generation Mapping
-
-### Slide Sequence (Generated Automatically)
-
-1. **Title/Logo Slide** ← H1 title + subtitle
-2. **Question/Objective Slide** ← "The Question This Talk Answers"
-3. **Table of Contents Slide** ← Auto-generated from 🎬 sections
-4. **Problem Slide** ← "The Problem"
-5. **Solution Overview** ← "The Solution"
-6. **Key Artifacts** ← "Key Artifacts" inventory
-7. **Mental Model Shift** ← Move-Toward/Away/Against
-8. **When to Use Decision Tree** ← "When to Use This Pattern"
-9. **Lifecycle Control** ← 🎬 Section 1 (3-4 slides)
-10. **Preventive Enforcement** ← 🎬 Section 2 (3-4 slides)
-11. **Observability & Audit** ← 🎬 Section 3 (2-3 slides)
-12. **Real-World Patterns** ← 🎬 Section 4 (3-4 slides)
-13. **Advanced Integration** ← 🎬 Section 5 (2-3 slides)
-14. **Use Cases** ← Real-World Use Cases (1-2 slides)
-15. **Actionable Outcomes** ← What You Can Do Today
-16. **Related Patterns** ← Related Patterns
-17. **Official Documentation** ← 📚 section
-18. **End Slide** ← Auto-generated
-
-### Major Sections (TOC Entries)
-
-```markdown
-<!-- 🎬 MAJOR SECTION: Lifecycle Control -->
-<!-- 🎬 MAJOR SECTION: Preventive Enforcement -->
-<!-- 🎬 MAJOR SECTION: Observability & Audit -->
-<!-- 🎬 MAJOR SECTION: Real-World Patterns -->
-<!-- 🎬 MAJOR SECTION: Advanced Integration -->
-```
-
----
 
 ## The Problem
 

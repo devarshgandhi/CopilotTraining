@@ -1,0 +1,38 @@
+version: 1
+source: tech-talks/copilot-code-review/README.md
+
+deck:
+  title: Copilot Code Review
+  subtitle: Accelerating PR Velocity & Maximizing ROI
+  tagline: Turn PR analytics and review-time assumptions into an executive-ready savings story
+
+  intro:
+    mode: core-question
+
+  toc:
+    enabled: true
+
+  sectionOrder:
+    - Setup & Configuration
+    - Compliance & Security
+    - ROI Metrics
+    - Team Adoption
+
+  sectionModes:
+    Setup & Configuration: balanced
+    Compliance & Security: balanced
+    ROI Metrics: deep-dive
+    Team Adoption: compact
+
+  highlightMoments:
+    - Interactive calculator turns PR analytics into an executive-ready summary
+    - Live example shows 15.0 days faster PR cycle time and 78.9% improvement
+    - Incremental upside becomes visible even at low CCR adoption
+
+  references:
+    enabled: true
+    mode: standard
+
+  thankYou:
+    enabled: true
+    variant: standard

@@ -41,38 +41,6 @@ references:
 
 ---
 
-## 📽️ Slide Generation Mapping
-
-### Slide Sequence (Generated Automatically)
-
-1. **Title/Logo Slide** ← H1 title + subtitle
-2. **Question/Objective Slide** ← "The Question This Talk Answers"
-3. **Table of Contents Slide** ← Auto-generated from 🎬 sections
-4. **Problem Slide** ← "The Problem"
-5. **Solution Overview** ← "The Solution"
-6. **Key Artifacts** ← "Key Artifacts" inventory
-7. **Mental Model Shift** ← Move-Toward/Away/Against
-8. **When to Use Decision Tree** ← "When to Use This Pattern"
-9. **Component Types** ← 🎬 Section 1 (3-4 slides)
-10. **Building MCP Apps** ← 🎬 Section 2 (3-4 slides)
-11. **Real-World Patterns** ← 🎬 Section 3 (2-3 slides)
-12. **Integration** ← 🎬 Section 4 (2-3 slides)
-13. **Use Cases** ← Real-World Use Cases (1-2 slides)
-14. **Actionable Outcomes** ← What You Can Do Today
-15. **Related Patterns** ← Related Patterns
-16. **Official Documentation** ← 📚 section
-17. **End Slide** ← Auto-generated
-
-### Major Sections (TOC Entries)
-
-```markdown
-<!-- 🎬 MAJOR SECTION: Component Types -->
-<!-- 🎬 MAJOR SECTION: Building MCP Apps -->
-<!-- 🎬 MAJOR SECTION: Real-World Patterns -->
-<!-- 🎬 MAJOR SECTION: Integration -->
-```
-
----
 
 ## The Problem
 
